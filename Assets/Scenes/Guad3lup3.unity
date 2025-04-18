@@ -282,9 +282,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 735484567}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2584d9637640d9b4a9b1b2345469a13a, type: 3}
+  m_Script: {fileID: 11500000, guid: 5afd309dce760f640a109144c6ec4909, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  InputActions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  speed: 5
 --- !u!50 &735484569
 Rigidbody2D:
   serializedVersion: 5
@@ -311,7 +313,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!70 &735484570
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
