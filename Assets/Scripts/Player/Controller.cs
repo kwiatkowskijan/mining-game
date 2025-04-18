@@ -7,8 +7,10 @@ namespace MiningGame.Player
     {
         public InputActionAsset InputActions;
         [SerializeField] private float speed;
+        [SerializeField] private float jumpForce;
         private Rigidbody2D _rb;
         private InputAction _moveAction;
+        private InputAction _jumpAction;
         private Vector2 _moveAmount;
 
         private void OnEnable()
@@ -25,11 +27,17 @@ namespace MiningGame.Player
         {
             _rb = GetComponent<Rigidbody2D>();
             _moveAction = InputSystem.actions.FindAction("Move");
+            _jumpAction = InputSystem.actions.FindAction("Jump");
         }
 
         private void Update()
         {
             _moveAmount = _moveAction.ReadValue<Vector2>();
+
+            if (_jumpAction.WasPressedThisFrame())
+            {
+                Jump();
+            }
         }
 
         private void FixedUpdate()
@@ -39,7 +47,12 @@ namespace MiningGame.Player
 
         private void MovePlayer()
         {
-            _rb.MovePosition(_rb.position + transform.right * _moveAmount * speed * Time.deltaTime);
+            _rb.linearVelocity = new Vector2(_moveAmount.x * speed, _rb.linearVelocity.y);
+        }
+
+        private void Jump()
+        {
+            _rb.AddForceAtPosition(Vector2.up * jumpForce, _rb.position, ForceMode2D.Impulse);
         }
     }
 }
