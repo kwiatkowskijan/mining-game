@@ -8,6 +8,7 @@ namespace MiningGame.Player
         public InputActionAsset InputActions;
         [SerializeField] private float speed;
         [SerializeField] private float jumpForce;
+        [SerializeField] private float climbSpeed;
         private Rigidbody2D _rb;
         private InputAction _moveAction;
         private InputAction _jumpAction;
@@ -34,15 +35,26 @@ namespace MiningGame.Player
         {
             _moveAmount = _moveAction.ReadValue<Vector2>();
 
+            Debug.Log("Move amount: " + _moveAmount);
+
             if (_jumpAction.WasPressedThisFrame() && IsGrounded())
             {
                 Jump();
             }
+
+            Debug.DrawRay(transform.position, Vector2.down * 1.2f, Color.red);
+            Debug.DrawRay(new Vector2(transform.position.x, transform.position.y - 1f), Vector2.left * .6f, Color.red);
+            Debug.DrawRay(new Vector2(transform.position.x, transform.position.y - 1f), Vector2.right * .6f, Color.red);
         }
 
         private void FixedUpdate()
         {
             MovePlayer();
+
+            if (IsNearWall())
+            {
+                Climb();
+            }
         }
 
         private void MovePlayer()
@@ -55,9 +67,20 @@ namespace MiningGame.Player
             _rb.AddForceAtPosition(Vector2.up * jumpForce, _rb.position, ForceMode2D.Impulse);
         }
 
+        private void Climb()
+        {
+            _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, _moveAmount.y * climbSpeed);
+        }
+
         private bool IsGrounded()
         {
             return Physics2D.Raycast(transform.position, Vector2.down, 1.2f, LayerMask.GetMask("Ground"));
+        }
+
+        private bool IsNearWall()
+        {
+            return Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - 1f), Vector2.left, 1.2f, LayerMask.GetMask("Ground")) ||
+            Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - 1f), Vector2.right, 1.2f, LayerMask.GetMask("Ground"));
         }
     }
 }
