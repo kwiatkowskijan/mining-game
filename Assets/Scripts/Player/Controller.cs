@@ -35,8 +35,6 @@ namespace MiningGame.Player
         {
             _moveAmount = _moveAction.ReadValue<Vector2>();
 
-            Debug.Log("Move amount: " + _moveAmount);
-
             if (_jumpAction.WasPressedThisFrame() && IsGrounded())
             {
                 Jump();
@@ -53,7 +51,6 @@ namespace MiningGame.Player
 
             if (IsNearWall() && _moveAmount.y > 0f)
             {
-                Debug.Log("Can climb");
                 Climb();
             }
         }
