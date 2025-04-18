@@ -34,7 +34,7 @@ namespace MiningGame.Player
         {
             _moveAmount = _moveAction.ReadValue<Vector2>();
 
-            if (_jumpAction.WasPressedThisFrame())
+            if (_jumpAction.WasPressedThisFrame() && IsGrounded())
             {
                 Jump();
             }
@@ -53,6 +53,11 @@ namespace MiningGame.Player
         private void Jump()
         {
             _rb.AddForceAtPosition(Vector2.up * jumpForce, _rb.position, ForceMode2D.Impulse);
+        }
+
+        private bool IsGrounded()
+        {
+            return Physics2D.Raycast(transform.position, Vector2.down, 1.2f, LayerMask.GetMask("Ground"));
         }
     }
 }
