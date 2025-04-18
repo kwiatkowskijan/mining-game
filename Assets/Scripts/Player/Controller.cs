@@ -77,8 +77,8 @@ namespace MiningGame.Player
 
         private bool IsNearWall()
         {
-            return Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - .9f), Vector2.left, 1.2f, LayerMask.GetMask("Ground")) ||
-            Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - .9f), Vector2.right, 1.2f, LayerMask.GetMask("Ground"));
+            return Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - .9f), Vector2.left, .6f, LayerMask.GetMask("Ground")) ||
+            Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - .9f), Vector2.right, .6f, LayerMask.GetMask("Ground"));
         }
     }
 }
