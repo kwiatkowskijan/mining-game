@@ -28,6 +28,9 @@ Assets/Plugins/Editor/JetBrains*
 # Visual Studio Code
 .vscode/
 
+# Visual Studio config
+.vsconfig
+
 # Visual Studio cache directory
 .vs/
 
