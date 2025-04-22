@@ -5,10 +5,14 @@ namespace MiningGame.Player
 {
     public class Controller : MonoBehaviour
     {
+        [Header("Input Settings")]
         public InputActionAsset InputActions;
+        [Header("Movement Settings")]
         [SerializeField] private float speed;
         [SerializeField] private float jumpForce;
         [SerializeField] private float climbSpeed;
+        [Tooltip("The maximum angle of the slope the player can walk on.")]
+        [Range(0, 90)]
         [SerializeField] private float maxSlopeAngle;
         private Rigidbody2D _rb;
         private InputAction _moveAction;
@@ -42,10 +46,6 @@ namespace MiningGame.Player
             }
 
             IsOnSlope();
-
-            // Debug.DrawRay(transform.position, Vector2.down * 1.2f, Color.red);
-            // Debug.DrawRay(new Vector2(transform.position.x, transform.position.y - .9f), Vector2.left * .6f, Color.red);
-            // Debug.DrawRay(new Vector2(transform.position.x, transform.position.y - .9f), Vector2.right * .6f, Color.red);
         }
 
         private void FixedUpdate()
@@ -57,7 +57,7 @@ namespace MiningGame.Player
                 Climb();
             }
         }
-
+            
         private void MovePlayer()
         {
             _rb.linearVelocity = new Vector2(_moveAmount.x * speed, _rb.linearVelocity.y);
@@ -88,13 +88,9 @@ namespace MiningGame.Player
         {
             RaycastHit2D _slopeHit = Physics2D.Raycast(transform.position, Vector2.down, 1.2f, LayerMask.GetMask("Ground"));
 
-            Debug.DrawRay(transform.position, Vector2.down * 1.2f, Color.green);
-            Debug.Log("Slope hit:" + _slopeHit.collider);
-
             if (_slopeHit)
             {
                 float angle = Vector2.Angle(Vector2.up, _slopeHit.normal);
-                Debug.Log("Angle: " + angle);
                 return angle < maxSlopeAngle;
             }
 
