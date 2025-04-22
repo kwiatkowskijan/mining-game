@@ -9,6 +9,7 @@ namespace MiningGame.Player
         [SerializeField] private float speed;
         [SerializeField] private float jumpForce;
         [SerializeField] private float climbSpeed;
+        [SerializeField] private float maxSlopeAngle;
         private Rigidbody2D _rb;
         private InputAction _moveAction;
         private InputAction _jumpAction;
@@ -40,9 +41,11 @@ namespace MiningGame.Player
                 Jump();
             }
 
-            Debug.DrawRay(transform.position, Vector2.down * 1.2f, Color.red);
-            Debug.DrawRay(new Vector2(transform.position.x, transform.position.y - .9f), Vector2.left * .6f, Color.red);
-            Debug.DrawRay(new Vector2(transform.position.x, transform.position.y - .9f), Vector2.right * .6f, Color.red);
+            IsOnSlope();
+
+            // Debug.DrawRay(transform.position, Vector2.down * 1.2f, Color.red);
+            // Debug.DrawRay(new Vector2(transform.position.x, transform.position.y - .9f), Vector2.left * .6f, Color.red);
+            // Debug.DrawRay(new Vector2(transform.position.x, transform.position.y - .9f), Vector2.right * .6f, Color.red);
         }
 
         private void FixedUpdate()
@@ -79,6 +82,23 @@ namespace MiningGame.Player
         {
             return Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - .9f), Vector2.left, .6f, LayerMask.GetMask("Ground")) ||
             Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - .9f), Vector2.right, .6f, LayerMask.GetMask("Ground"));
+        }
+
+        private bool IsOnSlope()
+        {
+            RaycastHit2D _slopeHit = Physics2D.Raycast(transform.position, Vector2.down, 1.2f, LayerMask.GetMask("Ground"));
+
+            Debug.DrawRay(transform.position, Vector2.down * 1.2f, Color.green);
+            Debug.Log("Slope hit:" + _slopeHit.collider);
+
+            if (_slopeHit)
+            {
+                float angle = Vector2.Angle(Vector2.up, _slopeHit.normal);
+                Debug.Log("Angle: " + angle);
+                return angle < maxSlopeAngle;
+            }
+
+            return false;
         }
     }
 }

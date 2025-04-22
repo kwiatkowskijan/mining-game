@@ -359,7 +359,17 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      levers and wires_0: 4251090631121508905
+      levers and wires_1: 2080608267111262496
+      levers and wires_2: 416098852459119854
+      levers and wires_3: 6818656526911206709
+      levers and wires_4: 3048312144937406020
+      levers and wires_5: -6087875068022565256
+      levers and wires_6: 4404130897044636966
+      levers and wires_7: 8256136469268222159
+      levers and wires_8: 2707633462182013226
+      levers and wires_9: 4021462883589181429
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
