@@ -44,23 +44,26 @@ namespace MiningGame.Player
             {
                 Jump();
             }
-
-            IsOnSlope();
         }
 
         private void FixedUpdate()
         {
             MovePlayer();
+        }
+
+        private void MovePlayer()
+        {
+            _rb.linearVelocity = new Vector2(_moveAmount.x * speed, _rb.linearVelocity.y);
 
             if (IsNearWall() && _moveAmount.y > 0f)
             {
                 Climb();
             }
-        }
-            
-        private void MovePlayer()
-        {
-            _rb.linearVelocity = new Vector2(_moveAmount.x * speed, _rb.linearVelocity.y);
+
+            if (IsOnSlope(out Vector2 slopeDirection))
+            {
+                _rb.AddForce(slopeDirection * 200f, ForceMode2D.Force);
+            }
         }
 
         private void Jump()
@@ -84,14 +87,21 @@ namespace MiningGame.Player
             Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - .9f), Vector2.right, .6f, LayerMask.GetMask("Ground"));
         }
 
-        private bool IsOnSlope()
+        private bool IsOnSlope(out Vector2 slopeDirection)
         {
-            RaycastHit2D _slopeHit = Physics2D.Raycast(transform.position, Vector2.down, 1.2f, LayerMask.GetMask("Ground"));
+            slopeDirection = Vector2.zero;
+            RaycastHit2D slopeHit = Physics2D.Raycast(transform.position, Vector2.down, 2f, LayerMask.GetMask("Ground"));
 
-            if (_slopeHit)
+            if (slopeHit)
             {
-                float angle = Vector2.Angle(Vector2.up, _slopeHit.normal);
-                return angle < maxSlopeAngle;
+                float angle = Vector2.Angle(Vector2.up, slopeHit.normal);
+                Debug.Log("Slope Angle: " + angle);
+
+                if (angle < maxSlopeAngle && angle > 0)
+                {
+                    slopeDirection = -slopeHit.normal;
+                    return true;
+                }
             }
 
             return false;
