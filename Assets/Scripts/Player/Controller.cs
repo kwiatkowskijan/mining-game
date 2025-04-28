@@ -1,5 +1,4 @@
-using System.Data.Common;
-using Unity.VisualScripting;
+using UnityEditor.EditorTools;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,14 +8,20 @@ namespace MiningGame.Player
     {
         [Header("Input Settings")]
         public InputActionAsset InputActions;
+
         [Header("Movement Settings")]
         [SerializeField] private float speed;
         [SerializeField] private float jumpForce;
         [SerializeField] private float climbSpeed;
-        [Tooltip("The maximum angle of the slope the player can walk on.")]
         [Range(0, 90)]
-        [SerializeField] private float maxSlopeAngle;
-        [SerializeField] private bool _isJumping;
+        [SerializeField, Tooltip("The maximum angle of the slope the player can walk on.")] private float maxSlopeAngle;
+        [SerializeField] private float jumpCooldown;
+
+        [Header("Runtime variables")]
+        private bool _isJumping;
+        private float _jumpCooldownTimer = 0f;
+
+        [Header("References")]
         private Rigidbody2D _rb;
         private InputAction _moveAction;
         private InputAction _jumpAction;
@@ -45,6 +50,12 @@ namespace MiningGame.Player
 
             if (_jumpAction.WasPressedThisFrame() && IsGrounded())
                 Jump();
+
+            if (_jumpCooldownTimer > 0f)
+                _jumpCooldownTimer -= Time.deltaTime;
+
+            if (_jumpCooldownTimer <= 0f)
+                _isJumping = !IsGrounded();
         }
 
         private void FixedUpdate()
@@ -53,32 +64,36 @@ namespace MiningGame.Player
 
             if (IsNearWall() && _moveAmount.y > 0f)
                 Climb();
-
-            if (IsGrounded())
-                _isJumping = false;
         }
 
         private void MovePlayer()
         {
             if (IsOnSlope(out Vector2 slopeDirection))
-            {
-                if (!_isJumping)
-                {
-                    _rb.AddForce(slopeDirection * 200f, ForceMode2D.Force);
-                    _rb.linearVelocity = new Vector2(_moveAmount.x * speed, 0f);
-                    _rb.gravityScale = 0f;
-                }
-            }
+                SlopeMovement(slopeDirection);
             else
+                FlatMovement();
+        }
+
+        private void SlopeMovement(Vector2 slopeDirection)
+        {
+            if (!_isJumping)
             {
-                _rb.linearVelocity = new Vector2(_moveAmount.x * speed, _rb.linearVelocity.y);
-                _rb.gravityScale = 1f;
+                _rb.AddForce(slopeDirection * 200f, ForceMode2D.Force);
+                _rb.linearVelocity = new Vector2(_moveAmount.x * speed, 0f);
+                _rb.gravityScale = 0f;
             }
+        }
+
+        private void FlatMovement()
+        {
+            _rb.linearVelocity = new Vector2(_moveAmount.x * speed, _rb.linearVelocity.y);
+            _rb.gravityScale = 1f;
         }
 
         private void Jump()
         {
             _isJumping = true;
+            _jumpCooldownTimer = jumpCooldown;
             _rb.AddForceAtPosition(Vector2.up * jumpForce, _rb.position, ForceMode2D.Impulse);
         }
 

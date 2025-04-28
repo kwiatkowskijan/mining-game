@@ -1179,6 +1179,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5370690400421621711, guid: 9d9c9a2ee19e745498519946acfe4739, type: 3}
+      propertyPath: jumpCooldown
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5370690400421621711, guid: 9d9c9a2ee19e745498519946acfe4739, type: 3}
       propertyPath: maxSlopeAngle
       value: 65
       objectReference: {fileID: 0}
