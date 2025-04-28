@@ -88,7 +88,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -102,7 +102,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -126,7 +126,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -559,7 +559,25 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      spikes and coins_0: -1385008881160710822
+      spikes and coins_1: 8545770420791571616
+      spikes and coins_10: -3131724889664037726
+      spikes and coins_11: -6463068793019412589
+      spikes and coins_12: 6713837030739800921
+      spikes and coins_13: 7668842660126218168
+      spikes and coins_14: -1766776872896563830
+      spikes and coins_15: -1596178753889932004
+      spikes and coins_16: 7700906256906385634
+      spikes and coins_17: 1440817163797691939
+      spikes and coins_2: -1270967081441722027
+      spikes and coins_3: 5814897488512512700
+      spikes and coins_4: -2797966705772418460
+      spikes and coins_5: 1435902069237218386
+      spikes and coins_6: 8317259856502608535
+      spikes and coins_7: -3399405431854486841
+      spikes and coins_8: -7793969815299195995
+      spikes and coins_9: -5807504938339423924
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
