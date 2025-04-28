@@ -92,6 +92,7 @@ namespace MiningGame.Player
         {
             _isJumping = true;
             _jumpCooldownTimer = jumpCooldown;
+            _rb.linearVelocityY = 0f;
             _rb.AddForceAtPosition(Vector2.up * jumpForce, _rb.position, ForceMode2D.Impulse);
         }
 
