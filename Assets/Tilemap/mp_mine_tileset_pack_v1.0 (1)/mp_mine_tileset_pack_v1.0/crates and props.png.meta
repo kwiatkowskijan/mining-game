@@ -82,7 +82,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -96,7 +96,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -120,7 +120,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -509,7 +509,23 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      crates and props_0: 1146690787462126571
+      crates and props_1: -6667774219606312175
+      crates and props_10: 1507288386024984659
+      crates and props_11: 3010612383320116451
+      crates and props_12: 7597043816394767499
+      crates and props_13: 5459685220871148133
+      crates and props_14: -34820886565432379
+      crates and props_15: -2097754884972324197
+      crates and props_2: -6737659566430688185
+      crates and props_3: 8664365843486270536
+      crates and props_4: -1281884055850769489
+      crates and props_5: -8080981614366660418
+      crates and props_6: 5181703103850607855
+      crates and props_7: 4937014066212190105
+      crates and props_8: -5104781339846221228
+      crates and props_9: -7427464341726309539
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

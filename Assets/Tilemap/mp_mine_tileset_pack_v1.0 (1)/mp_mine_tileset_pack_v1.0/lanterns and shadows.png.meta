@@ -61,7 +61,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -75,7 +75,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -99,7 +99,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -127,10 +127,10 @@ TextureImporter:
       name: lanterns and shadows_0
       rect:
         serializedVersion: 2
-        x: 21
-        y: 116
-        width: 6
-        height: 13
+        x: 22
+        y: 117
+        width: 4
+        height: 11
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -149,10 +149,10 @@ TextureImporter:
       name: lanterns and shadows_1
       rect:
         serializedVersion: 2
-        x: 28
-        y: 92
-        width: 24
-        height: 24
+        x: 29
+        y: 93
+        width: 22
+        height: 22
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -171,10 +171,10 @@ TextureImporter:
       name: lanterns and shadows_2
       rect:
         serializedVersion: 2
-        x: 53
-        y: 111
-        width: 6
-        height: 18
+        x: 54
+        y: 112
+        width: 4
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -193,10 +193,10 @@ TextureImporter:
       name: lanterns and shadows_3
       rect:
         serializedVersion: 2
-        x: 16
-        y: 80
-        width: 16
-        height: 17
+        x: 17
+        y: 81
+        width: 14
+        height: 15
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -215,10 +215,10 @@ TextureImporter:
       name: lanterns and shadows_4
       rect:
         serializedVersion: 2
-        x: 48
-        y: 80
-        width: 16
-        height: 17
+        x: 49
+        y: 81
+        width: 14
+        height: 15
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -237,10 +237,10 @@ TextureImporter:
       name: lanterns and shadows_5
       rect:
         serializedVersion: 2
-        x: 15
-        y: 31
-        width: 50
-        height: 41
+        x: 16
+        y: 32
+        width: 48
+        height: 39
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -259,10 +259,10 @@ TextureImporter:
       name: lanterns and shadows_6
       rect:
         serializedVersion: 2
-        x: 16
-        y: 63
-        width: 16
-        height: 16
+        x: 17
+        y: 64
+        width: 14
+        height: 14
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -281,10 +281,10 @@ TextureImporter:
       name: lanterns and shadows_7
       rect:
         serializedVersion: 2
-        x: 48
-        y: 63
-        width: 16
-        height: 16
+        x: 49
+        y: 64
+        width: 14
+        height: 14
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -306,7 +306,7 @@ TextureImporter:
         x: 0
         y: 0
         width: 80
-        height: 20
+        height: 19
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -325,7 +325,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 902efa164026a084f8db76af4c5b3038
     internalID: 0
     vertices: []
     indices: 
@@ -334,7 +334,16 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      lanterns and shadows_0: -5531921392338858793
+      lanterns and shadows_1: 3914815242627516129
+      lanterns and shadows_2: 3941664659823135103
+      lanterns and shadows_3: -7332240366172974887
+      lanterns and shadows_4: 3417451973485994326
+      lanterns and shadows_5: 2872992585731911468
+      lanterns and shadows_6: 6376125601655465364
+      lanterns and shadows_7: -2131983654610830776
+      lanterns and shadows_8: -3267999730212789345
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -309,7 +309,15 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      wooden beams and doors_0: -2234556303653841681
+      wooden beams and doors_1: 4434902252146368510
+      wooden beams and doors_2: -755336481780144915
+      wooden beams and doors_3: -5729955997840597651
+      wooden beams and doors_4: 859334595728261075
+      wooden beams and doors_5: -5419316001764336171
+      wooden beams and doors_6: -2730107226923159226
+      wooden beams and doors_7: 2527750858681141986
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

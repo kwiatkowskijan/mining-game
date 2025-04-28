@@ -1,22 +1,10 @@
 fileFormatVersion: 2
-guid: 5297c22a531281e4a8d6c371e4c1f482
+guid: a4d3a7bc67a6ddb4ab68513646052afc
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4672143925433977209
-    second: background walls_0
-  - first:
-      213: -4937058125042405887
-    second: background walls_1
-  - first:
-      213: 5214260941288784396
-    second: background walls_2
-  - first:
-      213: 8596743290993520478
-    second: background walls_3
-  - first:
-      213: -3425255175752161325
-    second: background walls_4
+      213: 8662384261516989540
+    second: rope_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -49,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -112,101 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: background walls_0
-      rect:
-        serializedVersion: 2
-        x: 19
-        y: 98
-        width: 58
-        height: 58
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 78632099ad5392fb0800000000000000
-      internalID: -4672143925433977209
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: background walls_1
-      rect:
-        serializedVersion: 2
-        x: 83
-        y: 98
-        width: 58
-        height: 58
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 10e246dfacb0c7bb0800000000000000
-      internalID: -4937058125042405887
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: background walls_2
-      rect:
-        serializedVersion: 2
-        x: 19
-        y: 34
-        width: 58
-        height: 58
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c0246b323b6cc5840800000000000000
-      internalID: 5214260941288784396
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: background walls_3
-      rect:
-        serializedVersion: 2
-        x: 83
-        y: 34
-        width: 58
-        height: 58
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e5f24e4c974cd4770800000000000000
-      internalID: 8596743290993520478
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: background walls_4
+      name: rope_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 160
-        height: 19
+        width: 6
+        height: 18
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -215,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3d76930c09c0770d0800000000000000
-      internalID: -3425255175752161325
+      spriteID: 46497af2798f63870800000000000000
+      internalID: 8662384261516989540
       vertices: []
       indices: 
       edges: []
@@ -234,12 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      background walls_0: -4672143925433977209
-      background walls_1: -4937058125042405887
-      background walls_2: 5214260941288784396
-      background walls_3: 8596743290993520478
-      background walls_4: -3425255175752161325
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
