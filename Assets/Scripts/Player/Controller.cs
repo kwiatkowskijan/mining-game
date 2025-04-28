@@ -13,8 +13,7 @@ namespace MiningGame.Player
         [SerializeField] private float speed;
         [SerializeField] private float jumpForce;
         [SerializeField] private float climbSpeed;
-        [Range(0, 90)]
-        [SerializeField, Tooltip("The maximum angle of the slope the player can walk on.")] private float maxSlopeAngle;
+        [SerializeField, Tooltip("The maximum angle of the slope the player can walk on."), Range(0, 90)] private float maxSlopeAngle;
         [SerializeField] private float jumpCooldown;
 
         [Header("Runtime variables")]
