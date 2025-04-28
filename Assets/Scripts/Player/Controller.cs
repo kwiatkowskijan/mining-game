@@ -1,3 +1,5 @@
+using System.Data.Common;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -14,6 +16,7 @@ namespace MiningGame.Player
         [Tooltip("The maximum angle of the slope the player can walk on.")]
         [Range(0, 90)]
         [SerializeField] private float maxSlopeAngle;
+        [SerializeField] private bool _isJumping;
         private Rigidbody2D _rb;
         private InputAction _moveAction;
         private InputAction _jumpAction;
@@ -41,33 +44,41 @@ namespace MiningGame.Player
             _moveAmount = _moveAction.ReadValue<Vector2>();
 
             if (_jumpAction.WasPressedThisFrame() && IsGrounded())
-            {
                 Jump();
-            }
         }
 
         private void FixedUpdate()
         {
             MovePlayer();
+
+            if (IsNearWall() && _moveAmount.y > 0f)
+                Climb();
+
+            if (IsGrounded())
+                _isJumping = false;
         }
 
         private void MovePlayer()
         {
-            _rb.linearVelocity = new Vector2(_moveAmount.x * speed, _rb.linearVelocity.y);
-
-            if (IsNearWall() && _moveAmount.y > 0f)
-            {
-                Climb();
-            }
-
             if (IsOnSlope(out Vector2 slopeDirection))
             {
-                _rb.AddForce(slopeDirection * 200f, ForceMode2D.Force);
+                if (!_isJumping)
+                {
+                    _rb.AddForce(slopeDirection * 200f, ForceMode2D.Force);
+                    _rb.linearVelocity = new Vector2(_moveAmount.x * speed, 0f);
+                    _rb.gravityScale = 0f;
+                }
+            }
+            else
+            {
+                _rb.linearVelocity = new Vector2(_moveAmount.x * speed, _rb.linearVelocity.y);
+                _rb.gravityScale = 1f;
             }
         }
 
         private void Jump()
         {
+            _isJumping = true;
             _rb.AddForceAtPosition(Vector2.up * jumpForce, _rb.position, ForceMode2D.Impulse);
         }
 
@@ -90,12 +101,11 @@ namespace MiningGame.Player
         private bool IsOnSlope(out Vector2 slopeDirection)
         {
             slopeDirection = Vector2.zero;
-            RaycastHit2D slopeHit = Physics2D.Raycast(transform.position, Vector2.down, 2f, LayerMask.GetMask("Ground"));
+            RaycastHit2D slopeHit = Physics2D.Raycast(transform.position, Vector2.down, 1.2f, LayerMask.GetMask("Ground"));
 
             if (slopeHit)
             {
                 float angle = Vector2.Angle(Vector2.up, slopeHit.normal);
-                Debug.Log("Slope Angle: " + angle);
 
                 if (angle < maxSlopeAngle && angle > 0)
                 {
