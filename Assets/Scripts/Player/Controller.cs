@@ -70,6 +70,8 @@ namespace MiningGame.Player
                 SlopeMovement(slopeDirection);
             else
                 FlatMovement();
+
+            
         }
 
         private void SlopeMovement(Vector2 slopeDirection)
