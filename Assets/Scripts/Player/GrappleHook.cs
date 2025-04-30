@@ -24,41 +24,38 @@ namespace MiningGame.Player
 
         void Update()
         {
-            if(Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0))
             {
-                    Vector2 mouseWorldPos = cam.ScreenToWorldPoint(Input.mousePosition);
+                Vector2 origin = transform.position;
+                Vector2 mouseWorldPos = cam.ScreenToWorldPoint(Input.mousePosition);
+                Vector2 direction = (mouseWorldPos - origin).normalized;
 
-                    RaycastHit2D hit = Physics2D.Raycast(
-                    origin: mouseWorldPos,
-                    direction: Vector2.zero,
-                    distance: _grappleLenght,
-                    layerMask: grappleLayer
+                RaycastHit2D hit = Physics2D.Raycast(
+                    origin,
+                    direction,
+                    _grappleLenght,
+                    grappleLayer
                 );
 
                 if (hit.collider != null)
                 {
-                    float distanceToHit = Vector2.Distance(transform.position, hit.point);
-
-                    if (distanceToHit <= _grappleLenght)
-                    {
-                        _grapplePos = hit.collider.ClosestPoint(mouseWorldPos);
-                        joint.connectedAnchor = _grapplePos;
-                        joint.enabled = true;
-                        joint.distance = Vector2.Distance(transform.position, _grapplePos);
-                        rope.SetPosition(0, _grapplePos);
-                        rope.SetPosition(1, transform.position);
-                        rope.enabled = true;
-                    }
+                    _grapplePos = hit.point;
+                    joint.connectedAnchor = _grapplePos;
+                    joint.enabled = true;
+                    joint.distance = Vector2.Distance(transform.position, _grapplePos);
+                    rope.SetPosition(0, _grapplePos);
+                    rope.SetPosition(1, transform.position);
+                    rope.enabled = true;
                 }
             }
 
-            if(Input.GetMouseButtonUp(0))
+            if (Input.GetMouseButtonUp(0))
             {
                 joint.enabled = false;
                 rope.enabled = false;
             }
 
-            if(rope.enabled == true)
+            if (rope.enabled)
             {
                 rope.SetPosition(1, transform.position);
             }
