@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 9164090401511293690}
   - component: {fileID: 1680522384121826874}
   - component: {fileID: 5370690400421621711}
+  - component: {fileID: 8522725513187923077}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -170,3 +171,20 @@ MonoBehaviour:
   speed: 8
   jumpForce: 6
   climbSpeed: 2
+--- !u!114 &8522725513187923077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1840271319705736523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bc8138a7cc78544696f4f3dcd686165, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  currentHealth: 0
+  maxWeight: 100
+  currentWeight: 0
+  currentMoney: 0
