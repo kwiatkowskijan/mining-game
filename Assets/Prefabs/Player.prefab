@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 5862897575773792549}
   - component: {fileID: 9164090401511293690}
   - component: {fileID: 1680522384121826874}
-  - component: {fileID: 5370690400421621711}
   - component: {fileID: 6636343399412334007}
+  - component: {fileID: 5370690400421621711}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -155,25 +155,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0.59375}
   m_Size: {x: 1.25, y: 1.1875}
   m_Direction: 0
---- !u!114 &5370690400421621711
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1840271319705736523}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5afd309dce760f640a109144c6ec4909, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  InputActions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
-  speed: 8
-  jumpForce: 6
-  airControl: 0
-  climbSpeed: 2
-  maxSlopeAngle: 0
-  jumpCooldown: 0
 --- !u!95 &6636343399412334007
 Animator:
   serializedVersion: 7
@@ -196,3 +177,22 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &5370690400421621711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1840271319705736523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5afd309dce760f640a109144c6ec4909, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InputActions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  speed: 8
+  jumpForce: 6
+  airControl: 0
+  climbSpeed: 2
+  maxSlopeAngle: 0
+  jumpCooldown: 0
