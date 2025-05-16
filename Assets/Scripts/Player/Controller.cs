@@ -18,10 +18,12 @@ namespace MiningGame.Player
 
         [Header("Runtime variables")]
         private bool _isJumping;
+        private bool _isFacingRight = true;
         private float _jumpCooldownTimer = 0f;
 
         [Header("References")]
         private Rigidbody2D _rb;
+        private SpriteRenderer _sr;
         private InputAction _moveAction;
         private InputAction _jumpAction;
         private Vector2 _moveAmount;
@@ -40,6 +42,7 @@ namespace MiningGame.Player
         private void Awake()
         {
             _rb = GetComponent<Rigidbody2D>();
+            _sr = GetComponent<SpriteRenderer>();
             _moveAction = InputSystem.actions.FindAction("Move");
             _jumpAction = InputSystem.actions.FindAction("Jump");
         }
@@ -59,6 +62,11 @@ namespace MiningGame.Player
 
             if (!_isJumping && IsGrounded())
                 _jumpDirectionX = 0f;
+
+            if (_moveAmount.x > 0f && !_isFacingRight)
+                FlipSprite();
+            else if (_moveAmount.x < 0f && _isFacingRight)
+                FlipSprite();
         }
 
         private void FixedUpdate()
@@ -144,6 +152,12 @@ namespace MiningGame.Player
             }
 
             return false;
+        }
+
+        private void FlipSprite()
+        {
+            _isFacingRight = !_isFacingRight;
+            _sr.flipX = !_sr.flipX;
         }
     }
 }
