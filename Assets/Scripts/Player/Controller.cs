@@ -11,6 +11,7 @@ namespace MiningGame.Player
         [Header("Movement Settings")]
         [SerializeField] private float speed;
         [SerializeField] private float jumpForce;
+        [SerializeField, Range(0, 0.5f)] private float airControl;
         [SerializeField] private float climbSpeed;
         [SerializeField, Tooltip("The maximum angle of the slope the player can walk on."), Range(0, 90)] private float maxSlopeAngle;
         [SerializeField] private float jumpCooldown;
@@ -24,6 +25,7 @@ namespace MiningGame.Player
         private InputAction _moveAction;
         private InputAction _jumpAction;
         private Vector2 _moveAmount;
+        private float _jumpDirectionX = 0f;
 
         private void OnEnable()
         {
@@ -54,6 +56,9 @@ namespace MiningGame.Player
 
             if (_jumpCooldownTimer <= 0f)
                 _isJumping = !IsGrounded();
+
+            if (!_isJumping && IsGrounded())
+                _jumpDirectionX = 0f;
         }
 
         private void FixedUpdate()
@@ -70,8 +75,6 @@ namespace MiningGame.Player
                 SlopeMovement(slopeDirection);
             else
                 FlatMovement();
-
-            
         }
 
         private void SlopeMovement(Vector2 slopeDirection)
@@ -86,7 +89,16 @@ namespace MiningGame.Player
 
         private void FlatMovement()
         {
-            _rb.linearVelocity = new Vector2(_moveAmount.x * speed, _rb.linearVelocity.y);
+            if (_isJumping)
+            {
+                _jumpDirectionX = Mathf.Lerp(_jumpDirectionX, _moveAmount.x, airControl);
+                _rb.linearVelocity = new Vector2(_jumpDirectionX * speed, _rb.linearVelocity.y);
+            }
+            else
+            {
+                _rb.linearVelocity = new Vector2(_moveAmount.x * speed, _rb.linearVelocity.y);
+            }
+
             _rb.gravityScale = 1f;
         }
 
@@ -96,6 +108,7 @@ namespace MiningGame.Player
             _jumpCooldownTimer = jumpCooldown;
             _rb.linearVelocityY = 0f;
             _rb.AddForceAtPosition(Vector2.up * jumpForce, _rb.position, ForceMode2D.Impulse);
+            _jumpDirectionX = _moveAmount.x;
         }
 
         private void Climb()

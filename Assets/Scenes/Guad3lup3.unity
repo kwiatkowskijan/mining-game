@@ -1187,6 +1187,10 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5370690400421621711, guid: 9d9c9a2ee19e745498519946acfe4739, type: 3}
+      propertyPath: airControl
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 5370690400421621711, guid: 9d9c9a2ee19e745498519946acfe4739, type: 3}
       propertyPath: jumpCooldown
       value: 0.2
       objectReference: {fileID: 0}
