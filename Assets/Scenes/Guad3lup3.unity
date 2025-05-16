@@ -1198,6 +1198,10 @@ PrefabInstance:
       propertyPath: maxSlopeAngle
       value: 65
       objectReference: {fileID: 0}
+    - target: {fileID: 5862897575773792549, guid: 9d9c9a2ee19e745498519946acfe4739, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
