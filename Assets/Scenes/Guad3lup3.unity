@@ -915,7 +915,7 @@ Transform:
   m_GameObject: {fileID: 1946638594}
   serializedVersion: 2
   m_LocalRotation: {x: 0.0000000037248653, y: 0.0000000368377, z: -1.3721547e-16, w: 1}
-  m_LocalPosition: {x: 0, y: 7.06, z: 0}
+  m_LocalPosition: {x: 0, y: 7.439, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1116,7 +1116,7 @@ Transform:
   m_GameObject: {fileID: 2008623621}
   serializedVersion: 2
   m_LocalRotation: {x: 0.0000000037248653, y: 0.0000000368377, z: -1.3646597e-16, w: 1}
-  m_LocalPosition: {x: 0, y: 7.06, z: 0}
+  m_LocalPosition: {x: 0, y: 7.439, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1134,6 +1134,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1680522384121826874, guid: 9d9c9a2ee19e745498519946acfe4739, type: 3}
+      propertyPath: m_Offset.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1840271319705736523, guid: 9d9c9a2ee19e745498519946acfe4739, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1144,7 +1148,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2462457306007924291, guid: 9d9c9a2ee19e745498519946acfe4739, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.06
+      value: 7.439
       objectReference: {fileID: 0}
     - target: {fileID: 2462457306007924291, guid: 9d9c9a2ee19e745498519946acfe4739, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1178,6 +1182,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2733411097041418168, guid: 9d9c9a2ee19e745498519946acfe4739, type: 3}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5370690400421621711, guid: 9d9c9a2ee19e745498519946acfe4739, type: 3}
       propertyPath: speed
       value: 7.5
@@ -1197,6 +1205,14 @@ PrefabInstance:
     - target: {fileID: 5370690400421621711, guid: 9d9c9a2ee19e745498519946acfe4739, type: 3}
       propertyPath: maxSlopeAngle
       value: 65
+      objectReference: {fileID: 0}
+    - target: {fileID: 5862897575773792549, guid: 9d9c9a2ee19e745498519946acfe4739, type: 3}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5862897575773792549, guid: 9d9c9a2ee19e745498519946acfe4739, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
