@@ -24,6 +24,7 @@ namespace MiningGame.Player
         [Header("References")]
         private Rigidbody2D _rb;
         private SpriteRenderer _sr;
+        private Animator _animator;
         private InputAction _moveAction;
         private InputAction _jumpAction;
         private Vector2 _moveAmount;
@@ -43,6 +44,7 @@ namespace MiningGame.Player
         {
             _rb = GetComponent<Rigidbody2D>();
             _sr = GetComponent<SpriteRenderer>();
+            _animator = GetComponent<Animator>();
             _moveAction = InputSystem.actions.FindAction("Move");
             _jumpAction = InputSystem.actions.FindAction("Jump");
         }
@@ -67,6 +69,13 @@ namespace MiningGame.Player
                 FlipSprite();
             else if (_moveAmount.x < 0f && _isFacingRight)
                 FlipSprite();
+
+            HandleAnimations();
+
+            Debug.DrawLine(transform.position, transform.position + Vector3.down * 1.2f, Color.red);
+            Debug.DrawRay(new Vector2(transform.position.x, transform.position.y - 0.4f), Vector2.left * 0.7f, Color.red);
+            Debug.DrawRay(new Vector2(transform.position.x, transform.position.y - 0.4f), Vector2.right * 0.7f, Color.red);
+
         }
 
         private void FixedUpdate()
@@ -131,8 +140,8 @@ namespace MiningGame.Player
 
         private bool IsNearWall()
         {
-            return Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - .9f), Vector2.left, .6f, LayerMask.GetMask("Ground")) ||
-            Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - .9f), Vector2.right, .6f, LayerMask.GetMask("Ground"));
+            return Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - .4f), Vector2.left, .7f, LayerMask.GetMask("Ground")) ||
+            Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - .4f), Vector2.right, .7f, LayerMask.GetMask("Ground"));
         }
 
         private bool IsOnSlope(out Vector2 slopeDirection)
@@ -158,6 +167,29 @@ namespace MiningGame.Player
         {
             _isFacingRight = !_isFacingRight;
             _sr.flipX = !_sr.flipX;
+        }
+
+        private void HandleAnimations()
+        {
+            if (_rb.linearVelocityX != 0)
+                _animator.SetBool("isRunning", true);
+            else
+                _animator.SetBool("isRunning", false);
+
+            if (_rb.linearVelocityY > 0 && _isJumping)
+                _animator.SetBool("isJumping", true);
+
+            if (_rb.linearVelocityY < 0 && _isJumping)
+            {
+                _animator.SetBool("isJumping", false);
+                _animator.SetBool("isFalling", true);
+            }
+
+            if (_rb.linearVelocityY == 0 && IsGrounded() || IsOnSlope(out Vector2 slopeDirection))
+            {
+                _animator.SetBool("isJumping", false);
+                _animator.SetBool("isFalling", false);
+            }
         }
     }
 }
