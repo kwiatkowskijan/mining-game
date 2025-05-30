@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem.Interactions;
 using UnityEngine.Tilemaps;
 
 namespace MiningGame
@@ -8,7 +9,19 @@ namespace MiningGame
         public TileSnapSelector selector;
         public Tilemap tilemap;
         public Equipment eq;
-        [SerializeField] private GameObject dirtBall;
+
+        public float miningTime = 2f;
+        [SerializeField] private float holdTimer = 0f;
+        private Vector3Int? lastTargetedTile = null;
+        [SerializeField] private GameObject rubbleMessage;
+
+        [Header("Dirt Block")]
+        [SerializeField] private TileBase[] dirtTiles;
+        [SerializeField] private GameObject dirtPickup;
+
+        [Header("Mineral Block")]
+        [SerializeField] private TileBase[] mineralTiles;
+        [SerializeField] private GameObject mineralPickup;
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
@@ -19,24 +32,63 @@ namespace MiningGame
         // Update is called once per frame
         void Update()
         {
-            if (Input.GetMouseButtonDown(0)) // lewy przycisk myszy
-            {
-                Vector3Int? tileToDig = selector.GetCurrentTile();
+            Vector3Int? tileToDig = selector.GetCurrentTile();
 
-                
-                if (tileToDig.HasValue)
+            if (!tileToDig.HasValue)
+            {
+                holdTimer = 0f;
+                lastTargetedTile = null;
+                return;
+            }
+
+            if (!lastTargetedTile.HasValue || tileToDig.Value != lastTargetedTile.Value)
+            {
+                holdTimer = 0f;
+                lastTargetedTile = tileToDig;
+            }
+
+            if (eq.playerRubble < eq.rubbleMax)
+            {
+                rubbleMessage.SetActive(false);
+                if (Input.GetMouseButton(0)) // lewy przycisk myszy
                 {
-                    if (eq.playerRubble >= eq.rubbleMax) Debug.Log("You have to much rubble! You can't dig further!");
-                    else
+                    holdTimer += Time.deltaTime;
+
+                    if (holdTimer >= miningTime)
                     {
+                        TileBase highlightedTile = selector.GetCurrentTileType();
+                        GameObject toSpawn = null;
+
+                        foreach (TileBase mineralTile in mineralTiles)
+                        {
+                            if (highlightedTile == mineralTile)
+                            {
+                                toSpawn = mineralPickup;
+                            }
+                        }
+                        foreach (TileBase dirtTile in dirtTiles)
+                        {
+                            if (highlightedTile == dirtTile)
+                            {
+                                toSpawn = dirtPickup;
+                            }
+                        }
+
                         tilemap.SetTile(tileToDig.Value, null); // niszczenie tile'a
                         Debug.Log("Wykopano tile na pozycji: " + tileToDig.Value);
-
                         Vector3 worldPos = tilemap.GetCellCenterWorld(tileToDig.Value);
-                        Instantiate(dirtBall, worldPos, Quaternion.identity);
+                        Instantiate(toSpawn, worldPos, Quaternion.identity);
+                        holdTimer = 0f;
+                        lastTargetedTile = null;
                     }
                 }
+                else holdTimer = 0f;
             }
+            else
+            {
+                rubbleMessage.SetActive(true);
+            }
+
         }
     }
 }

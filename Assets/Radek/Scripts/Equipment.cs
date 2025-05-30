@@ -9,7 +9,9 @@ namespace MiningGame
         public int chosenSlot;
         public float playerRubble;
         public float rubbleMax=5;
+        [SerializeField] private int playerMinerals;
         [SerializeField] private TextMeshProUGUI rubble;
+        [SerializeField] private TextMeshProUGUI minerals;
         [SerializeField] private GameObject[] slots;
         [SerializeField] private Sprite[] activeSlots;
         [SerializeField] private Sprite[] inactiveSlots;
@@ -87,5 +89,11 @@ namespace MiningGame
             if(playerRubble>=5) playerRubble=5;
             rubble.text = playerRubble.ToString();
         }
+
+        public void updateMineral()
+        {
+            playerMinerals++;
+            minerals.text=playerMinerals.ToString();
+        } 
     }
 }

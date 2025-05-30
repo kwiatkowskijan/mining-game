@@ -80,4 +80,13 @@ public class TileSnapSelector : MonoBehaviour
     {
         return currentTile;
     }
+
+    public TileBase GetCurrentTileType()
+    {
+        if (currentTile.HasValue)
+        {
+            return tilemap.GetTile(currentTile.Value);
+        }
+        return null;
+    }
 }
