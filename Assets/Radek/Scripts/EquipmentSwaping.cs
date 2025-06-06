@@ -1,3 +1,4 @@
+using MiningGame.Player;
 using UnityEngine;
 
 namespace MiningGame
@@ -6,6 +7,9 @@ namespace MiningGame
     {
         [SerializeField] private GameObject interactionTooltip;
         private bool inTrigger=false;
+        public Controller movement;
+        [SerializeField] private GameObject EQMenu;
+        private bool inMenu=false;
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
@@ -16,9 +20,17 @@ namespace MiningGame
         // Update is called once per frame
         void Update()
         {
-            if (inTrigger && Input.GetKeyDown(KeyCode.E))
+            if (inTrigger && Input.GetKeyDown(KeyCode.E) && !inMenu)
             {
-                Debug.Log("Dzia³a");
+                EQMenu.SetActive(true);
+                inMenu = true;
+                movement.enabled = false;
+            }
+            if(inTrigger && Input.GetKeyDown(KeyCode.Escape) && inMenu)
+            {
+                EQMenu.SetActive(false);
+                inMenu = false;
+                movement.enabled = true;
             }
         }
 

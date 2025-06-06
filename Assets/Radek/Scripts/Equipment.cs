@@ -1,12 +1,15 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections.Generic;
 
 namespace MiningGame
 {
     public class Equipment : MonoBehaviour
     {
         public int chosenSlot;
+        public List<GameObject> whatInSlots = new List<GameObject>();
+
         public float playerRubble;
         public float rubbleMax=5;
         [SerializeField] private int playerMinerals;
@@ -15,6 +18,8 @@ namespace MiningGame
         [SerializeField] private GameObject[] slots;
         [SerializeField] private Sprite[] activeSlots;
         [SerializeField] private Sprite[] inactiveSlots;
+
+        public bool slotsChange=true;
         
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
@@ -25,28 +30,31 @@ namespace MiningGame
         // Update is called once per frame
         void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Alpha1))
+            if (slotsChange)
             {
-                chosenSlot = 1;
-                SlotSwitch(chosenSlot);
-            }
+                if (Input.GetKeyDown(KeyCode.Alpha1))
+                {
+                    chosenSlot = 1;
+                    SlotSwitch(chosenSlot);
+                }
 
-            if (Input.GetKeyDown(KeyCode.Alpha2))
-            {
-                chosenSlot = 2;
-                SlotSwitch(chosenSlot);
-            }
+                if (Input.GetKeyDown(KeyCode.Alpha2))
+                {
+                    chosenSlot = 2;
+                    SlotSwitch(chosenSlot);
+                }
 
-            if (Input.GetKeyDown(KeyCode.Alpha3))
-            {
-                chosenSlot = 3;
-                SlotSwitch(chosenSlot);
-            }
+                if (Input.GetKeyDown(KeyCode.Alpha3))
+                {
+                    chosenSlot = 3;
+                    SlotSwitch(chosenSlot);
+                }
 
-            if (Input.GetKeyDown(KeyCode.Alpha4))
-            {
-                chosenSlot=4;
-                SlotSwitch(chosenSlot);
+                if (Input.GetKeyDown(KeyCode.Alpha4))
+                {
+                    chosenSlot = 4;
+                    SlotSwitch(chosenSlot);
+                }
             }
         }
 
@@ -94,6 +102,10 @@ namespace MiningGame
         {
             playerMinerals++;
             minerals.text=playerMinerals.ToString();
-        } 
+        }
+        public void toolAssignment()
+        {
+            Debug.Log("Dzia³a");
+        }
     }
 }
