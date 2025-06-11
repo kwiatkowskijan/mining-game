@@ -9,7 +9,7 @@ namespace MiningGame
         private bool inTrigger=false;
         public Controller movement;
         [SerializeField] private GameObject EQMenu;
-        private bool inMenu=false;
+        public bool inMenu=false;
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
@@ -26,7 +26,7 @@ namespace MiningGame
                 inMenu = true;
                 movement.enabled = false;
             }
-            if(inTrigger && Input.GetKeyDown(KeyCode.Escape) && inMenu)
+            else if(inTrigger && Input.GetKeyDown(KeyCode.E) && inMenu)
             {
                 EQMenu.SetActive(false);
                 inMenu = false;

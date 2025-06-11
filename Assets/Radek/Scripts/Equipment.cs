@@ -8,14 +8,17 @@ namespace MiningGame
     public class Equipment : MonoBehaviour
     {
         public int chosenSlot;
-        public List<GameObject> whatInSlots = new List<GameObject>();
+        public Sprite activeTool;
 
         public float playerRubble;
         public float rubbleMax=5;
         [SerializeField] private int playerMinerals;
         [SerializeField] private TextMeshProUGUI rubble;
         [SerializeField] private TextMeshProUGUI minerals;
+
+        [Header("Arrays")]
         [SerializeField] private GameObject[] slots;
+        [SerializeField] private GameObject[] toolsImages;
         [SerializeField] private Sprite[] activeSlots;
         [SerializeField] private Sprite[] inactiveSlots;
 
@@ -90,6 +93,8 @@ namespace MiningGame
                     slots[3].gameObject.GetComponent<Image>().sprite = activeSlots[3];
                     break;
             }
+
+            activeTool = toolsImages[chosenSlot - 1].GetComponent<Image>().sprite;
         }
 
         public void updateRubble()
