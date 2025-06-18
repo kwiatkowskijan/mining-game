@@ -186,7 +186,7 @@ namespace MiningGame.Player
 
         private bool IsTouchingLadder()
         {
-            Vector2 checkPosition = (Vector2)transform.position + Vector2.up * 0.5f; // lub Vector2.zero, przetestuj!
+            Vector2 checkPosition = (Vector2)transform.position + Vector2.up * 0.5f;
             float radius = 0.4f;
 
             Collider2D col = Physics2D.OverlapCircle(checkPosition, radius, climbableLayer);

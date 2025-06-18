@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 22d6563349a428b40b45b26bf815c3e3
+guid: 33ead916b826a7e4e9c1847ed6a850e9
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3975989586056124460
-    second: slot2Active_0
+      213: 4623475503148966754
+    second: hammerActive_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: slot2Active_0
+      name: hammerActive_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 37
         y: 0
-        width: 145
-        height: 143
+        width: 438
+        height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c28178b767d8d2730800000000000000
-      internalID: 3975989586056124460
+      spriteID: 2632ae05972e92040800000000000000
+      internalID: 4623475503148966754
       vertices: []
       indices: 
       edges: []
@@ -134,8 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      slot2Active_0: 3975989586056124460
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

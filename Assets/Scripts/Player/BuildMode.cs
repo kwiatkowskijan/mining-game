@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.UI;
 
 namespace MiningGame.Player
 {
@@ -9,6 +10,10 @@ namespace MiningGame.Player
         [SerializeField] private Tilemap tilemap;
         [SerializeField] private TileBase ladderTile;
         private bool isInBuildMode = false;
+
+        public Image modeIcon;
+        public Sprite normalModeSprite;
+        public Sprite buildModeSprite;
 
         void Update()
         {
@@ -20,6 +25,7 @@ namespace MiningGame.Player
                     grappleHook.enabled = !isInBuildMode;
                 }
                 Debug.Log("Build mode: " + (isInBuildMode ? "ON" : "OFF"));
+                SetBuildMode(isInBuildMode);
             }
 
             if (isInBuildMode && Input.GetMouseButton(0))
@@ -46,6 +52,12 @@ namespace MiningGame.Player
                 Debug.LogWarning("Brakuje TilemapCollider2D na obiekcie Tilemap!");
             }
         }
-
+        public void SetBuildMode(bool isBuildMode)
+        {
+            if (isBuildMode)
+                modeIcon.sprite = buildModeSprite;
+            else
+                modeIcon.sprite = normalModeSprite;
+        }
     }
 }
