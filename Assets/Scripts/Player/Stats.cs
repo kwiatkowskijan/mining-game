@@ -55,7 +55,7 @@ namespace MiningGame.Player
             if (currentWeight >= maxWeight) 
             {
                 Debug.Log("Player is overloaded");
-                //jakaœ mechanika obi¹¿enia
+                //jakas mechanika obciazenia
             }
         }
 
@@ -64,7 +64,7 @@ namespace MiningGame.Player
             currentWeight -= amount;
             OnWeightChanged?.Invoke(currentWeight);
 
-            //tutaj te¿ to bêdzie trzeba rozwin¹æ pewnie
+            //tutaj teÅ¼ to bedzie trzeba rozwinac pewnie
         }
 
         public void AddMoney(float amount)

@@ -127,10 +127,10 @@ TextureImporter:
       name: lanterns and shadows_0
       rect:
         serializedVersion: 2
-        x: 21
-        y: 116
-        width: 6
-        height: 13
+        x: 22
+        y: 117
+        width: 4
+        height: 11
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -149,10 +149,10 @@ TextureImporter:
       name: lanterns and shadows_1
       rect:
         serializedVersion: 2
-        x: 28
-        y: 92
-        width: 24
-        height: 24
+        x: 29
+        y: 93
+        width: 22
+        height: 22
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -171,10 +171,10 @@ TextureImporter:
       name: lanterns and shadows_2
       rect:
         serializedVersion: 2
-        x: 53
-        y: 111
-        width: 6
-        height: 18
+        x: 54
+        y: 112
+        width: 4
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -193,10 +193,10 @@ TextureImporter:
       name: lanterns and shadows_3
       rect:
         serializedVersion: 2
-        x: 16
-        y: 80
-        width: 16
-        height: 17
+        x: 17
+        y: 81
+        width: 14
+        height: 15
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -215,10 +215,10 @@ TextureImporter:
       name: lanterns and shadows_4
       rect:
         serializedVersion: 2
-        x: 48
-        y: 80
-        width: 16
-        height: 17
+        x: 49
+        y: 81
+        width: 14
+        height: 15
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -237,10 +237,10 @@ TextureImporter:
       name: lanterns and shadows_5
       rect:
         serializedVersion: 2
-        x: 15
-        y: 31
-        width: 50
-        height: 41
+        x: 16
+        y: 32
+        width: 48
+        height: 39
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -259,10 +259,10 @@ TextureImporter:
       name: lanterns and shadows_6
       rect:
         serializedVersion: 2
-        x: 16
-        y: 63
-        width: 16
-        height: 16
+        x: 17
+        y: 64
+        width: 14
+        height: 14
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -281,10 +281,10 @@ TextureImporter:
       name: lanterns and shadows_7
       rect:
         serializedVersion: 2
-        x: 48
-        y: 63
-        width: 16
-        height: 16
+        x: 49
+        y: 64
+        width: 14
+        height: 14
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -306,7 +306,7 @@ TextureImporter:
         x: 0
         y: 0
         width: 80
-        height: 20
+        height: 19
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -325,7 +325,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 902efa164026a084f8db76af4c5b3038
     internalID: 0
     vertices: []
     indices: 
