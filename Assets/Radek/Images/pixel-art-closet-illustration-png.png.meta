@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      pixel-art-closet-illustration-png_0: -7860609486898391980
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
