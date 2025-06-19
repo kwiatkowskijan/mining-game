@@ -411,9 +411,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   caveTilemap: {fileID: 424294780}
   dirtTile: {fileID: 11400000, guid: 04df2e4ccdd5bca47a6fde8a5e76fc34, type: 2}
-  mapHeight: 50
-  mapWidth: 50
-  startPosition: {x: 10, y: -5, z: 0}
+  oreTile: {fileID: 11400000, guid: 719f51852cba9054aa9c2882703c0c00, type: 2}
+  mapHeight: 300
+  mapWidth: 300
+  startPosition: {x: 20, y: -1, z: 0}
+  perlinNoiseScale: 0.3
 --- !u!156049354 &1893802612
 Grid:
   m_ObjectHideFlags: 0
