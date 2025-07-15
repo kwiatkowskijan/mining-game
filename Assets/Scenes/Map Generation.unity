@@ -410,8 +410,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   caveTilemap: {fileID: 424294780}
-  dirtTile: {fileID: 11400000, guid: 04df2e4ccdd5bca47a6fde8a5e76fc34, type: 2}
-  oreTile: {fileID: 11400000, guid: 719f51852cba9054aa9c2882703c0c00, type: 2}
+  oreTiles:
+  - {fileID: 11400000, guid: 37683fae43c7f1b4aa7e6bdb215b7d6c, type: 2}
+  dirtTiles:
+  - {fileID: 11400000, guid: f4f2f48293dbc354ea4dbe4f5f6b4b5d, type: 2}
   mapHeight: 300
   mapWidth: 300
   startPosition: {x: 20, y: -1, z: 0}
