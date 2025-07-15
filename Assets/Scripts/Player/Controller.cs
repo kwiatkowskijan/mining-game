@@ -45,8 +45,8 @@ namespace MiningGame.Player
         private void Awake()
         {
             _rb = GetComponent<Rigidbody2D>();
-            _sr = GetComponent<SpriteRenderer>();
-            _animator = GetComponent<Animator>();
+            _sr = GetComponentInChildren<SpriteRenderer>();
+            _animator = GetComponentInChildren<Animator>();
             _moveAction = InputSystem.actions.FindAction("Move");
             _jumpAction = InputSystem.actions.FindAction("Jump");
         }
