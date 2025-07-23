@@ -56,7 +56,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -74,15 +74,15 @@ LineRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 357562797
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 1}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 1
+    widthMultiplier: 0.10209708
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -100,8 +100,8 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 1, b: 1, a: 1}
-      key1: {r: 1, g: 1, b: 1, a: 1}
+      key0: {r: 0, g: 0, b: 0, a: 1}
+      key1: {r: 0, g: 0, b: 0, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -125,7 +125,7 @@ LineRenderer:
       atime6: 0
       atime7: 0
       m_Mode: 0
-      m_ColorSpace: -1
+      m_ColorSpace: 0
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
     numCornerVertices: 0
@@ -147,17 +147,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1680522384121826874, guid: 9d9c9a2ee19e745498519946acfe4739, type: 3}
+      propertyPath: m_Size.y
+      value: 1.2615064
+      objectReference: {fileID: 0}
+    - target: {fileID: 1680522384121826874, guid: 9d9c9a2ee19e745498519946acfe4739, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.024175704
+      objectReference: {fileID: 0}
     - target: {fileID: 1840271319705736523, guid: 9d9c9a2ee19e745498519946acfe4739, type: 3}
       propertyPath: m_Name
-      value: Player Variant
+      value: PlayerRope
       objectReference: {fileID: 0}
     - target: {fileID: 2462457306007924291, guid: 9d9c9a2ee19e745498519946acfe4739, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.608613
+      value: -2.458613
       objectReference: {fileID: 0}
     - target: {fileID: 2462457306007924291, guid: 9d9c9a2ee19e745498519946acfe4739, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.18
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2462457306007924291, guid: 9d9c9a2ee19e745498519946acfe4739, type: 3}
       propertyPath: m_LocalPosition.z
@@ -169,15 +177,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2462457306007924291, guid: 9d9c9a2ee19e745498519946acfe4739, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2462457306007924291, guid: 9d9c9a2ee19e745498519946acfe4739, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2462457306007924291, guid: 9d9c9a2ee19e745498519946acfe4739, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2462457306007924291, guid: 9d9c9a2ee19e745498519946acfe4739, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -190,6 +198,30 @@ PrefabInstance:
     - target: {fileID: 2462457306007924291, guid: 9d9c9a2ee19e745498519946acfe4739, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5370690400421621711, guid: 9d9c9a2ee19e745498519946acfe4739, type: 3}
+      propertyPath: speed
+      value: 7.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5370690400421621711, guid: 9d9c9a2ee19e745498519946acfe4739, type: 3}
+      propertyPath: jumpForce
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5370690400421621711, guid: 9d9c9a2ee19e745498519946acfe4739, type: 3}
+      propertyPath: airControl
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 5370690400421621711, guid: 9d9c9a2ee19e745498519946acfe4739, type: 3}
+      propertyPath: jumpCooldown
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5370690400421621711, guid: 9d9c9a2ee19e745498519946acfe4739, type: 3}
+      propertyPath: maxSlopeAngle
+      value: 65
+      objectReference: {fileID: 0}
+    - target: {fileID: 5370690400421621711, guid: 9d9c9a2ee19e745498519946acfe4739, type: 3}
+      propertyPath: climbableLayer.m_Bits
+      value: 128
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -204,6 +236,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1840271319705736523, guid: 9d9c9a2ee19e745498519946acfe4739, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1919928276864139889}
+    - targetCorrespondingSourceObject: {fileID: 1840271319705736523, guid: 9d9c9a2ee19e745498519946acfe4739, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5534975689434611915}
   m_SourcePrefab: {fileID: 100100000, guid: 9d9c9a2ee19e745498519946acfe4739, type: 3}
 --- !u!1 &6577321801868333135 stripped
 GameObject:
@@ -226,7 +261,7 @@ DistanceJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 0
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0, y: 0}
+  m_ConnectedAnchor: {x: -2.458613, y: 0}
   m_AutoConfigureDistance: 0
   m_Distance: 4.109818
   m_MaxDistanceOnly: 0
@@ -242,11 +277,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e12bd8be63d8b7b4b8c91962c7f8b901, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _grappleLenght: 2
+  _grappleLenght: 10
   grappleLayer:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 1024
   rope: {fileID: 1600323796531013794}
+--- !u!114 &5534975689434611915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6577321801868333135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b18620155604d0b478369ca0f3e9ee9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grappleHook: {fileID: 1919928276864139889}
+  ladderTilemap: {fileID: 0}
+  buildTilemap: {fileID: 0}
+  ladderTile: {fileID: 11400000, guid: 42c7b6947f06ab9439becc477e214866, type: 2}
+  ropeTile: {fileID: 11400000, guid: 81c65e59423aecd47abdd24e9bf95d30, type: 2}
+  torchTile: {fileID: 11400000, guid: 55c7a4f1426cb054aaff704df79e7a68, type: 2}
+  cartTile: {fileID: 11400000, guid: f34810e83cfb5df498ba044e00dc0244, type: 2}
+  modeIcon: {fileID: 0}
+  normalModeSprite: {fileID: 4301844918096825189, guid: e1c48835f9e9831419ccaed564e783ad, type: 3}
+  buildModeSprite: {fileID: 4623475503148966754, guid: 33ead916b826a7e4e9c1847ed6a850e9, type: 3}
 --- !u!4 &6981359564571011911 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2462457306007924291, guid: 9d9c9a2ee19e745498519946acfe4739, type: 3}
