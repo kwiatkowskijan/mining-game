@@ -1,4 +1,4 @@
-using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
@@ -7,139 +7,170 @@ namespace MiningGame.Player
 {
     public class BuildMode : MonoBehaviour
     {
-        [SerializeField] private GrappleHook grappleHook;
+        [Header("Build System")]
+        [SerializeField] private Transform playerTransform;
+        [SerializeField] private float maxBuildDistance = 3f;
+
+        [Header("Tilemaps")]
         [SerializeField] private Tilemap ladderTilemap;
         [SerializeField] private Tilemap buildTilemap;
+
+        [Header("Tiles")]
         [SerializeField] private TileBase ladderTile;
         [SerializeField] private TileBase ropeTile;
         [SerializeField] private TileBase torchTile;
         [SerializeField] private TileBase cartTile;
+        [SerializeField] private TileBase railsTile;
+
+        [Header("Mode Switching")]
+        [SerializeField] private GrappleHook grappleHook;
+        [SerializeField] private Image modeIcon;
+        [SerializeField] private Sprite normalModeSprite;
+        [SerializeField] private Sprite buildModeSprite;
+        [SerializeField] private Tilemap previewTilemap;
+        [SerializeField] private TileBase previewTileBase;
+
 
         private bool isInBuildMode = false;
+        private BuildType currentBuildType = BuildType.Ladder;
+        private Dictionary<BuildType, BuildData> buildOptions;
 
-        public Image modeIcon;
-        public Sprite normalModeSprite;
-        public Sprite buildModeSprite;
+        private enum BuildType
+        {
+            Ladder = 0,
+            Torch = 1,
+            Rope = 2,
+            Cart = 3,
+            Rails = 4
+        }
 
-        private int buildIndex = 0;
+        private struct BuildData
+        {
+            public Tilemap tilemap;
+            public TileBase tile;
+            public string name;
+        }
+
+        void Start()
+        {
+            buildOptions = new Dictionary<BuildType, BuildData>
+            {
+                { BuildType.Ladder, new BuildData { tilemap = ladderTilemap, tile = ladderTile, name = "Ladder" } },
+                { BuildType.Torch, new BuildData { tilemap = buildTilemap, tile = torchTile, name = "Torch" } },
+                { BuildType.Rope, new BuildData { tilemap = buildTilemap, tile = ropeTile, name = "Rope" } },
+                { BuildType.Cart, new BuildData { tilemap = buildTilemap, tile = cartTile, name = "Cart" } },
+                { BuildType.Rails, new BuildData { tilemap = buildTilemap, tile = railsTile, name = "Rails" } }
+            };
+        }
 
         void Update()
+        {
+            HandleBuildModeToggle();
+
+            if (isInBuildMode && Input.GetMouseButton(0))
+            {
+                TryPlaceTile();
+            }
+
+            if (isInBuildMode)
+            {
+                UpdatePreviewTile();
+            }
+            else
+            {
+                previewTilemap.ClearAllTiles();
+            }
+
+        }
+
+        private void HandleBuildModeToggle()
         {
             if (Input.GetKeyDown(KeyCode.B))
             {
                 isInBuildMode = !isInBuildMode;
+
                 if (grappleHook != null)
-                {
                     grappleHook.enabled = !isInBuildMode;
-                }
+
+                SetBuildModeIcon(isInBuildMode);
+
                 Debug.Log("Build mode: " + (isInBuildMode ? "ON" : "OFF"));
-                SetBuildMode(isInBuildMode);
+            }
+        }
+
+        private void TryPlaceTile()
+        {
+            if (!buildOptions.TryGetValue(currentBuildType, out var buildData))
+            {
+                Debug.LogWarning("Nieznany typ budowli: " + currentBuildType);
+                return;
             }
 
-            if (isInBuildMode && Input.GetMouseButton(0))
+            Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector3Int cellPos = buildData.tilemap.WorldToCell(mouseWorldPos);
+            Vector3 cellWorld = buildData.tilemap.CellToWorld(cellPos);
+
+            if (Vector2.Distance(playerTransform.position, cellWorld) > maxBuildDistance)
             {
-                switch (buildIndex)
-                {
-                    case 0:
-                        Debug.Log("Ladder chosen");
-                        PlaceLadder();
-                        break;
-                    case 1:
-                        Debug.Log("Torch chosen");
-                        PlaceTorch();
-                        break;
-                    case 2:
-                        Debug.Log("Rope chosen");
-                        PlaceRope();
-                        break;
-                    case 3:
-                        Debug.Log("Cart chosen");
-                        PlaceCart();
-                        break;
-                    default:
-                        Debug.LogWarning("Brak przypisanej funkcji dla indeksu: " + buildIndex);
-                        break;
-                }
+                Debug.Log("Za daleko! Maksymalny zasiêg budowania to " + maxBuildDistance);
+                return;
             }
+
+            buildData.tilemap.SetTile(cellPos, buildData.tile);
+            buildData.tilemap.CompressBounds();
+
+            TilemapCollider2D collider = buildData.tilemap.GetComponent<TilemapCollider2D>();
+            if (collider != null)
+                collider.ProcessTilemapChanges();
+
+            Debug.Log($"{buildData.name} placed at {cellPos}");
+            previewTilemap.SetTile(cellPos, null);
         }
 
         public void SetBuildIndex(int index)
         {
-            Debug.Log("klik");
-            buildIndex = index;
-            Debug.Log("Build Index set to: " + buildIndex);
-        }
-
-        void PlaceLadder()
-        {
-            Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector3Int cellPosition = ladderTilemap.WorldToCell(mouseWorldPos);
-
-            ladderTilemap.SetTile(cellPosition, ladderTile);
-            ladderTilemap.CompressBounds();
-
-            var tilemapCollider = ladderTilemap.GetComponent<TilemapCollider2D>();
-            if (tilemapCollider != null)
+            if (System.Enum.IsDefined(typeof(BuildType), index))
             {
-                tilemapCollider.ProcessTilemapChanges();
+                currentBuildType = (BuildType)index;
+                Debug.Log("Build type set to: " + currentBuildType);
             }
             else
             {
-                Debug.LogWarning("Brakuje TilemapCollider2D na obiekcie Tilemap!");
+                Debug.LogWarning("Niepoprawny indeks budowli: " + index);
             }
         }
 
-        void PlaceTorch()
+        private void SetBuildModeIcon(bool buildMode)
         {
+            if (modeIcon != null)
+                modeIcon.sprite = buildMode ? buildModeSprite : normalModeSprite;
+        }
+
+        private Vector3Int previousPreviewPos;
+        private void UpdatePreviewTile()
+        {
+            if (!buildOptions.TryGetValue(currentBuildType, out var buildData))
+                return;
+
             Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector3Int cellPosition = buildTilemap.WorldToCell(mouseWorldPos);
+            Vector3Int cellPos = buildData.tilemap.WorldToCell(mouseWorldPos);
 
-            buildTilemap.SetTile(cellPosition, torchTile);
-            buildTilemap.CompressBounds();
+            if (cellPos != previousPreviewPos)
+            {
+                previewTilemap.SetTile(previousPreviewPos, null);
+                previousPreviewPos = cellPos;
+            }
 
-            //var tilemapCollider = buildTilemap.GetComponent<TilemapCollider2D>();
-            //if (tilemapCollider != null)
-            //{
-            //    tilemapCollider.ProcessTilemapChanges();
-            //}
+            Vector3 cellWorld = buildData.tilemap.CellToWorld(cellPos);
+
+            if (Vector2.Distance(playerTransform.position, cellWorld) > maxBuildDistance)
+            {
+                previewTilemap.SetTile(cellPos, null);
+                return;
+            }
+
+            previewTilemap.SetTile(cellPos, previewTileBase ?? buildData.tile);
         }
 
-        void PlaceRope()
-        {
-            Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector3Int cellPosition = buildTilemap.WorldToCell(mouseWorldPos);
-
-            buildTilemap.SetTile(cellPosition, ropeTile);
-            buildTilemap.CompressBounds();
-
-        //    var tilemapCollider = buildTilemap.GetComponent<TilemapCollider2D>();
-        //    if (tilemapCollider != null)
-        //    {
-        //        tilemapCollider.ProcessTilemapChanges();
-        //    }
-        }
-
-        void PlaceCart()
-        {
-            Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector3Int cellPosition = buildTilemap.WorldToCell(mouseWorldPos);
-
-            buildTilemap.SetTile(cellPosition, cartTile);
-            buildTilemap.CompressBounds();
-
-            //var tilemapCollider = buildTilemap.GetComponent<TilemapCollider2D>();
-            //if (tilemapCollider != null)
-            //{
-            //    tilemapCollider.ProcessTilemapChanges();
-            //}
-        }
-
-        public void SetBuildMode(bool isBuildMode)
-        {
-            if (isBuildMode)
-                modeIcon.sprite = buildModeSprite;
-            else
-                modeIcon.sprite = normalModeSprite;
-        }
     }
 }

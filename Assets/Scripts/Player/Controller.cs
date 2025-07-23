@@ -67,11 +67,12 @@ namespace MiningGame.Player
             if (!_isJumping && IsGrounded())
                 _jumpDirectionX = 0f;
 
-            if (IsTouchingLadder() && Mathf.Abs(_moveAmount.y) > 0.1f) //wspinanie po drabinie
+            if (IsTouchingLadder() && Mathf.Abs(_moveAmount.y) > 0.1f)
             {
                 _isClimbing = true;
-                _rb.gravityScale = 0f;
-            } else if (!IsTouchingLadder())
+                _rb.gravityScale = 0.2f;
+            }
+            else if (!IsTouchingLadder())
             {
                 _isClimbing = false;
                 _rb.gravityScale = 1f;
@@ -94,9 +95,10 @@ namespace MiningGame.Player
 
         private void FixedUpdate()
         {
-            if (_isClimbing) //wspiannie po drabinie
+            if (_isClimbing)
             {
-                _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, _moveAmount.y * climbSpeed);
+                Vector2 climbVelocity = new Vector2(_moveAmount.x * speed, _moveAmount.y * climbSpeed);
+                _rb.linearVelocity = climbVelocity;
             }
             else
             {
