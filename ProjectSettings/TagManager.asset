@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - Climbable
   layers:
   - Default
   - TransparentFX
@@ -11,12 +12,12 @@ TagManager:
   - 
   - Water
   - UI
+  - 
+  - Climbable
   - Player
   - 
   - Ground
   - DirtPickup
-  - 
-  - 
   - 
   - 
   - 

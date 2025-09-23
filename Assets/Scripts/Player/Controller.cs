@@ -15,11 +15,13 @@ namespace MiningGame.Player
         [SerializeField] private float climbSpeed;
         [SerializeField, Tooltip("The maximum angle of the slope the player can walk on."), Range(0, 90)] private float maxSlopeAngle;
         [SerializeField] private float jumpCooldown;
+        [SerializeField] private LayerMask climbableLayer; //drabina
 
         [Header("Runtime variables")]
         private bool _isJumping;
         private bool _isFacingRight = true;
         private float _jumpCooldownTimer = 0f;
+        private bool _isClimbing;
 
         [Header("References")]
         private Rigidbody2D _rb;
@@ -43,8 +45,8 @@ namespace MiningGame.Player
         private void Awake()
         {
             _rb = GetComponent<Rigidbody2D>();
-            _sr = GetComponent<SpriteRenderer>();
-            _animator = GetComponent<Animator>();
+            _sr = GetComponentInChildren<SpriteRenderer>();
+            _animator = GetComponentInChildren<Animator>();
             _moveAction = InputSystem.actions.FindAction("Move");
             _jumpAction = InputSystem.actions.FindAction("Jump");
         }
@@ -65,6 +67,17 @@ namespace MiningGame.Player
             if (!_isJumping && IsGrounded())
                 _jumpDirectionX = 0f;
 
+            if (IsTouchingLadder() && Mathf.Abs(_moveAmount.y) > 0.1f)
+            {
+                _isClimbing = true;
+                _rb.gravityScale = 0.2f;
+            }
+            else if (!IsTouchingLadder())
+            {
+                _isClimbing = false;
+                _rb.gravityScale = 1f;
+            }
+
             if (_moveAmount.x > 0f && !_isFacingRight)
                 FlipSprite();
             else if (_moveAmount.x < 0f && _isFacingRight)
@@ -76,14 +89,24 @@ namespace MiningGame.Player
             Debug.DrawRay(new Vector2(transform.position.x, transform.position.y - 0.4f), Vector2.left * 0.7f, Color.red);
             Debug.DrawRay(new Vector2(transform.position.x, transform.position.y - 0.4f), Vector2.right * 0.7f, Color.red);
 
+            Debug.Log("Touching ladder: " + IsTouchingLadder()); //test wspinania
+
         }
 
         private void FixedUpdate()
         {
-            MovePlayer();
+            if (_isClimbing)
+            {
+                Vector2 climbVelocity = new Vector2(_moveAmount.x * speed, _moveAmount.y * climbSpeed);
+                _rb.linearVelocity = climbVelocity;
+            }
+            else
+            {
+                MovePlayer();
 
-            if (IsNearWall() && _moveAmount.y > 0f)
-                Climb();
+                if (IsNearWall() && _moveAmount.y > 0f)
+                    Climb();
+            }
         }
 
         private void MovePlayer()
@@ -163,6 +186,17 @@ namespace MiningGame.Player
             return false;
         }
 
+        private bool IsTouchingLadder()
+        {
+            Vector2 checkPosition = (Vector2)transform.position + Vector2.up * 0.5f;
+            float radius = 0.4f;
+
+            Collider2D col = Physics2D.OverlapCircle(checkPosition, radius, climbableLayer);
+            Debug.DrawRay(checkPosition, Vector2.up * 0.1f, col ? Color.green : Color.red, 0.1f);
+            return col != null;
+        }
+
+
         private void FlipSprite()
         {
             _isFacingRight = !_isFacingRight;
@@ -192,7 +226,7 @@ namespace MiningGame.Player
             }
         }
 
-        //Gdy trzeba graczowi chwilowo wy³¹czyæ poruszanie (cutscenka, otwarcie menu, by nie bieg³ ca³y czas w jedn¹ stronê np.)
+        //Gdy trzeba graczowi chwilowo wyï¿½ï¿½czyï¿½ poruszanie (cutscenka, otwarcie menu, by nie biegï¿½ caï¿½y czas w jednï¿½ stronï¿½ np.)
         private float speedDefault;
         private float jumpDefault;
         public void saveDefaults()
@@ -212,5 +246,11 @@ namespace MiningGame.Player
             speed = speedDefault;
             jumpForce = jumpDefault;
         }
+        private void OnDrawGizmos() //testowanie
+        {
+            Gizmos.color = Color.blue;
+            Gizmos.DrawWireSphere(transform.position + Vector3.up * 0.5f, 0.4f);
+        }
+
     }
 }

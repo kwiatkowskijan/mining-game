@@ -26,14 +26,16 @@ namespace MiningGame.Player
         {
             if(Input.GetMouseButtonDown(0))
             {
-                    Vector2 mouseWorldPos = cam.ScreenToWorldPoint(Input.mousePosition);
+                Vector2 mouseWorldPos = cam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10f));
+                Vector2 direction = (mouseWorldPos - (Vector2)transform.position).normalized;
 
-                    RaycastHit2D hit = Physics2D.Raycast(
-                    origin: mouseWorldPos,
-                    direction: Vector2.zero,
+                RaycastHit2D hit = Physics2D.Raycast(
+                    origin: transform.position,
+                    direction: direction,
                     distance: _grappleLenght,
                     layerMask: grappleLayer
                 );
+
 
                 if (hit.collider != null)
                 {
