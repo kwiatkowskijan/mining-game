@@ -191,5 +191,26 @@ namespace MiningGame.Player
                 _animator.SetBool("isFalling", false);
             }
         }
+
+        //Gdy trzeba graczowi chwilowo wy³¹czyæ poruszanie (cutscenka, otwarcie menu, by nie bieg³ ca³y czas w jedn¹ stronê np.)
+        private float speedDefault;
+        private float jumpDefault;
+        public void saveDefaults()
+        {
+            speedDefault = speed;
+            jumpDefault = jumpForce;
+        }
+
+        public void disableMovement()
+        {
+            speed = 0;
+            jumpForce = 0;
+        }
+
+        public void enableMovement()
+        {
+            speed = speedDefault;
+            jumpForce = jumpDefault;
+        }
     }
 }
