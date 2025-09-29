@@ -24,13 +24,14 @@ namespace MiningGame
             {
                 EQMenu.SetActive(true);
                 inMenu = true;
-                movement.enabled = false;
+                movement.saveDefaults();
+                movement.disableMovement();
             }
             else if(inTrigger && Input.GetKeyDown(KeyCode.E) && inMenu)
             {
                 EQMenu.SetActive(false);
                 inMenu = false;
-                movement.enabled = true;
+                movement.enableMovement();
             }
         }
 

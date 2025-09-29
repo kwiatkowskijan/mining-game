@@ -225,6 +225,27 @@ namespace MiningGame.Player
                 _animator.SetBool("isFalling", false);
             }
         }
+
+        //Gdy trzeba graczowi chwilowo wy��czy� poruszanie (cutscenka, otwarcie menu, by nie bieg� ca�y czas w jedn� stron� np.)
+        private float speedDefault;
+        private float jumpDefault;
+        public void saveDefaults()
+        {
+            speedDefault = speed;
+            jumpDefault = jumpForce;
+        }
+
+        public void disableMovement()
+        {
+            speed = 0;
+            jumpForce = 0;
+        }
+
+        public void enableMovement()
+        {
+            speed = speedDefault;
+            jumpForce = jumpDefault;
+        }
         private void OnDrawGizmos() //testowanie
         {
             Gizmos.color = Color.blue;
