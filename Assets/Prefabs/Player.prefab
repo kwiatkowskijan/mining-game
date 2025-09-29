@@ -113,15 +113,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   InputActions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
-  speed: 8
-  jumpForce: 6
-  airControl: 0
+  speed: 7.5
+  jumpForce: 10
+  airControl: 0.05
   climbSpeed: 2
-  maxSlopeAngle: 0
-  jumpCooldown: 0
+  maxSlopeAngle: 65
+  jumpCooldown: 0.2
   climbableLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
 --- !u!114 &8522725513187923077
 MonoBehaviour:
   m_ObjectHideFlags: 0
