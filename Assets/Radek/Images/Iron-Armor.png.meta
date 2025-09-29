@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Iron-Armor_0: 3149361328670186624
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
