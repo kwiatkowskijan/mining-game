@@ -2278,9 +2278,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0669b076914b96c4da1d80b6d787a23f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  oreTiles:
+  ores:
   - {fileID: 11400000, guid: 37683fae43c7f1b4aa7e6bdb215b7d6c, type: 2}
-  dirtTiles:
+  commonBlocks:
   - {fileID: 11400000, guid: f4f2f48293dbc354ea4dbe4f5f6b4b5d, type: 2}
   mapHeight: 500
   mapWidth: 500

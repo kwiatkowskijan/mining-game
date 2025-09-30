@@ -8,8 +8,8 @@ namespace MiningGame.WorldGeneration
     public class MineGenerator : MonoBehaviour
     {
         private Tilemap _caveTilemap;
-        [SerializeField] private List<OreTile> oreTiles;
-        [SerializeField] private List<DirtTile> dirtTiles;
+        [SerializeField] private List<Ore> ores;
+        [SerializeField] private List<CommonBlock> commonBlocks;
         [SerializeField] private int mapHeight;
         [SerializeField] private int mapWidth;
         [SerializeField] private Vector3Int startPosition = new Vector3Int(0, 0, 0);
@@ -54,9 +54,9 @@ namespace MiningGame.WorldGeneration
                     float noise = Mathf.PerlinNoise(x * perlinNoiseScale, y * perlinNoiseScale);
 
                     if (noise > 0.7f)
-                        _caveTilemap.SetTile(tilePosition, oreTiles.Find(t => t.isDescrutable).tile);
+                        _caveTilemap.SetTile(tilePosition, ores.Find(t => t.isDescrutable).tile);
                     else
-                        _caveTilemap.SetTile(tilePosition, dirtTiles.Find(t => t.isDescrutable).tile);
+                        _caveTilemap.SetTile(tilePosition, commonBlocks.Find(t => t.isDescrutable).tile);
                 }
             }
         }

@@ -3,7 +3,7 @@ using UnityEngine.Tilemaps;
 
 namespace MiningGame.MapGeneration
 {
-    public class TileSO : ScriptableObject
+    public class Block : ScriptableObject
     {
         public Tile tile;
         public bool isDescrutable;
