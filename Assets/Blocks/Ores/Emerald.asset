@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 08c8ffa272d389447bcf4db8401be3cb, type: 3}
-  m_Name: Ruby
+  m_Name: Emerald
   m_EditorClassIdentifier: 
-  tile: {fileID: 11400000, guid: 001667a4fcd37bf478aece88420e816b, type: 2}
+  tile: {fileID: 11400000, guid: ed4bd924643491d41a17cc62f26c365c, type: 2}
   isDescrutable: 0
-  commonness: 50
+  commonness: 10
   minDepth: 100
   maxDepth: -100

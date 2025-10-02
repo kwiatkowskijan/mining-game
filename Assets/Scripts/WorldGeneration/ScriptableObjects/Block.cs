@@ -7,7 +7,5 @@ namespace MiningGame.MapGeneration
     {
         public Tile tile;
         public bool isDescrutable;
-
-        //TODO: add more properties as needed
     }
 }

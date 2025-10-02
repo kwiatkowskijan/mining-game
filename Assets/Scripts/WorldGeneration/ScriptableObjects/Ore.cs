@@ -5,6 +5,9 @@ namespace MiningGame.MapGeneration
     [CreateAssetMenu(fileName = "Ore", menuName = "Scriptable Objects/Block/Ore")]
     public class Ore : Block
     {
-        public int rarity;
+        [Range(1, 100)]
+        public int commonness;
+        public int minDepth;
+        public int maxDepth;
     }
 }

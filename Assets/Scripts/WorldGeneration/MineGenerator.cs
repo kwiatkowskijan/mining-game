@@ -1,7 +1,9 @@
+using System;
 using System.Collections.Generic;
 using MiningGame.MapGeneration;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using Random = UnityEngine.Random;
 
 namespace MiningGame.WorldGeneration
 {
@@ -10,11 +12,13 @@ namespace MiningGame.WorldGeneration
         private Tilemap _caveTilemap;
         [SerializeField] private List<Ore> ores;
         [SerializeField] private List<CommonBlock> commonBlocks;
+        [SerializeField] private Ore deafultOre;
         [SerializeField] private int mapHeight;
         [SerializeField] private int mapWidth;
         [SerializeField] private Vector3Int startPosition = new Vector3Int(0, 0, 0);
         [SerializeField] private float perlinNoiseScale;
         [SerializeField] private int chunkSize = 16;
+        [SerializeField] private Transform test;
 
 
         private void Awake()
@@ -24,6 +28,7 @@ namespace MiningGame.WorldGeneration
 
         private void Start()
         {
+            // _caveTilemap.SetTile(new Vector3Int(0, -20), commonBlocks[0].tile);
             GenerateCave(mapWidth, mapHeight);
         }
 
@@ -53,12 +58,38 @@ namespace MiningGame.WorldGeneration
                     Vector3Int tilePosition = new Vector3Int(startPosition.x + x, startPosition.y - y, 0);
                     float noise = Mathf.PerlinNoise(x * perlinNoiseScale, y * perlinNoiseScale);
 
-                    if (noise > 0.7f)
-                        _caveTilemap.SetTile(tilePosition, ores.Find(t => t.isDescrutable).tile);
+                    if (noise > 0.8f)
+                    {
+                        Ore ore = ChooseOre(tilePosition.y);
+                        _caveTilemap.SetTile(tilePosition, ore.tile);
+                    }
                     else
                         _caveTilemap.SetTile(tilePosition, commonBlocks.Find(t => t.isDescrutable).tile);
                 }
             }
+        }
+
+
+        private Ore ChooseOre(int currentDepth)
+        {
+            List<Ore> choosenOres = new List<Ore>();
+
+            foreach (var ore in ores)
+            {
+                if (currentDepth <= ore.minDepth && currentDepth >= ore.maxDepth)
+                {
+                    for(int i = 0; i < ore.commonness; i++)
+                        choosenOres.Add(ore);
+                }
+            }
+
+            if (choosenOres.Count > 0)
+            {
+                int index = Random.Range(0, choosenOres.Count);
+                return choosenOres[index];
+            }
+
+            return deafultOre;
         }
     }
 }
