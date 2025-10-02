@@ -13,6 +13,7 @@ namespace MiningGame.WorldGeneration
         [SerializeField] private List<Ore> ores;
         [SerializeField] private List<CommonBlock> commonBlocks;
         [SerializeField] private Ore deafultOre;
+        [SerializeField] private CommonBlock bedrock;
         [SerializeField] private int mapHeight;
         [SerializeField] private int mapWidth;
         [SerializeField] private Vector3Int startPosition = new Vector3Int(0, 0, 0);
@@ -57,14 +58,22 @@ namespace MiningGame.WorldGeneration
                 {
                     Vector3Int tilePosition = new Vector3Int(startPosition.x + x, startPosition.y - y, 0);
                     float noise = Mathf.PerlinNoise(x * perlinNoiseScale, y * perlinNoiseScale);
-
-                    if (noise > 0.8f)
+                    if (tilePosition.y == -(mapHeight / 2) + 1 || tilePosition.y == mapHeight / 2)
                     {
-                        Ore ore = ChooseOre(tilePosition.y);
-                        _caveTilemap.SetTile(tilePosition, ore.tile);
+                        _caveTilemap.SetTile(tilePosition, bedrock.tile);
                     }
                     else
-                        _caveTilemap.SetTile(tilePosition, commonBlocks.Find(t => t.isDescrutable).tile);
+                    {
+                        if (noise > 0.8f)
+                        {
+                            Ore ore = ChooseOre(tilePosition.y);
+                            _caveTilemap.SetTile(tilePosition, ore.tile);
+                        }
+                        else
+                        {
+                            _caveTilemap.SetTile(tilePosition, commonBlocks.Find(t => t.isDescrutable).tile);
+                        }
+                    }
                 }
             }
         }
@@ -78,7 +87,7 @@ namespace MiningGame.WorldGeneration
             {
                 if (currentDepth <= ore.minDepth && currentDepth >= ore.maxDepth)
                 {
-                    for(int i = 0; i < ore.commonness; i++)
+                    for (int i = 0; i < ore.commonness; i++)
                         choosenOres.Add(ore);
                 }
             }

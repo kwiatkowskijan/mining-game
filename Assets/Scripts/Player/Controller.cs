@@ -89,7 +89,7 @@ namespace MiningGame.Player
             Debug.DrawRay(new Vector2(transform.position.x, transform.position.y - 0.4f), Vector2.left * 0.7f, Color.red);
             Debug.DrawRay(new Vector2(transform.position.x, transform.position.y - 0.4f), Vector2.right * 0.7f, Color.red);
 
-            Debug.Log("Touching ladder: " + IsTouchingLadder()); //test wspinania
+            // Debug.Log("Touching ladder: " + IsTouchingLadder()); //test wspinania
 
         }
 
