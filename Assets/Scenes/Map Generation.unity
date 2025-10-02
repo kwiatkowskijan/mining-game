@@ -2952,9 +2952,10 @@ MonoBehaviour:
   commonBlocks:
   - {fileID: 11400000, guid: f4f2f48293dbc354ea4dbe4f5f6b4b5d, type: 2}
   deafultOre: {fileID: 11400000, guid: 26cbe6b92d5c66645898bdaa09058c1e, type: 2}
-  mapHeight: 32
-  mapWidth: 32
-  startPosition: {x: 20, y: 16, z: 0}
+  bedrock: {fileID: 11400000, guid: aee0f65309236fa4a9b5a417425f4d7a, type: 2}
+  mapHeight: 128
+  mapWidth: 128
+  startPosition: {x: 20, y: 64, z: 0}
   perlinNoiseScale: 0.2
   chunkSize: 16
   test: {fileID: 1689073844}

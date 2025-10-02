@@ -16,10 +16,11 @@ namespace MiningGame.WorldGeneration
         [SerializeField] private CommonBlock bedrock;
         [SerializeField] private int mapHeight;
         [SerializeField] private int mapWidth;
-        [SerializeField] private Vector3Int startPosition = new Vector3Int(0, 0, 0);
         [SerializeField] private float perlinNoiseScale;
         [SerializeField] private int chunkSize = 16;
         [SerializeField] private Transform test;
+
+        private Vector3Int _startPosition = new Vector3Int(0, 0, 0);
 
 
         private void Awake()
@@ -29,7 +30,7 @@ namespace MiningGame.WorldGeneration
 
         private void Start()
         {
-            // _caveTilemap.SetTile(new Vector3Int(0, -20), commonBlocks[0].tile);
+            _startPosition = new Vector3Int(20, mapHeight / 2, 0);
             GenerateCave(mapWidth, mapHeight);
         }
 
@@ -56,7 +57,7 @@ namespace MiningGame.WorldGeneration
             {
                 for (int y = startY; y < startY + chunkSize; y++)
                 {
-                    Vector3Int tilePosition = new Vector3Int(startPosition.x + x, startPosition.y - y, 0);
+                    Vector3Int tilePosition = new Vector3Int(_startPosition.x + x, _startPosition.y - y, 0);
                     float noise = Mathf.PerlinNoise(x * perlinNoiseScale, y * perlinNoiseScale);
                     if (tilePosition.y == -(mapHeight / 2) + 1 || tilePosition.y == mapHeight / 2)
                     {
