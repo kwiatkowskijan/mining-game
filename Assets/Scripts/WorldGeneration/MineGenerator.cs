@@ -31,10 +31,23 @@ namespace MiningGame.WorldGeneration
         private Transform _player;
         private Dictionary<Vector2Int, bool> _generatedChunks = new Dictionary<Vector2Int, bool>();
 
+        public static Dictionary<TileBase, Block> TileToBlockMap = new Dictionary<TileBase, Block>();
+
 
         private void Awake()
         {
             _caveTilemap = GetComponentInChildren<Tilemap>();
+
+            foreach (var ore in ores)
+            {
+                if (ore.tile != null && !TileToBlockMap.ContainsKey(ore.tile))
+                    TileToBlockMap.Add(ore.tile, ore);
+            }
+            foreach (var dirt in commonBlocks)
+            {
+                if (dirt.tile != null && !TileToBlockMap.ContainsKey(dirt.tile))
+                    TileToBlockMap.Add(dirt.tile, dirt);
+            }
         }
 
         private void Start()
