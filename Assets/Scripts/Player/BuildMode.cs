@@ -51,6 +51,19 @@ namespace MiningGame.Player
             public string name;
         }
 
+        private int GetCost(BuildType t)
+        {
+            switch (t)
+            {
+                case BuildType.Torch: return 2;
+                case BuildType.Ladder: return 5;
+                case BuildType.Rope: return 3;
+                case BuildType.Cart: return 15;
+                case BuildType.Rails: return 10;
+                default: return 0;
+            }
+        }
+
         void Start()
         {
             buildOptions = new Dictionary<BuildType, BuildData>
@@ -70,7 +83,7 @@ namespace MiningGame.Player
                 HandleBuildModeToggle();
             }
 
-            if (isInBuildMode && Input.GetMouseButton(0))
+            if (isInBuildMode && Input.GetMouseButtonDown(0))
             {
                 TryPlaceTile();
             }
@@ -83,7 +96,12 @@ namespace MiningGame.Player
             {
                 previewTilemap.ClearAllTiles();
             }
-
+        }
+        public int GetCostByIndex(int index)
+        {
+            if (System.Enum.IsDefined(typeof(BuildType), index))
+                return GetCost((BuildType)index);
+            return 0;
         }
 
         public void HandleBuildModeToggle()
@@ -100,6 +118,7 @@ namespace MiningGame.Player
 
         private void TryPlaceTile()
         {
+            var stats = playerTransform.GetComponent<Stats>();
             if (!buildOptions.TryGetValue(currentBuildType, out var buildData))
             {
                 Debug.LogWarning("Nieznany typ budowli: " + currentBuildType);
@@ -116,6 +135,15 @@ namespace MiningGame.Player
                 return;
             }
 
+            if (buildData.tilemap.HasTile(cellPos))
+            {
+                Debug.Log("Tu ju¿ stoi element: " + buildData.name);
+                return;
+            }
+
+            int cost = GetCost(currentBuildType);
+            if (stats.CurrentMoney < cost) { Debug.Log("Za ma³o pieniêdzy"); return; }
+
             buildData.tilemap.SetTile(cellPos, buildData.tile);
             buildData.tilemap.CompressBounds();
 
@@ -125,6 +153,9 @@ namespace MiningGame.Player
 
             Debug.Log($"{buildData.name} placed at {cellPos}");
             previewTilemap.SetTile(cellPos, null);
+
+            stats.RemoveMoney(cost);
+
         }
 
         public void SetBuildIndex(int index)
