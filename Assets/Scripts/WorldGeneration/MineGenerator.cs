@@ -10,15 +10,18 @@ namespace MiningGame.WorldGeneration
     public class MineGenerator : MonoBehaviour
     {
         private Tilemap _caveTilemap;
+        [Header("Blocks")]
         [SerializeField] private List<Ore> ores;
         [SerializeField] private List<CommonBlock> commonBlocks;
         [SerializeField] private Ore deafultOre;
         [SerializeField] private CommonBlock bedrock;
+        [Header("Map Settings")]
         [SerializeField] private int mapHeight;
         [SerializeField] private int mapWidth;
-        [SerializeField] private float perlinNoiseScale;
         [SerializeField] private int chunkSize = 16;
-        [SerializeField] private Transform test;
+        [Header("Perlin Noise Settings")]
+        [Range(-1000000, 1000000)][SerializeField] private int seed = 0;
+        [Range(0f, 1f)][SerializeField] private float noiseScale = 0.1f;
 
         private Vector3Int _startPosition = new Vector3Int(0, 0, 0);
 
@@ -30,8 +33,15 @@ namespace MiningGame.WorldGeneration
 
         private void Start()
         {
-            _startPosition = new Vector3Int(20, mapHeight / 2, 0);
+            InitValues();
             GenerateCave(mapWidth, mapHeight);
+        }
+
+        private void InitValues()
+        {
+            _startPosition = new Vector3Int(20, mapHeight / 2, 0);
+            if (seed == 0)
+                seed = Random.Range(-1000000, 1000000);
         }
 
         private void GenerateCave(int width, int height)
@@ -58,7 +68,8 @@ namespace MiningGame.WorldGeneration
                 for (int y = startY; y < startY + chunkSize; y++)
                 {
                     Vector3Int tilePosition = new Vector3Int(_startPosition.x + x, _startPosition.y - y, 0);
-                    float noise = Mathf.PerlinNoise(x * perlinNoiseScale, y * perlinNoiseScale);
+                    float noise = Mathf.PerlinNoise((x + seed) * noiseScale, (y + seed) * noiseScale);
+
                     if (tilePosition.y == -(mapHeight / 2) + 1 || tilePosition.y == mapHeight / 2)
                     {
                         _caveTilemap.SetTile(tilePosition, bedrock.tile);
