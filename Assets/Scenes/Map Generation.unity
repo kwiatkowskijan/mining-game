@@ -2781,6 +2781,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1840271319705736523, guid: 9d9c9a2ee19e745498519946acfe4739, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 2462457306007924291, guid: 9d9c9a2ee19e745498519946acfe4739, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.6150436
@@ -2961,10 +2965,10 @@ MonoBehaviour:
   bedrock: {fileID: 11400000, guid: aee0f65309236fa4a9b5a417425f4d7a, type: 2}
   mapHeight: 128
   mapWidth: 128
-  seed: 100
-  noiseScale: 0.1
   chunkSize: 16
-  test: {fileID: 1689073844}
+  loadDistance: 3
+  seed: 0
+  noiseScale: 0.13
 --- !u!156049354 &1893802612
 Grid:
   m_ObjectHideFlags: 0
