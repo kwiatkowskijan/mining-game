@@ -71,8 +71,12 @@ namespace MiningGame.WorldGeneration
             while (true)
             {
                 Vector2Int playerChunk = GetPlayerChunk();
-                Debug.Log($"Player Chunk: {playerChunk}");
                 loadChunksNearPlayer(playerChunk);
+                Debug.Log("Generated chunks:");
+                foreach (var chunk in _generatedChunks)
+                {
+                    Debug.Log($"Chunk: {chunk.Key} => Generated: {chunk.Value}");
+                }
                 yield return new WaitForSeconds(0.5f);
             }
         }
@@ -99,7 +103,7 @@ namespace MiningGame.WorldGeneration
                 }
             }
         }
-        
+
         private void GenerateChunk(int chunkX, int chunkY)
         {
             int startX = chunkX * chunkSize;
@@ -153,6 +157,29 @@ namespace MiningGame.WorldGeneration
             }
 
             return deafultOre;
+        }
+
+        private void OnDrawGizmos()
+        {
+            foreach (var chunk in _generatedChunks)
+            {
+                Vector3 worldPos = new Vector3(
+                    _startPosition.x + chunk.Key.x * chunkSize,
+                    _startPosition.y + chunk.Key.y * chunkSize,
+                    0
+                );
+
+                if (chunk.Key == new Vector2Int(0, 0))
+                    Gizmos.color = Color.blue;
+                else
+                    Gizmos.color = Color.red;
+
+                Gizmos.DrawWireCube(
+                    worldPos + new Vector3(chunkSize / 2f, chunkSize / 2f, 0),
+                    new Vector3(chunkSize, chunkSize, 0.1f)
+                );
+            }
+
         }
     }
 }

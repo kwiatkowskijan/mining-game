@@ -2966,7 +2966,7 @@ MonoBehaviour:
   mapHeight: 128
   mapWidth: 128
   chunkSize: 16
-  loadDistance: 3
+  loadDistance: 2
   seed: 0
   noiseScale: 0.13
 --- !u!156049354 &1893802612
