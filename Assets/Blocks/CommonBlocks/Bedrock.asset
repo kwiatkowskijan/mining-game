@@ -9,11 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08c8ffa272d389447bcf4db8401be3cb, type: 3}
-  m_Name: Ruby
+  m_Script: {fileID: 11500000, guid: dfe90c9ddca187f40aabc7c145bfb1db, type: 3}
+  m_Name: Bedrock
   m_EditorClassIdentifier: 
-  tile: {fileID: 11400000, guid: 001667a4fcd37bf478aece88420e816b, type: 2}
+  tile: {fileID: 11400000, guid: c6e549d12d431da4f8224ae7e4267872, type: 2}
   isDescrutable: 0
-  commonness: 50
-  minDepth: 100
-  maxDepth: -100
