@@ -54,37 +54,46 @@ namespace MiningGame
                 rubbleMessage.SetActive(false);
                 if (Input.GetMouseButton(0)) // lewy przycisk myszy
                 {
-                    holdTimer += Time.deltaTime;
-
-                    if (holdTimer >= miningTime)
-                    {
+                    
                         TileBase highlightedTile = selector.GetCurrentTileType();
                         if (highlightedTile == null) return;
 
                         if(MiningGame.WorldGeneration.MineGenerator.TileToBlockMap.TryGetValue(highlightedTile, out Block block))
                         {
-                            Debug.Log("Wykopywany blok to: " + block.name);
-
-                            GameObject toSpawn = null;
-
-                            if (block is CommonBlock)
+                            if (block.isDescrutable)
                             {
-                                toSpawn = dirtPickup;
-                            }
+                                Debug.Log("Wykopywany blok to: " + block.name);
 
-                            if (block is Ore)
-                            {
-                                toSpawn = mineralPickup;
-                            }
+                                GameObject toSpawn = null;
+                                float miningMultiplier = 1f;
 
-                            tilemap.SetTile(tileToDig.Value, null); // niszczenie tile'a
-                            Vector3 worldPos = tilemap.GetCellCenterWorld(tileToDig.Value);
-                            if (toSpawn != null)
-                            Instantiate(toSpawn, worldPos, Quaternion.identity);
-                        }
-                        
-                        holdTimer = 0f;
-                        lastTargetedTile = null;
+                                if (block is CommonBlock common)
+                                {
+                                    toSpawn = common.toSpawn;
+                                    miningMultiplier = common.miningMultiplier;
+                                }
+
+                                if (block is Ore ore)
+                                {
+                                    toSpawn = ore.toSpawn;
+                                    miningMultiplier = ore.miningMultiplier;
+                                }
+
+                                float blockMiningTime = miningTime * miningMultiplier;
+                            
+                                holdTimer += Time.deltaTime;
+
+                                if (holdTimer >= blockMiningTime)
+                                {
+                                    tilemap.SetTile(tileToDig.Value, null); // niszczenie tile'a
+                                    Vector3 worldPos = tilemap.GetCellCenterWorld(tileToDig.Value);
+                                    if (toSpawn != null)
+                                        Instantiate(toSpawn, worldPos, Quaternion.identity);
+
+                                    holdTimer = 0f;
+                                    lastTargetedTile = null;
+                                }
+                            }
                     }
                 }
                 else holdTimer = 0f;

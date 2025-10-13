@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using MiningGame.MapGeneration;
+using MiningGame.WorldGeneration;
 
 public class TileSnapSelector : MonoBehaviour
 {
@@ -25,6 +27,17 @@ public class TileSnapSelector : MonoBehaviour
             {
                 Vector3Int pos = cursorCell + new Vector3Int(x, y, 0);
                 if (!tilemap.HasTile(pos)) continue;
+
+                TileBase tile = tilemap.GetTile(pos);
+                if (MineGenerator.TileToBlockMap.TryGetValue(tile, out Block blockData))
+                {
+                    if (!blockData.isDescrutable)
+                        continue;
+                }
+                else
+                {
+                    continue;
+                }
 
                 Vector3 tileWorldPos = tilemap.GetCellCenterWorld(pos);
 
