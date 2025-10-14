@@ -32,6 +32,7 @@ namespace MiningGame.WorldGeneration
 
         private void Awake()
         {
+            //test
             _caveTilemap = GetComponentInChildren<Tilemap>();
         }
 
