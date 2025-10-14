@@ -65,7 +65,10 @@ namespace MiningGame.Player
 
         void Update()
         {
-            HandleBuildModeToggle();
+            if (Input.GetKeyDown(KeyCode.B))
+            {
+                HandleBuildModeToggle();
+            }
 
             if (isInBuildMode && Input.GetMouseButton(0))
             {
@@ -83,19 +86,16 @@ namespace MiningGame.Player
 
         }
 
-        private void HandleBuildModeToggle()
+        public void HandleBuildModeToggle()
         {
-            if (Input.GetKeyDown(KeyCode.B))
-            {
-                isInBuildMode = !isInBuildMode;
+            isInBuildMode = !isInBuildMode;
 
-                if (grappleHook != null)
-                    grappleHook.enabled = !isInBuildMode;
+            if (grappleHook != null)
+                grappleHook.enabled = !isInBuildMode;
 
-                SetBuildModeIcon(isInBuildMode);
+            SetBuildModeIcon(isInBuildMode);
 
-                Debug.Log("Build mode: " + (isInBuildMode ? "ON" : "OFF"));
-            }
+            Debug.Log("Build mode: " + (isInBuildMode ? "ON" : "OFF"));
         }
 
         private void TryPlaceTile()
@@ -112,7 +112,7 @@ namespace MiningGame.Player
 
             if (Vector2.Distance(playerTransform.position, cellWorld) > maxBuildDistance)
             {
-                Debug.Log("Za daleko! Maksymalny zasiêg budowania to " + maxBuildDistance);
+                Debug.Log("Za daleko! Maksymalny zasiï¿½g budowania to " + maxBuildDistance);
                 return;
             }
 

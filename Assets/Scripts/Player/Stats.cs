@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using MiningGame;
 
 namespace MiningGame.Player
 {
@@ -24,16 +25,23 @@ namespace MiningGame.Player
 
         private void Awake()
         {
-            
             currentHealth = maxHealth;
             currentWeight = 0;
             currentMoney = 0;
+
+            StatsManager.Instance.Health = (int)currentHealth;
+        }
+
+        private void Start()
+        {
+            TakeDamage(10f);
         }
 
         public void TakeDamage(float amount)
         {
-            currentHealth = Mathf.Clamp(currentHealth - amount, 0, maxHealth);
-            OnHealthChanged?.Invoke(currentHealth);
+            // currentHealth = Mathf.Clamp(currentHealth - amount, 0, maxHealth);
+            // OnHealthChanged?.Invoke(currentHealth);
+            StatsManager.Instance.Health -= (int)amount;
 
             if (currentHealth <= 0) 
             {
