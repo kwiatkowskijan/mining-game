@@ -1,3 +1,4 @@
+using MiningGame.Player;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,16 +7,21 @@ namespace MiningGame.UI
     public class UI_Manager : MonoBehaviour
     {
         [SerializeField] private Image healthBar;
-        private int health;
+        [SerializeField] private Stats statsComponent;
 
         private void Start()
         {
-            health = StatsManager.Instance.Health;
+            if (statsComponent == null)
+                statsComponent = FindFirstObjectByType<Stats>();
+
+            UpdateHealthBar(statsComponent.CurrentHealth);
+            statsComponent.OnHealthChanged += UpdateHealthBar;
         }
 
-        private void Update()
+        private void UpdateHealthBar(float health)
         {
-            healthBar.fillAmount = health;
+            float fill = health / statsComponent.maxHealth;
+            healthBar.fillAmount = fill;
         }
     }
 }

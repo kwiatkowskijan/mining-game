@@ -1,13 +1,13 @@
 using System;
+using System.Collections;
 using UnityEngine;
-using MiningGame;
 
 namespace MiningGame.Player
 {
     public class Stats : MonoBehaviour
     {
         [Header("Health")]
-        [SerializeField] private float maxHealth = 100f;
+        [SerializeField] public float maxHealth = 100f;
         [SerializeField] private float currentHealth;
         public float CurrentHealth => currentHealth;
         public event Action<float> OnHealthChanged;
@@ -28,20 +28,12 @@ namespace MiningGame.Player
             currentHealth = maxHealth;
             currentWeight = 0;
             currentMoney = 0;
-
-            StatsManager.Instance.Health = (int)currentHealth;
-        }
-
-        private void Start()
-        {
-            TakeDamage(10f);
         }
 
         public void TakeDamage(float amount)
         {
-            // currentHealth = Mathf.Clamp(currentHealth - amount, 0, maxHealth);
-            // OnHealthChanged?.Invoke(currentHealth);
-            StatsManager.Instance.Health -= (int)amount;
+            currentHealth = Mathf.Clamp(currentHealth - amount, 0, maxHealth);
+            OnHealthChanged?.Invoke(currentHealth);
 
             if (currentHealth <= 0) 
             {

@@ -273,6 +273,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MiningGame.UI.UI_Manager
   healthBar: {fileID: 1134159685}
+  statsComponent: {fileID: 958783163}
 --- !u!1 &350544215
 GameObject:
   m_ObjectHideFlags: 0
@@ -3558,7 +3559,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b18620155604d0b478369ca0f3e9ee9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MiningGame.Player.BuildMode
-  playerTransform: {fileID: 0}
+  playerTransform: {fileID: 958783159}
   maxBuildDistance: 3
   ladderTilemap: {fileID: 0}
   buildTilemap: {fileID: 0}
@@ -3573,6 +3574,17 @@ MonoBehaviour:
   buildModeSprite: {fileID: 326418909675698413, guid: bb93548d052754f44a470f190884e87d, type: 3}
   previewTilemap: {fileID: 0}
   previewTileBase: {fileID: 0}
+--- !u!114 &958783163 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8522725513187923077, guid: 9d9c9a2ee19e745498519946acfe4739, type: 3}
+  m_PrefabInstance: {fileID: 958783158}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 958783160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bc8138a7cc78544696f4f3dcd686165, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1134159683
 GameObject:
   m_ObjectHideFlags: 0
