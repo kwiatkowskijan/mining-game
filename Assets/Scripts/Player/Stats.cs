@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 namespace MiningGame.Player
@@ -6,7 +7,7 @@ namespace MiningGame.Player
     public class Stats : MonoBehaviour
     {
         [Header("Health")]
-        [SerializeField] private float maxHealth = 100f;
+        [SerializeField] public float maxHealth = 100f;
         [SerializeField] private float currentHealth;
         public float CurrentHealth => currentHealth;
         public event Action<float> OnHealthChanged;
@@ -24,7 +25,6 @@ namespace MiningGame.Player
 
         private void Awake()
         {
-            
             currentHealth = maxHealth;
             currentWeight = 0;
             currentMoney = 0;

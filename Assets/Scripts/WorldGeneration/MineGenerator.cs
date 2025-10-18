@@ -32,7 +32,6 @@ namespace MiningGame.WorldGeneration
 
         private void Awake()
         {
-            //test
             _caveTilemap = GetComponentInChildren<Tilemap>();
         }
 
@@ -73,11 +72,6 @@ namespace MiningGame.WorldGeneration
             {
                 Vector2Int playerChunk = GetPlayerChunk();
                 loadChunksNearPlayer(playerChunk);
-                Debug.Log("Generated chunks:");
-                foreach (var chunk in _generatedChunks)
-                {
-                    Debug.Log($"Chunk: {chunk.Key} => Generated: {chunk.Value}");
-                }
                 yield return new WaitForSeconds(0.5f);
             }
         }
