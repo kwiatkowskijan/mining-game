@@ -30,6 +30,7 @@ namespace MiningGame.Player
         [SerializeField] private Tilemap previewTilemap;
         [SerializeField] private TileBase previewTileBase;
 
+        [SerializeField] private GameObject buildUIRoot;
 
         private bool isInBuildMode = false;
         private BuildType currentBuildType = BuildType.Ladder;
@@ -74,6 +75,8 @@ namespace MiningGame.Player
                 { BuildType.Cart, new BuildData { tilemap = buildTilemap, tile = cartTile, name = "Cart" } },
                 { BuildType.Rails, new BuildData { tilemap = buildTilemap, tile = railsTile, name = "Rails" } }
             };
+
+            if (buildUIRoot) buildUIRoot.SetActive(false);
         }
 
         void Update()
@@ -113,7 +116,14 @@ namespace MiningGame.Player
 
             SetBuildModeIcon(isInBuildMode);
 
+<<<<<<< HEAD
             Debug.Log("Build mode: " + (isInBuildMode ? "ON" : "OFF"));
+=======
+                if (buildUIRoot) buildUIRoot.SetActive(isInBuildMode);
+
+                Debug.Log("Build mode: " + (isInBuildMode ? "ON" : "OFF"));
+            }
+>>>>>>> bf6d282 (feat categories)
         }
 
         private void TryPlaceTile()
