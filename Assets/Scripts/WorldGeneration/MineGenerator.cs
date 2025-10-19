@@ -23,7 +23,9 @@ namespace MiningGame.WorldGeneration
         [SerializeField] private int loadDistance = 2;
         [Header("Perlin Noise Settings")]
         [Range(-1000000, 1000000)][SerializeField] private int seed = 0;
-        [Range(0f, 1f)][SerializeField] private float noiseScale = 0.1f;
+        [Range(0f, 1f)][SerializeField] private float caveNoiseScale = 0.13f;
+        [Range(0f, 1f)][SerializeField] private float oreNoiseScale = 0.05f;
+
 
         private Vector3Int _startPosition = new Vector3Int(0, 0, 0);
         private Transform _player;
@@ -108,7 +110,7 @@ namespace MiningGame.WorldGeneration
                 for (int y = startY; y < startY + chunkSize; y++)
                 {
                     Vector3Int tilePosition = new Vector3Int(_startPosition.x + x, _startPosition.y + y, 0);
-                    float caveNoise = Mathf.PerlinNoise((x + seed) * noiseScale, (y + seed) * noiseScale);
+                    float caveNoise = Mathf.PerlinNoise((x + seed) * caveNoiseScale, (y + seed) * caveNoiseScale);
 
                     if (tilePosition.y == -(mapHeight / 2) + 1 || tilePosition.y == mapHeight / 2)
                     {
@@ -118,7 +120,7 @@ namespace MiningGame.WorldGeneration
                     {
                         if (caveNoise > 0.8f)
                         {
-                            float oreNoise = Mathf.PerlinNoise((x + seed) * 0.05f, (y + seed) * 0.05f);
+                            float oreNoise = Mathf.PerlinNoise((x + seed) * oreNoiseScale, (y + seed) * oreNoiseScale);
                             Ore ore = ChooseOreFromNoise(oreNoise, y);
                             _caveTilemap.SetTile(tilePosition, ore.tile);
                         }
@@ -130,6 +132,7 @@ namespace MiningGame.WorldGeneration
                 }
             }
         }
+        
 
         private Ore ChooseOreFromNoise(float noiseValue, int y)
         {
