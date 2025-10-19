@@ -17,6 +17,7 @@ namespace MiningGame.WorldGeneration
         [SerializeField] private Ore deafultOre;
         [SerializeField] private CommonBlock bedrock;
         [Header("Map Settings")]
+        [SerializeField] private int startX;
         [SerializeField] private int mapHeight;
         [SerializeField] private int mapWidth;
         [SerializeField] private int chunkSize = 16;
@@ -59,7 +60,7 @@ namespace MiningGame.WorldGeneration
 
         private void InitValues()
         {
-            _startPosition = new Vector3Int(20, 0, 0);
+            _startPosition = new Vector3Int(startX, 0, 0);
             if (seed == 0)
                 seed = Random.Range(-1000000, 1000000);
             _player = GameObject.FindGameObjectWithTag("Player").transform;
