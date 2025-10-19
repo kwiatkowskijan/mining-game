@@ -23,7 +23,9 @@ namespace MiningGame.WorldGeneration
         [SerializeField] private int loadDistance = 2;
         [Header("Perlin Noise Settings")]
         [Range(-1000000, 1000000)][SerializeField] private int seed = 0;
-        [Range(0f, 1f)][SerializeField] private float noiseScale = 0.1f;
+        [Range(0f, 1f)][SerializeField] private float caveNoiseScale = 0.13f;
+        [Range(0f, 1f)][SerializeField] private float oreNoiseScale = 0.05f;
+
 
         private Vector3Int _startPosition = new Vector3Int(0, 0, 0);
         private Transform _player;
@@ -44,7 +46,6 @@ namespace MiningGame.WorldGeneration
 
         private void InitValues()
         {
-            // _startPosition = new Vector3Int(20, mapHeight / 2, 0);
             _startPosition = new Vector3Int(20, 0, 0);
             if (seed == 0)
                 seed = Random.Range(-1000000, 1000000);
@@ -109,7 +110,7 @@ namespace MiningGame.WorldGeneration
                 for (int y = startY; y < startY + chunkSize; y++)
                 {
                     Vector3Int tilePosition = new Vector3Int(_startPosition.x + x, _startPosition.y + y, 0);
-                    float noise = Mathf.PerlinNoise((x + seed) * noiseScale, (y + seed) * noiseScale);
+                    float caveNoise = Mathf.PerlinNoise((x + seed) * caveNoiseScale, (y + seed) * caveNoiseScale);
 
                     if (tilePosition.y == -(mapHeight / 2) + 1 || tilePosition.y == mapHeight / 2)
                     {
@@ -117,9 +118,10 @@ namespace MiningGame.WorldGeneration
                     }
                     else
                     {
-                        if (noise > 0.8f)
+                        if (caveNoise > 0.8f)
                         {
-                            Ore ore = ChooseOre(tilePosition.y);
+                            float oreNoise = Mathf.PerlinNoise((x + seed) * oreNoiseScale, (y + seed) * oreNoiseScale);
+                            Ore ore = ChooseOreFromNoise(oreNoise, y);
                             _caveTilemap.SetTile(tilePosition, ore.tile);
                         }
                         else
@@ -130,30 +132,20 @@ namespace MiningGame.WorldGeneration
                 }
             }
         }
+        
 
-
-        private Ore ChooseOre(int currentDepth)
+        private Ore ChooseOreFromNoise(float noiseValue, int y)
         {
-            List<Ore> choosenOres = new List<Ore>();
+            List<Ore> validOres = ores.FindAll(o => y <= o.minDepth && y >= o.maxDepth);
 
-            foreach (var ore in ores)
-            {
-                if (currentDepth <= ore.minDepth && currentDepth >= ore.maxDepth)
-                {
-                    for (int i = 0; i < ore.commonness; i++)
-                        choosenOres.Add(ore);
-                }
-            }
+            if (validOres.Count == 0) return deafultOre;
 
-            if (choosenOres.Count > 0)
-            {
-                int index = Random.Range(0, choosenOres.Count);
-                return choosenOres[index];
-            }
-
-            return deafultOre;
+            int index = Mathf.FloorToInt(noiseValue * validOres.Count);
+            index = Mathf.Clamp(index, 0, validOres.Count - 1);
+            return validOres[index];
         }
 
+        // Gizmos to visualize generated chunks in the editor
         private void OnDrawGizmos()
         {
             foreach (var chunk in _generatedChunks)
