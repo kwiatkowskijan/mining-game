@@ -15,5 +15,5 @@ MonoBehaviour:
   tile: {fileID: 11400000, guid: 001667a4fcd37bf478aece88420e816b, type: 2}
   isDescrutable: 0
   commonness: 50
-  minDepth: 100
-  maxDepth: -100
+  minDepth: 40
+  maxDepth: 20

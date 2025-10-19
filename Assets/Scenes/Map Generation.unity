@@ -3554,7 +3554,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 958783160}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b18620155604d0b478369ca0f3e9ee9d, type: 3}
   m_Name: 
@@ -4119,7 +4119,7 @@ MonoBehaviour:
   mapWidth: 128
   chunkSize: 16
   loadDistance: 2
-  seed: 0
+  seed: 10
   noiseScale: 0.13
 --- !u!156049354 &1893802612
 Grid:

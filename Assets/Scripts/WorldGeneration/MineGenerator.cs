@@ -44,7 +44,6 @@ namespace MiningGame.WorldGeneration
 
         private void InitValues()
         {
-            // _startPosition = new Vector3Int(20, mapHeight / 2, 0);
             _startPosition = new Vector3Int(20, 0, 0);
             if (seed == 0)
                 seed = Random.Range(-1000000, 1000000);
@@ -119,7 +118,7 @@ namespace MiningGame.WorldGeneration
                     {
                         if (noise > 0.8f)
                         {
-                            Ore ore = ChooseOre(tilePosition.y);
+                            Ore ore = ChooseOre(tilePosition.x, tilePosition.y);
                             _caveTilemap.SetTile(tilePosition, ore.tile);
                         }
                         else
@@ -132,13 +131,13 @@ namespace MiningGame.WorldGeneration
         }
 
 
-        private Ore ChooseOre(int currentDepth)
+        private Ore ChooseOre(int x, int y)
         {
             List<Ore> choosenOres = new List<Ore>();
 
             foreach (var ore in ores)
             {
-                if (currentDepth <= ore.minDepth && currentDepth >= ore.maxDepth)
+                if (y <= ore.minDepth && y >= ore.maxDepth)
                 {
                     for (int i = 0; i < ore.commonness; i++)
                         choosenOres.Add(ore);
@@ -147,13 +146,28 @@ namespace MiningGame.WorldGeneration
 
             if (choosenOres.Count > 0)
             {
-                int index = Random.Range(0, choosenOres.Count);
+                System.Random localRandom = new System.Random(HashCoords(x, y, seed));
+                int index = localRandom.Next(0, choosenOres.Count);
                 return choosenOres[index];
             }
 
             return deafultOre;
         }
 
+        // Simple hash function to get consistent random values based on coordinates and seed
+        private int HashCoords(int x, int y, int seed)
+        {
+            unchecked
+            {
+                int hash = seed;
+                hash ^= x * 73856093;
+                hash ^= y * 19349663;
+                return hash;
+            }
+        }
+
+
+        // Gizmos to visualize generated chunks in the editor
         private void OnDrawGizmos()
         {
             foreach (var chunk in _generatedChunks)
