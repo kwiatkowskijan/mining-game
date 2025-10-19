@@ -26220,7 +26220,7 @@ GameObject:
   - component: {fileID: 2065844682}
   - component: {fileID: 2065844681}
   - component: {fileID: 2065844683}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cave
   m_TagString: Untagged
   m_Icon: {fileID: 0}
