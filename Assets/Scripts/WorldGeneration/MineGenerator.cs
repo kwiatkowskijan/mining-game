@@ -108,7 +108,7 @@ namespace MiningGame.WorldGeneration
                 for (int y = startY; y < startY + chunkSize; y++)
                 {
                     Vector3Int tilePosition = new Vector3Int(_startPosition.x + x, _startPosition.y + y, 0);
-                    float noise = Mathf.PerlinNoise((x + seed) * noiseScale, (y + seed) * noiseScale);
+                    float caveNoise = Mathf.PerlinNoise((x + seed) * noiseScale, (y + seed) * noiseScale);
 
                     if (tilePosition.y == -(mapHeight / 2) + 1 || tilePosition.y == mapHeight / 2)
                     {
@@ -116,9 +116,10 @@ namespace MiningGame.WorldGeneration
                     }
                     else
                     {
-                        if (noise > 0.8f)
+                        if (caveNoise > 0.8f)
                         {
-                            Ore ore = ChooseOre(tilePosition.x, tilePosition.y);
+                            float oreNoise = Mathf.PerlinNoise((x + seed) * 0.05f, (y + seed) * 0.05f);
+                            Ore ore = ChooseOreFromNoise(oreNoise, y);
                             _caveTilemap.SetTile(tilePosition, ore.tile);
                         }
                         else
@@ -130,42 +131,16 @@ namespace MiningGame.WorldGeneration
             }
         }
 
-
-        private Ore ChooseOre(int x, int y)
+        private Ore ChooseOreFromNoise(float noiseValue, int y)
         {
-            List<Ore> choosenOres = new List<Ore>();
+            List<Ore> validOres = ores.FindAll(o => y <= o.minDepth && y >= o.maxDepth);
 
-            foreach (var ore in ores)
-            {
-                if (y <= ore.minDepth && y >= ore.maxDepth)
-                {
-                    for (int i = 0; i < ore.commonness; i++)
-                        choosenOres.Add(ore);
-                }
-            }
+            if (validOres.Count == 0) return deafultOre;
 
-            if (choosenOres.Count > 0)
-            {
-                System.Random localRandom = new System.Random(HashCoords(x, y, seed));
-                int index = localRandom.Next(0, choosenOres.Count);
-                return choosenOres[index];
-            }
-
-            return deafultOre;
+            int index = Mathf.FloorToInt(noiseValue * validOres.Count);
+            index = Mathf.Clamp(index, 0, validOres.Count - 1);
+            return validOres[index];
         }
-
-        // Simple hash function to get consistent random values based on coordinates and seed
-        private int HashCoords(int x, int y, int seed)
-        {
-            unchecked
-            {
-                int hash = seed;
-                hash ^= x * 73856093;
-                hash ^= y * 19349663;
-                return hash;
-            }
-        }
-
 
         // Gizmos to visualize generated chunks in the editor
         private void OnDrawGizmos()
