@@ -1,3 +1,5 @@
+using MiningGame.MapGeneration;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem.Interactions;
 using UnityEngine.Tilemaps;
@@ -16,7 +18,7 @@ namespace MiningGame
         [SerializeField] private GameObject rubbleMessage;
 
         [Header("Dirt Block")]
-        [SerializeField] private TileBase[] dirtTiles;
+
         [SerializeField] private GameObject dirtPickup;
 
         [Header("Mineral Block")]
@@ -52,34 +54,46 @@ namespace MiningGame
                 rubbleMessage.SetActive(false);
                 if (Input.GetMouseButton(0)) // lewy przycisk myszy
                 {
-                    holdTimer += Time.deltaTime;
-
-                    if (holdTimer >= miningTime)
-                    {
+                    
                         TileBase highlightedTile = selector.GetCurrentTileType();
-                        GameObject toSpawn = null;
+                        if (highlightedTile == null) return;
 
-                        foreach (TileBase mineralTile in mineralTiles)
+                        if(MiningGame.WorldGeneration.MineGenerator.TileToBlockMap.TryGetValue(highlightedTile, out Block block))
                         {
-                            if (highlightedTile == mineralTile)
+                            if (block.isDescrutable)
                             {
-                                toSpawn = mineralPickup;
-                            }
-                        }
-                        foreach (TileBase dirtTile in dirtTiles)
-                        {
-                            if (highlightedTile == dirtTile)
-                            {
-                                toSpawn = dirtPickup;
-                            }
-                        }
+                                Debug.Log("Wykopywany blok to: " + block.name);
 
-                        tilemap.SetTile(tileToDig.Value, null); // niszczenie tile'a
-                        Debug.Log("Wykopano tile na pozycji: " + tileToDig.Value);
-                        Vector3 worldPos = tilemap.GetCellCenterWorld(tileToDig.Value);
-                        Instantiate(toSpawn, worldPos, Quaternion.identity);
-                        holdTimer = 0f;
-                        lastTargetedTile = null;
+                                GameObject toSpawn = null;
+                                float miningMultiplier = 1f;
+
+                                if (block is CommonBlock common)
+                                {
+                                    toSpawn = common.toSpawn;
+                                    miningMultiplier = common.miningMultiplier;
+                                }
+
+                                if (block is Ore ore)
+                                {
+                                    toSpawn = ore.toSpawn;
+                                    miningMultiplier = ore.miningMultiplier;
+                                }
+
+                                float blockMiningTime = miningTime * miningMultiplier;
+                            
+                                holdTimer += Time.deltaTime;
+
+                                if (holdTimer >= blockMiningTime)
+                                {
+                                    tilemap.SetTile(tileToDig.Value, null); // niszczenie tile'a
+                                    Vector3 worldPos = tilemap.GetCellCenterWorld(tileToDig.Value);
+                                    if (toSpawn != null)
+                                        Instantiate(toSpawn, worldPos, Quaternion.identity);
+
+                                    holdTimer = 0f;
+                                    lastTargetedTile = null;
+                                }
+                            }
                     }
                 }
                 else holdTimer = 0f;

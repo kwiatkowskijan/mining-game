@@ -17,3 +17,8 @@ MonoBehaviour:
   commonness: 50
   minDepth: 40
   maxDepth: 20
+  tile: {fileID: 11400000, guid: 01ca0cbb848d46445bb878d23f86c9f4, type: 2}
+  isDescrutable: 1
+  rarity: 0
+  miningMultiplier: 1.5
+  toSpawn: {fileID: 7910860408734959751, guid: 39ae3d9c7ae20e84195564ab82f074f4, type: 3}

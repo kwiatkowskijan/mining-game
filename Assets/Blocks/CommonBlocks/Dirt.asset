@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tile: {fileID: 11400000, guid: 4fea4d9dfda286a47a3985cbe270e865, type: 2}
   isDescrutable: 1
+  miningMultiplier: 1
+  toSpawn: {fileID: 3461270386126559627, guid: a459c29f58a86f5499eac77ada5d0154, type: 3}

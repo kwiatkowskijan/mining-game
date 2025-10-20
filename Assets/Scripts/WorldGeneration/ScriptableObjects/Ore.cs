@@ -9,5 +9,8 @@ namespace MiningGame.MapGeneration
         public int commonness;
         public int minDepth;
         public int maxDepth;
+        public int rarity;
+        public float miningMultiplier;
+        public GameObject toSpawn;
     }
 }
