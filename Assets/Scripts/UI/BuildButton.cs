@@ -15,9 +15,9 @@ namespace MiningGame.UI
             int cost = buildMode.GetCostByIndex(buildTypeIndex);
             var stats = buildMode.GetComponentInChildren<Stats>();
 
-            string msg = $"{displayName}\nKoszt: {cost} $";
+            string msg = $"{displayName}\nCost: {cost} $";
             if (stats && stats.CurrentMoney < cost)
-                msg += "\n<color=red>Za ma³o pieniêdzy</color>";
+                msg += "\n<color=red>Not enough money</color>";
 
             ToolTipController.I.Show(msg, e.position);
         }
