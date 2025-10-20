@@ -126,7 +126,7 @@ namespace MiningGame.Player
             var stats = playerTransform.GetComponent<Stats>();
             if (!buildOptions.TryGetValue(currentBuildType, out var buildData))
             {
-                Debug.LogWarning("Nieznany typ budowli: " + currentBuildType);
+                Debug.LogWarning("Unknown build type: " + currentBuildType);
                 return;
             }
 
@@ -136,18 +136,18 @@ namespace MiningGame.Player
 
             if (Vector2.Distance(playerTransform.position, cellWorld) > maxBuildDistance)
             {
-                Debug.Log("Za daleko! Maksymalny zasi�g budowania to " + maxBuildDistance);
+                Debug.Log("Too far. Max distance is: " + maxBuildDistance);
                 return;
             }
 
             if (buildData.tilemap.HasTile(cellPos))
             {
-                Debug.Log("Tu ju� stoi element: " + buildData.name);
+                Debug.Log("This tile is occupied: " + buildData.name);
                 return;
             }
 
             int cost = GetCost(currentBuildType);
-            if (stats.CurrentMoney < cost) { Debug.Log("Za ma�o pieni�dzy"); return; }
+            if (stats.CurrentMoney < cost) { Debug.Log("Not enough money"); return; }
 
             buildData.tilemap.SetTile(cellPos, buildData.tile);
             buildData.tilemap.CompressBounds();
@@ -172,7 +172,7 @@ namespace MiningGame.Player
             }
             else
             {
-                Debug.LogWarning("Niepoprawny indeks budowli: " + index);
+                Debug.LogWarning("Wrong index: " + index);
             }
         }
 
