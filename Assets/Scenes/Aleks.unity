@@ -5494,6 +5494,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3785398518610694529, guid: cc4c29fb5a93bcc40ab19ab1fd7313c7, type: 3}
+      propertyPath: currentMoney
+      value: 9999
+      objectReference: {fileID: 0}
     - target: {fileID: 5534975689434611915, guid: cc4c29fb5a93bcc40ab19ab1fd7313c7, type: 3}
       propertyPath: modeIcon
       value: 
