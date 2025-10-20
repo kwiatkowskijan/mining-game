@@ -116,14 +116,9 @@ namespace MiningGame.Player
 
             SetBuildModeIcon(isInBuildMode);
 
-<<<<<<< HEAD
-            Debug.Log("Build mode: " + (isInBuildMode ? "ON" : "OFF"));
-=======
-                if (buildUIRoot) buildUIRoot.SetActive(isInBuildMode);
+            if (buildUIRoot) buildUIRoot.SetActive(isInBuildMode);
 
-                Debug.Log("Build mode: " + (isInBuildMode ? "ON" : "OFF"));
-            }
->>>>>>> bf6d282 (feat categories)
+            Debug.Log("Build mode: " + (isInBuildMode ? "ON" : "OFF"));
         }
 
         private void TryPlaceTile()
@@ -147,12 +142,12 @@ namespace MiningGame.Player
 
             if (buildData.tilemap.HasTile(cellPos))
             {
-                Debug.Log("Tu ju¿ stoi element: " + buildData.name);
+                Debug.Log("Tu juï¿½ stoi element: " + buildData.name);
                 return;
             }
 
             int cost = GetCost(currentBuildType);
-            if (stats.CurrentMoney < cost) { Debug.Log("Za ma³o pieniêdzy"); return; }
+            if (stats.CurrentMoney < cost) { Debug.Log("Za maï¿½o pieniï¿½dzy"); return; }
 
             buildData.tilemap.SetTile(cellPos, buildData.tile);
             buildData.tilemap.CompressBounds();
