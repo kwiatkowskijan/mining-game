@@ -30,6 +30,7 @@ namespace MiningGame.Player
         [SerializeField] private Tilemap previewTilemap;
         [SerializeField] private TileBase previewTileBase;
 
+        [SerializeField] private GameObject buildUIRoot;
 
         private bool isInBuildMode = false;
         private BuildType currentBuildType = BuildType.Ladder;
@@ -74,6 +75,8 @@ namespace MiningGame.Player
                 { BuildType.Cart, new BuildData { tilemap = buildTilemap, tile = cartTile, name = "Cart" } },
                 { BuildType.Rails, new BuildData { tilemap = buildTilemap, tile = railsTile, name = "Rails" } }
             };
+
+            if (buildUIRoot) buildUIRoot.SetActive(false);
         }
 
         void Update()
@@ -113,6 +116,8 @@ namespace MiningGame.Player
 
             SetBuildModeIcon(isInBuildMode);
 
+            if (buildUIRoot) buildUIRoot.SetActive(isInBuildMode);
+
             Debug.Log("Build mode: " + (isInBuildMode ? "ON" : "OFF"));
         }
 
@@ -137,12 +142,12 @@ namespace MiningGame.Player
 
             if (buildData.tilemap.HasTile(cellPos))
             {
-                Debug.Log("Tu ju¿ stoi element: " + buildData.name);
+                Debug.Log("Tu juï¿½ stoi element: " + buildData.name);
                 return;
             }
 
             int cost = GetCost(currentBuildType);
-            if (stats.CurrentMoney < cost) { Debug.Log("Za ma³o pieniêdzy"); return; }
+            if (stats.CurrentMoney < cost) { Debug.Log("Za maï¿½o pieniï¿½dzy"); return; }
 
             buildData.tilemap.SetTile(cellPos, buildData.tile);
             buildData.tilemap.CompressBounds();
