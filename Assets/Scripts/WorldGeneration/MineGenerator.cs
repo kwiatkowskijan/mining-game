@@ -10,7 +10,7 @@ namespace MiningGame.WorldGeneration
 {
     public class MineGenerator : MonoBehaviour
     {
-        private Tilemap _caveTilemap;
+        private Tilemap _mineTilemap;
         [Header("Blocks")]
         [SerializeField] private List<Ore> ores;
         [SerializeField] private List<CommonBlock> commonBlocks;
@@ -24,8 +24,11 @@ namespace MiningGame.WorldGeneration
         [SerializeField] private int loadDistance = 2;
         [Header("Perlin Noise Settings")]
         [Range(-1000000, 1000000)][SerializeField] private int seed = 0;
-        [Range(0f, 1f)][SerializeField] private float caveNoiseScale = 0.13f;
+        [Range(0f, 1f)][SerializeField] private float mineNoiseScale = 0.13f;
         [Range(0f, 1f)][SerializeField] private float oreNoiseScale = 0.05f;
+        [Header("Structures")]
+        [SerializeField] private List<Structure> structures;
+
 
 
         private Vector3Int _startPosition = new Vector3Int(0, 0, 0);
@@ -37,7 +40,7 @@ namespace MiningGame.WorldGeneration
 
         private void Awake()
         {
-            _caveTilemap = GetComponentInChildren<Tilemap>();
+            _mineTilemap = GetComponentInChildren<Tilemap>();
 
             foreach (var ore in ores)
             {
@@ -54,7 +57,6 @@ namespace MiningGame.WorldGeneration
         private void Start()
         {
             InitValues();
-            // GenerateCave(mapWidth, mapHeight);
             StartCoroutine(UpdateChunks());
         }
 
@@ -66,8 +68,8 @@ namespace MiningGame.WorldGeneration
             _player = GameObject.FindGameObjectWithTag("Player").transform;
         }
 
-        // Generate the entire cave at once (lef for testing - not used in final implementation)
-        private void GenerateCave(int width, int height)
+        // Generate the entire mine at once (lef for testing - not used in final implementation)
+        private void GenerateMine(int width, int height)
         {
             int chunksX = Mathf.CeilToInt((float)width / chunkSize);
             int chunksY = Mathf.CeilToInt((float)height / chunkSize);
@@ -124,29 +126,30 @@ namespace MiningGame.WorldGeneration
                 for (int y = startY; y < startY + chunkSize; y++)
                 {
                     Vector3Int tilePosition = new Vector3Int(_startPosition.x + x, _startPosition.y + y, 0);
-                    float caveNoise = Mathf.PerlinNoise((x + seed) * caveNoiseScale, (y + seed) * caveNoiseScale);
+                    float mineNoise = Mathf.PerlinNoise((x + seed) * mineNoiseScale, (y + seed) * mineNoiseScale);
 
                     if (tilePosition.y == -(mapHeight / 2) + 1 || tilePosition.y == mapHeight / 2)
                     {
-                        _caveTilemap.SetTile(tilePosition, bedrock.tile);
+                        _mineTilemap.SetTile(tilePosition, bedrock.tile);
                     }
                     else
                     {
-                        if (caveNoise > 0.8f)
+                        if (mineNoise > 0.8f)
                         {
                             float oreNoise = Mathf.PerlinNoise((x + seed) * oreNoiseScale, (y + seed) * oreNoiseScale);
                             Ore ore = ChooseOreFromNoise(oreNoise, y);
-                            _caveTilemap.SetTile(tilePosition, ore.tile);
+                            _mineTilemap.SetTile(tilePosition, ore.tile);
                         }
                         else
                         {
-                            _caveTilemap.SetTile(tilePosition, commonBlocks.Find(t => t.isDescrutable).tile);
+                            _mineTilemap.SetTile(tilePosition, commonBlocks.Find(t => t.isDescrutable).tile);
                         }
                     }
                 }
             }
+            TryPlaceStructure(chunkX, chunkY);
         }
-        
+
 
         private Ore ChooseOreFromNoise(float noiseValue, int y)
         {
@@ -158,6 +161,43 @@ namespace MiningGame.WorldGeneration
             index = Mathf.Clamp(index, 0, validOres.Count - 1);
             return validOres[index];
         }
+
+        private void TryPlaceStructure(int chunkX, int chunkY)
+        {
+            foreach (var structure in structures)
+            {
+                if (Random.value < structure.spawnChance)
+                {
+                    int startX = chunkX * chunkSize + Random.Range(0, chunkSize - structure.width);
+                    int startY = chunkY * chunkSize + Random.Range(0, chunkSize - structure.height);
+
+                    Vector3Int worldPos = new Vector3Int(
+                        _startPosition.x + startX,
+                        _startPosition.y + startY,
+                        0
+                    );
+
+                    PlaceStructure(structure, worldPos);
+
+                }
+            }
+        }
+
+        private void PlaceStructure(Structure structure, Vector3Int position)
+        {
+            for (int x = 0; x < structure.width; x++)
+            {
+                for (int y = 0; y < structure.height; y++)
+                {
+                    TileBase tile = structure.GetTile(x, y);
+                    if (tile != null)
+                    {
+                        _mineTilemap.SetTile(new Vector3Int(position.x + x, position.y + y, 0), tile);
+                    }
+                }
+            }
+        }
+
 
         // Gizmos to visualize generated chunks in the editor
         private void OnDrawGizmos()

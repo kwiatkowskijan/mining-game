@@ -3712,6 +3712,7 @@ MonoBehaviour:
   buildModeSprite: {fileID: 326418909675698413, guid: bb93548d052754f44a470f190884e87d, type: 3}
   previewTilemap: {fileID: 0}
   previewTileBase: {fileID: 0}
+  buildUIRoot: {fileID: 0}
 --- !u!114 &958783163 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8522725513187923077, guid: 9d9c9a2ee19e745498519946acfe4739, type: 3}
@@ -4307,8 +4308,10 @@ MonoBehaviour:
   chunkSize: 16
   loadDistance: 2
   seed: 0
-  caveNoiseScale: 0.14
+  mineNoiseScale: 0.13
   oreNoiseScale: 0.05
+  structures:
+  - {fileID: 11400000, guid: 1dc34d26148836c4ea2fbd172ea5efdc, type: 2}
 --- !u!156049354 &1893802612
 Grid:
   m_ObjectHideFlags: 0
