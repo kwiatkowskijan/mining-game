@@ -166,10 +166,12 @@ namespace MiningGame.WorldGeneration
         {
             foreach (var structure in structures)
             {
-                if (Random.value < structure.spawnChance)
+                float roll = DeterministicRandom(chunkX, chunkY, seed);
+
+                if (roll < structure.spawnChance)
                 {
-                    int startX = chunkX * chunkSize + Random.Range(0, chunkSize - structure.width);
-                    int startY = chunkY * chunkSize + Random.Range(0, chunkSize - structure.height);
+                    int startX = chunkX * chunkSize + Mathf.FloorToInt(DeterministicRandom(chunkX + 1000, chunkY + 2000, seed) * (chunkSize - structure.width));
+                    int startY = chunkY * chunkSize + Mathf.FloorToInt(DeterministicRandom(chunkX + 3000, chunkY + 4000, seed) * (chunkSize - structure.height));
 
                     Vector3Int worldPos = new Vector3Int(
                         _startPosition.x + startX,
@@ -178,10 +180,10 @@ namespace MiningGame.WorldGeneration
                     );
 
                     PlaceStructure(structure, worldPos);
-
                 }
             }
         }
+
 
         private void PlaceStructure(Structure structure, Vector3Int position)
         {
@@ -197,6 +199,17 @@ namespace MiningGame.WorldGeneration
                 }
             }
         }
+
+        private float DeterministicRandom(int x, int y, int seed)
+        {
+            int hash = x;
+            hash = unchecked(hash * 31 + y);
+            hash = unchecked(hash * 31 + seed);
+
+            System.Random rand = new System.Random(hash);
+            return (float)rand.NextDouble();
+        }
+
 
 
         // Gizmos to visualize generated chunks in the editor
