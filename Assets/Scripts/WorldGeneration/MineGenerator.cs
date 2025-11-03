@@ -10,12 +10,15 @@ namespace MiningGame.WorldGeneration
 {
     public class MineGenerator : MonoBehaviour
     {
-        private Tilemap _mineTilemap;
+        [Header("Tilemaps")]
+        [SerializeField] private Tilemap mineTilemap;
+        [SerializeField] private Tilemap backgroundTilemap;
         [Header("Blocks")]
         [SerializeField] private List<Ore> ores;
         [SerializeField] private List<CommonBlock> commonBlocks;
         [SerializeField] private Ore deafultOre;
         [SerializeField] private CommonBlock bedrock;
+        [SerializeField] private Tile caveBackgroundTile;
         [Header("Map Settings")]
         [SerializeField] private int startX;
         [SerializeField] private int mapHeight;
@@ -34,14 +37,11 @@ namespace MiningGame.WorldGeneration
         private Vector3Int _startPosition = new Vector3Int(0, 0, 0);
         private Transform _player;
         private Dictionary<Vector2Int, bool> _generatedChunks = new Dictionary<Vector2Int, bool>();
-
         public static Dictionary<TileBase, Block> TileToBlockMap = new Dictionary<TileBase, Block>();
 
 
         private void Awake()
         {
-            _mineTilemap = GetComponentInChildren<Tilemap>();
-
             foreach (var ore in ores)
             {
                 if (ore.tile != null && !TileToBlockMap.ContainsKey(ore.tile))
@@ -130,7 +130,7 @@ namespace MiningGame.WorldGeneration
 
                     if (tilePosition.y == -(mapHeight / 2) + 1 || tilePosition.y == mapHeight / 2)
                     {
-                        _mineTilemap.SetTile(tilePosition, bedrock.tile);
+                        mineTilemap.SetTile(tilePosition, bedrock.tile);
                     }
                     else
                     {
@@ -138,12 +138,13 @@ namespace MiningGame.WorldGeneration
                         {
                             float oreNoise = Mathf.PerlinNoise((x + seed) * oreNoiseScale, (y + seed) * oreNoiseScale);
                             Ore ore = ChooseOreFromNoise(oreNoise, y);
-                            _mineTilemap.SetTile(tilePosition, ore.tile);
+                            mineTilemap.SetTile(tilePosition, ore.tile);
                         }
                         else
                         {
-                            _mineTilemap.SetTile(tilePosition, commonBlocks.Find(t => t.isDescrutable).tile);
+                            mineTilemap.SetTile(tilePosition, commonBlocks.Find(t => t.isDescrutable).tile);
                         }
+                        backgroundTilemap.SetTile(tilePosition, caveBackgroundTile);
                     }
                 }
             }
@@ -194,7 +195,7 @@ namespace MiningGame.WorldGeneration
                     TileBase tile = structure.GetTile(x, y);
                     if (tile != null)
                     {
-                        _mineTilemap.SetTile(new Vector3Int(position.x + x, position.y + y, 0), tile);
+                        mineTilemap.SetTile(new Vector3Int(position.x + x, position.y + y, 0), tile);
                     }
                 }
             }
