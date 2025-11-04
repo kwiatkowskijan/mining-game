@@ -12,13 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08c8ffa272d389447bcf4db8401be3cb, type: 3}
   m_Name: Ruby
   m_EditorClassIdentifier: 
-  tile: {fileID: 11400000, guid: 001667a4fcd37bf478aece88420e816b, type: 2}
+  id: 0
+  blockName: 
+  tiles:
+  - {fileID: 11400000, guid: 6dd172a0d32124b4e81d43548b7275ef, type: 2}
   isDescrutable: 0
   commonness: 50
   minDepth: 40
   maxDepth: 20
-  tile: {fileID: 11400000, guid: 01ca0cbb848d46445bb878d23f86c9f4, type: 2}
-  isDescrutable: 1
   rarity: 0
   miningMultiplier: 1.5
   toSpawn: {fileID: 7910860408734959751, guid: 39ae3d9c7ae20e84195564ab82f074f4, type: 3}

@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
-using MiningGame.MapGeneration;
 using MiningGame.WorldGeneration;
 
 public class TileSnapSelector : MonoBehaviour
@@ -72,7 +71,7 @@ public class TileSnapSelector : MonoBehaviour
     {
         Vector3 direction = (toWorld - fromWorld).normalized;
         float distance = Vector3.Distance(fromWorld, toWorld);
-        int steps = Mathf.CeilToInt(distance * 10); // dok³adnoœæ raycasta
+        int steps = Mathf.CeilToInt(distance * 10); // dokï¿½adnoï¿½ï¿½ raycasta
 
         for (int i = 1; i < steps; i++)
         {
@@ -83,7 +82,7 @@ public class TileSnapSelector : MonoBehaviour
                 continue;
 
             if (tilemap.HasTile(sampleCell))
-                return true; // coœ zas³ania
+                return true; // coï¿½ zasï¿½ania
         }
 
         return false;

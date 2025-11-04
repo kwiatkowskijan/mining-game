@@ -1,4 +1,4 @@
-using MiningGame.MapGeneration;
+using MiningGame.WorldGeneration;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem.Interactions;

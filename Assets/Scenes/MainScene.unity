@@ -17119,7 +17119,7 @@ GameObject:
   - component: {fileID: 236160307}
   - component: {fileID: 236160306}
   m_Layer: 0
-  m_Name: Back
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17186,7 +17186,7 @@ TilemapRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -18041,10 +18041,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2065844680}
-  - {fileID: 115295339}
-  - {fileID: 1039872463}
   - {fileID: 236160305}
+  - {fileID: 115295339}
+  - {fileID: 2065844680}
+  - {fileID: 1039872463}
   - {fileID: 1476690717}
   - {fileID: 643358899}
   m_Father: {fileID: 0}
@@ -18061,6 +18061,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0669b076914b96c4da1d80b6d787a23f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mineTilemap: {fileID: 2065844682}
+  backgroundTilemap: {fileID: 236160307}
   ores:
   - {fileID: 11400000, guid: 3740173062bcf91458aefa0e730a6ceb, type: 2}
   - {fileID: 11400000, guid: 37683fae43c7f1b4aa7e6bdb215b7d6c, type: 2}
@@ -18068,15 +18070,17 @@ MonoBehaviour:
   commonBlocks:
   - {fileID: 11400000, guid: f4f2f48293dbc354ea4dbe4f5f6b4b5d, type: 2}
   deafultOre: {fileID: 11400000, guid: 26cbe6b92d5c66645898bdaa09058c1e, type: 2}
-  bedrock: {fileID: 11400000, guid: aee0f65309236fa4a9b5a417425f4d7a, type: 2}
+  bedrock: {fileID: 11400000, guid: d57d2f2375917e34ba231929d61dd985, type: 2}
+  caveBackgroundTile: {fileID: 11400000, guid: 72cb1049819db4d4d8f9003f9588db2a, type: 2}
   startX: 56
-  mapHeight: 128
-  mapWidth: 128
+  mapHeight: 1000
+  mapWidth: 1000
   chunkSize: 16
   loadDistance: 2
   seed: 0
-  caveNoiseScale: 0.14
+  mineNoiseScale: 0.13
   oreNoiseScale: 0.05
+  structures: []
 --- !u!1 &643358898
 GameObject:
   m_ObjectHideFlags: 0
@@ -26221,7 +26225,7 @@ GameObject:
   - component: {fileID: 2065844681}
   - component: {fileID: 2065844683}
   m_Layer: 10
-  m_Name: Cave
+  m_Name: Mine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26288,7 +26292,7 @@ TilemapRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16

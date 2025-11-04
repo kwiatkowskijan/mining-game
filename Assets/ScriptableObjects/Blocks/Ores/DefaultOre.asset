@@ -12,8 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08c8ffa272d389447bcf4db8401be3cb, type: 3}
   m_Name: DefaultOre
   m_EditorClassIdentifier: 
-  tile: {fileID: 11400000, guid: 3042439e4dc2aba44968fa9a5f187766, type: 2}
+  id: 0
+  blockName: 
+  tiles:
+  - {fileID: 11400000, guid: c937a9eedc0294d4489b2c52abf65f44, type: 2}
   isDescrutable: 0
   commonness: 1
   minDepth: 0
   maxDepth: 0
+  rarity: 0
+  miningMultiplier: 0
+  toSpawn: {fileID: 0}

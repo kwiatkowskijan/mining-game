@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace MiningGame.MapGeneration
+namespace MiningGame.WorldGeneration
 {
     [CreateAssetMenu(fileName = "Ore", menuName = "Scriptable Objects/Block/Ore")]
     public class Ore : Block
