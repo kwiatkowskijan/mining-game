@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using MiningGame.MapGeneration;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using Random = UnityEngine.Random;
@@ -17,7 +16,7 @@ namespace MiningGame.WorldGeneration
         [SerializeField] private List<Ore> ores;
         [SerializeField] private List<CommonBlock> commonBlocks;
         [SerializeField] private Ore deafultOre;
-        [SerializeField] private CommonBlock bedrock;
+        [SerializeField] private Bedrock bedrock;
         [SerializeField] private Tile caveBackgroundTile;
         [Header("Map Settings")]
         [SerializeField] private int startX;
@@ -32,8 +31,6 @@ namespace MiningGame.WorldGeneration
         [Header("Structures")]
         [SerializeField] private List<Structure> structures;
 
-
-
         private Vector3Int _startPosition = new Vector3Int(0, 0, 0);
         private Transform _player;
         private Dictionary<Vector2Int, bool> _generatedChunks = new Dictionary<Vector2Int, bool>();
@@ -42,16 +39,7 @@ namespace MiningGame.WorldGeneration
 
         private void Awake()
         {
-            foreach (var ore in ores)
-            {
-                if (ore.tile != null && !TileToBlockMap.ContainsKey(ore.tile))
-                    TileToBlockMap.Add(ore.tile, ore);
-            }
-            foreach (var dirt in commonBlocks)
-            {
-                if (dirt.tile != null && !TileToBlockMap.ContainsKey(dirt.tile))
-                    TileToBlockMap.Add(dirt.tile, dirt);
-            }
+            MapTileToBlock();
         }
 
         private void Start()
@@ -66,6 +54,32 @@ namespace MiningGame.WorldGeneration
             if (seed == 0)
                 seed = Random.Range(-1000000, 1000000);
             _player = GameObject.FindGameObjectWithTag("Player").transform;
+        }
+
+        private void MapTileToBlock()
+        {
+            foreach (var ore in ores)
+            {
+                if (ore.tiles != null)
+                {
+                    foreach (var tile in ore.tiles)
+                    {
+                        if (!TileToBlockMap.ContainsKey(tile))
+                            TileToBlockMap.Add(tile, ore);
+                    }
+                }
+            }
+            foreach (var dirt in commonBlocks)
+            {
+                if (dirt.tiles != null)
+                {
+                    foreach (var tile in dirt.tiles)
+                    {
+                        if (!TileToBlockMap.ContainsKey(tile))
+                            TileToBlockMap.Add(tile, dirt);
+                    }
+                }
+            }
         }
 
         // Generate the entire mine at once (lef for testing - not used in final implementation)
@@ -130,7 +144,7 @@ namespace MiningGame.WorldGeneration
 
                     if (tilePosition.y == -(mapHeight / 2) + 1 || tilePosition.y == mapHeight / 2)
                     {
-                        mineTilemap.SetTile(tilePosition, bedrock.tile);
+                        mineTilemap.SetTile(tilePosition, bedrock.tiles[0]);
                     }
                     else
                     {
@@ -138,17 +152,32 @@ namespace MiningGame.WorldGeneration
                         {
                             float oreNoise = Mathf.PerlinNoise((x + seed) * oreNoiseScale, (y + seed) * oreNoiseScale);
                             Ore ore = ChooseOreFromNoise(oreNoise, y);
-                            mineTilemap.SetTile(tilePosition, ore.tile);
+                            mineTilemap.SetTile(tilePosition, ore.tiles[0]);
                         }
                         else
                         {
-                            mineTilemap.SetTile(tilePosition, commonBlocks.Find(t => t.isDescrutable).tile);
+                            CommonBlock commonBlock = ChooseCommonBlock();
+                            mineTilemap.SetTile(tilePosition, commonBlock.tiles[Random.Range(0, commonBlock.tiles.Count)]);
                         }
                         backgroundTilemap.SetTile(tilePosition, caveBackgroundTile);
                     }
                 }
             }
             TryPlaceStructure(chunkX, chunkY);
+        }
+
+        private CommonBlock ChooseCommonBlock()
+        {
+            foreach (var block in commonBlocks)
+            {
+                float roll = Random.Range(0f, 1f);
+                if (roll < (1f / commonBlocks.Count))
+                {
+                    return block;
+                }
+            }
+
+            return commonBlocks[0];
         }
 
 

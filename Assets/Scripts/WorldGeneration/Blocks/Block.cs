@@ -1,11 +1,14 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-namespace MiningGame.MapGeneration
+namespace MiningGame.WorldGeneration
 {
     public class Block : ScriptableObject
     {
-        public Tile tile;
-        public bool isDescrutable;
+        public int id;
+        public string blockName;
+        public List<Tile> tiles;
+        public bool isDescrutable = true;
     }
 }

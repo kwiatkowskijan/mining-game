@@ -12,7 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfe90c9ddca187f40aabc7c145bfb1db, type: 3}
   m_Name: Dirt
   m_EditorClassIdentifier: 
-  tile: {fileID: 11400000, guid: 4fea4d9dfda286a47a3985cbe270e865, type: 2}
+  id: 0
+  blockName: 
+  tiles:
+  - {fileID: 11400000, guid: 9785b8aa069070a42801af5da6239cb9, type: 2}
+  - {fileID: 11400000, guid: 0ba664d5288096a4eba9ec34be24de6b, type: 2}
+  - {fileID: 11400000, guid: e4fb6ba14b321b34db26687597b3e989, type: 2}
+  - {fileID: 11400000, guid: e0487f36c069919488028c3ba80a66fd, type: 2}
   isDescrutable: 1
   miningMultiplier: 1
   toSpawn: {fileID: 3461270386126559627, guid: a459c29f58a86f5499eac77ada5d0154, type: 3}
+  biome: 0

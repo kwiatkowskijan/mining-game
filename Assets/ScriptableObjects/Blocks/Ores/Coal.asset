@@ -12,8 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08c8ffa272d389447bcf4db8401be3cb, type: 3}
   m_Name: Coal
   m_EditorClassIdentifier: 
-  tile: {fileID: 11400000, guid: c26c4872dc5ac7747bd5afb032ab2377, type: 2}
+  id: 0
+  blockName: 
+  tiles:
+  - {fileID: 11400000, guid: 6ae42c75bd6c5d84faab5c359f339fe2, type: 2}
   isDescrutable: 0
   commonness: 100
   minDepth: 100
   maxDepth: -100
+  rarity: 0
+  miningMultiplier: 0
+  toSpawn: {fileID: 0}

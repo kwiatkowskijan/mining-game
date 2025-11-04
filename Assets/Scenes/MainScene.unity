@@ -18070,11 +18070,11 @@ MonoBehaviour:
   commonBlocks:
   - {fileID: 11400000, guid: f4f2f48293dbc354ea4dbe4f5f6b4b5d, type: 2}
   deafultOre: {fileID: 11400000, guid: 26cbe6b92d5c66645898bdaa09058c1e, type: 2}
-  bedrock: {fileID: 11400000, guid: aee0f65309236fa4a9b5a417425f4d7a, type: 2}
+  bedrock: {fileID: 11400000, guid: d57d2f2375917e34ba231929d61dd985, type: 2}
   caveBackgroundTile: {fileID: 11400000, guid: 72cb1049819db4d4d8f9003f9588db2a, type: 2}
   startX: 56
-  mapHeight: 128
-  mapWidth: 128
+  mapHeight: 1000
+  mapWidth: 1000
   chunkSize: 16
   loadDistance: 2
   seed: 0
