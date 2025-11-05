@@ -18077,9 +18077,13 @@ MonoBehaviour:
   mapWidth: 1000
   chunkSize: 16
   loadDistance: 2
-  seed: 0
+  seed: 10
   mineNoiseScale: 0.13
   oreNoiseScale: 0.05
+  caveChance: 0.1
+  caveWalkers: 2
+  caveWalkLength: 50
+  caveCarveRadius: 2
   structures: []
 --- !u!1 &643358898
 GameObject:

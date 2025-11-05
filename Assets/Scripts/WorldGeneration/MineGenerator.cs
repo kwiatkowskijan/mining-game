@@ -36,7 +36,6 @@ namespace MiningGame.WorldGeneration
         private Dictionary<Vector2Int, bool> _generatedChunks = new Dictionary<Vector2Int, bool>();
         public static Dictionary<TileBase, Block> TileToBlockMap = new Dictionary<TileBase, Block>();
 
-
         private void Awake()
         {
             MapTileToBlock();
@@ -46,6 +45,8 @@ namespace MiningGame.WorldGeneration
         {
             InitValues();
             StartCoroutine(UpdateChunks());
+
+            Debug.Log("Perlin noise test: " + Mathf.PerlinNoise(0f * mineNoiseScale, -32f * mineNoiseScale));
         }
 
         private void InitValues()
@@ -102,6 +103,7 @@ namespace MiningGame.WorldGeneration
             while (true)
             {
                 Vector2Int playerChunk = GetPlayerChunk();
+                Debug.Log("Player chunk: " + playerChunk);
                 loadChunksNearPlayer(playerChunk);
                 yield return new WaitForSeconds(0.5f);
             }
@@ -109,6 +111,8 @@ namespace MiningGame.WorldGeneration
 
         private Vector2Int GetPlayerChunk()
         {
+            Debug.Log("Player position: " + _player.position);
+            Debug.Log("Start position: " + _startPosition);
             int chunkX = Mathf.FloorToInt((_player.position.x - _startPosition.x) / chunkSize);
             int chunkY = Mathf.FloorToInt((_player.position.y - _startPosition.y) / chunkSize);
             return new Vector2Int(chunkX, chunkY);
@@ -118,8 +122,10 @@ namespace MiningGame.WorldGeneration
         {
             for (int x = Mathf.Max(0, playerChunk.x - loadDistance); x <= playerChunk.x + loadDistance; x++)
             {
+                Debug.Log("Loading chunks at X: " + x);
                 for (int y = playerChunk.y - loadDistance; y <= playerChunk.y + loadDistance; y++)
                 {
+                    Debug.Log("Loading chunks at Y: " + y);
                     Vector2Int chunkCoord = new Vector2Int(x, y);
                     if (!_generatedChunks.ContainsKey(chunkCoord))
                     {
@@ -132,8 +138,8 @@ namespace MiningGame.WorldGeneration
 
         private void GenerateChunk(int chunkX, int chunkY)
         {
-            int startX = chunkX * chunkSize;
-            int startY = chunkY * chunkSize;
+            int startX = chunkX * chunkSize; // 0
+            int startY = chunkY * chunkSize;  // -32
 
             for (int x = startX; x < startX + chunkSize; x++)
             {
@@ -154,6 +160,10 @@ namespace MiningGame.WorldGeneration
                             Ore ore = ChooseOreFromNoise(oreNoise, y);
                             mineTilemap.SetTile(tilePosition, ore.tiles[0]);
                         }
+                        else if (mineNoise > 0.1f && mineNoise < 0.2f)
+                        {
+                            mineTilemap.SetTile(tilePosition, null);
+                        }
                         else
                         {
                             CommonBlock commonBlock = ChooseCommonBlock();
@@ -167,7 +177,7 @@ namespace MiningGame.WorldGeneration
         }
 
         private CommonBlock ChooseCommonBlock()
-        {
+        { 
             foreach (var block in commonBlocks)
             {
                 float roll = Random.Range(0f, 1f);
@@ -194,6 +204,7 @@ namespace MiningGame.WorldGeneration
 
         private void TryPlaceStructure(int chunkX, int chunkY)
         {
+            Debug.Log("Trying to place structures in chunk: " + chunkX + ", " + chunkY);
             foreach (var structure in structures)
             {
                 float roll = DeterministicRandom(chunkX, chunkY, seed);
