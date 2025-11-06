@@ -13,9 +13,9 @@ namespace MiningGame.WorldGeneration
         [SerializeField] private Tilemap mineTilemap;
         [SerializeField] private Tilemap backgroundTilemap;
         [Header("Blocks")]
-        [SerializeField] private List<Ore> ores;
+        [SerializeField] private List<Mineral> minerals;
         [SerializeField] private List<CommonBlock> commonBlocks;
-        [SerializeField] private Ore deafultOre;
+        [SerializeField] private Mineral defaultMineral;
         [SerializeField] private Bedrock bedrock;
         [SerializeField] private Tile caveBackgroundTile;
         [Header("Map Settings")]
@@ -27,7 +27,7 @@ namespace MiningGame.WorldGeneration
         [Header("Perlin Noise Settings")]
         [Range(-1000000, 1000000)][SerializeField] private int seed = 0;
         [Range(0f, 1f)][SerializeField] private float mineNoiseScale = 0.13f;
-        [Range(0f, 1f)][SerializeField] private float oreNoiseScale = 0.05f;
+        [Range(0f, 1f)][SerializeField] private float mineralNoiseScale = 0.05f;
         [Header("Structures")]
         [SerializeField] private List<Structure> structures;
 
@@ -45,8 +45,6 @@ namespace MiningGame.WorldGeneration
         {
             InitValues();
             StartCoroutine(UpdateChunks());
-
-            Debug.Log("Perlin noise test: " + Mathf.PerlinNoise(0f * mineNoiseScale, -32f * mineNoiseScale));
         }
 
         private void InitValues()
@@ -59,14 +57,14 @@ namespace MiningGame.WorldGeneration
 
         private void MapTileToBlock()
         {
-            foreach (var ore in ores)
+            foreach (var mineral in minerals)
             {
-                if (ore.tiles != null)
+                if (mineral.tiles != null)
                 {
-                    foreach (var tile in ore.tiles)
+                    foreach (var tile in mineral.tiles)
                     {
                         if (!TileToBlockMap.ContainsKey(tile))
-                            TileToBlockMap.Add(tile, ore);
+                            TileToBlockMap.Add(tile, mineral);
                     }
                 }
             }
@@ -103,7 +101,6 @@ namespace MiningGame.WorldGeneration
             while (true)
             {
                 Vector2Int playerChunk = GetPlayerChunk();
-                Debug.Log("Player chunk: " + playerChunk);
                 loadChunksNearPlayer(playerChunk);
                 yield return new WaitForSeconds(0.5f);
             }
@@ -111,8 +108,6 @@ namespace MiningGame.WorldGeneration
 
         private Vector2Int GetPlayerChunk()
         {
-            Debug.Log("Player position: " + _player.position);
-            Debug.Log("Start position: " + _startPosition);
             int chunkX = Mathf.FloorToInt((_player.position.x - _startPosition.x) / chunkSize);
             int chunkY = Mathf.FloorToInt((_player.position.y - _startPosition.y) / chunkSize);
             return new Vector2Int(chunkX, chunkY);
@@ -122,10 +117,8 @@ namespace MiningGame.WorldGeneration
         {
             for (int x = Mathf.Max(0, playerChunk.x - loadDistance); x <= playerChunk.x + loadDistance; x++)
             {
-                Debug.Log("Loading chunks at X: " + x);
                 for (int y = playerChunk.y - loadDistance; y <= playerChunk.y + loadDistance; y++)
                 {
-                    Debug.Log("Loading chunks at Y: " + y);
                     Vector2Int chunkCoord = new Vector2Int(x, y);
                     if (!_generatedChunks.ContainsKey(chunkCoord))
                     {
@@ -156,9 +149,9 @@ namespace MiningGame.WorldGeneration
                     {
                         if (mineNoise > 0.8f)
                         {
-                            float oreNoise = Mathf.PerlinNoise((x + seed) * oreNoiseScale, (y + seed) * oreNoiseScale);
-                            Ore ore = ChooseOreFromNoise(oreNoise, y);
-                            mineTilemap.SetTile(tilePosition, ore.tiles[0]);
+                            float mineralNoise = Mathf.PerlinNoise((x + seed) * mineralNoiseScale, (y + seed) * mineralNoiseScale);
+                            Mineral mineral = ChooseMineralFromNoise(mineralNoise, y);
+                            mineTilemap.SetTile(tilePosition, mineral.tiles[0]);
                         }
                         else if (mineNoise > 0.1f && mineNoise < 0.2f)
                         {
@@ -191,20 +184,19 @@ namespace MiningGame.WorldGeneration
         }
 
 
-        private Ore ChooseOreFromNoise(float noiseValue, int y)
+        private Mineral ChooseMineralFromNoise(float noiseValue, int y)
         {
-            List<Ore> validOres = ores.FindAll(o => y <= o.minDepth && y >= o.maxDepth);
+            List<Mineral> validMinerals = minerals.FindAll(o => y <= o.minDepth && y >= o.maxDepth);
 
-            if (validOres.Count == 0) return deafultOre;
+            if (validMinerals.Count == 0) return defaultMineral;
 
-            int index = Mathf.FloorToInt(noiseValue * validOres.Count);
-            index = Mathf.Clamp(index, 0, validOres.Count - 1);
-            return validOres[index];
+            int index = Mathf.FloorToInt(noiseValue * validMinerals.Count);
+            index = Mathf.Clamp(index, 0, validMinerals.Count - 1);
+            return validMinerals[index];
         }
 
         private void TryPlaceStructure(int chunkX, int chunkY)
         {
-            Debug.Log("Trying to place structures in chunk: " + chunkX + ", " + chunkY);
             foreach (var structure in structures)
             {
                 float roll = DeterministicRandom(chunkX, chunkY, seed);

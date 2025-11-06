@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 08c8ffa272d389447bcf4db8401be3cb, type: 3}
-  m_Name: Coal
+  m_Name: Emerald
   m_EditorClassIdentifier: 
   id: 0
   blockName: 
   tiles:
-  - {fileID: 11400000, guid: 6ae42c75bd6c5d84faab5c359f339fe2, type: 2}
-  isDescrutable: 0
-  commonness: 100
-  minDepth: 100
-  maxDepth: -100
+  - {fileID: 11400000, guid: b863d4784fec6e448a7d450725fe780e, type: 2}
+  isDescrutable: 1
+  commonness: 10
+  minDepth: -20
+  maxDepth: -40
   rarity: 0
   miningMultiplier: 0
   toSpawn: {fileID: 0}

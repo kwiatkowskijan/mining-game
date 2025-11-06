@@ -10,16 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 08c8ffa272d389447bcf4db8401be3cb, type: 3}
-  m_Name: DefaultOre
+  m_Name: Coal
   m_EditorClassIdentifier: 
   id: 0
-  blockName: 
   tiles:
-  - {fileID: 11400000, guid: c937a9eedc0294d4489b2c52abf65f44, type: 2}
-  isDescrutable: 0
-  commonness: 1
-  minDepth: 0
-  maxDepth: 0
+  - {fileID: 11400000, guid: 6ae42c75bd6c5d84faab5c359f339fe2, type: 2}
+  isDescrutable: 1
+  mineralName: Coal
+  commonness: 100
+  minDepth: 100
+  maxDepth: -100
   rarity: 0
-  miningMultiplier: 0
-  toSpawn: {fileID: 0}
+  miningMultiplier: 1
+  toSpawn: {fileID: 7910860408734959751, guid: 6a4862844b21afc4db5e3982ad837a27, type: 3}
+  icon: {fileID: 3326876337969463224, guid: 0f9152c962a7b1140b23553721191a7d, type: 3}
+  isDiscovered: 0
