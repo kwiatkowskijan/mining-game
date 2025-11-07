@@ -1,13 +1,17 @@
 using UnityEngine;
 using UnityEngine.UI;
+using MiningGame.Core;
 using MiningGame.Managers;
 using MiningGame.Player;
 using MiningGame.WorldGeneration;
+using MiningGame.Core.Interfaces;
 
 namespace MiningGame.UI
 {
     public class UI_Manager : MonoBehaviour
     {
+        private IMineralsService mineralsService;
+
         [Header("UI Canvas Elements")]
         [SerializeField] private Image healthBar;
         [SerializeField] private GameObject debugPanel;
@@ -19,6 +23,10 @@ namespace MiningGame.UI
         [SerializeField] private MineralUiEntry mineralEntryPrefab;
         [SerializeField] private Sprite unknownSprite;
 
+        private void Awake()
+        {
+            mineralsService = ServiceLocator.Get<IMineralsService>();
+        }
 
         private void Start()
         {
@@ -32,8 +40,8 @@ namespace MiningGame.UI
 
             UpdateMineralsUI();
 
-            if (MineralsManager.Instance != null)
-                MineralsManager.Instance.OnMineralDiscovered += HandleMineralDiscovered;
+            if (mineralsService != null)
+                mineralsService.OnMineralDiscovered += HandleMineralDiscovered;
         }
 
         void Update()
@@ -65,7 +73,7 @@ namespace MiningGame.UI
             foreach (Transform child in mineralsListContent)
                 Destroy(child.gameObject);
 
-            foreach (var mineral in MineralsManager.Instance.minerals)
+            foreach (var mineral in mineralsService.Minerals)
             {
                 var entry = Instantiate(mineralEntryPrefab, mineralsListContent);
 
@@ -84,8 +92,8 @@ namespace MiningGame.UI
 
         private void OnDisable()
         {
-            if (MineralsManager.Instance != null)
-                MineralsManager.Instance.OnMineralDiscovered -= HandleMineralDiscovered;
+            if (mineralsService != null)
+                mineralsService.OnMineralDiscovered -= HandleMineralDiscovered;
         }
     }
 }

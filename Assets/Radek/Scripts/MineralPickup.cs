@@ -1,3 +1,5 @@
+using MiningGame.Core.Interfaces;
+using MiningGame.Core;
 using MiningGame.Managers;
 using MiningGame.WorldGeneration;
 using UnityEngine;
@@ -7,6 +9,8 @@ namespace MiningGame
 {
     public class MineralPickup : MonoBehaviour
     {
+        private IMineralsService mineralsService;
+
         [HideInInspector] public Transform player;
         [SerializeField] private Mineral mineral;
         [SerializeField] private float attractionRange = 2f;
@@ -16,6 +20,11 @@ namespace MiningGame
         //pytanie: czy minera�y powinny mie� losow� wag� czy po prostu warto�� 1?
         [HideInInspector] public Equipment eq;
         // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+        private void Awake()
+        {
+            mineralsService = ServiceLocator.Get<IMineralsService>();
+        }
         void Start()
         {
             rb = GetComponent<Rigidbody2D>();
@@ -46,7 +55,7 @@ namespace MiningGame
                 eq = other.GetComponent<Equipment>();
                 //eq.playerRubble += randomMass;
                 eq.updateMineral();
-                MineralsManager.Instance.DiscoverMineral(mineral);
+                mineralsService.DiscoverMineral(mineral);
                 Destroy(gameObject);
             }
         }
