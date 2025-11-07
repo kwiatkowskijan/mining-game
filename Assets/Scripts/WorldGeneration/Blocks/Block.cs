@@ -7,7 +7,6 @@ namespace MiningGame.WorldGeneration
     public class Block : ScriptableObject
     {
         public int id;
-        public string blockName;
         public List<Tile> tiles;
         public bool isDescrutable = true;
     }

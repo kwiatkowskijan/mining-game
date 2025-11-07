@@ -110,7 +110,7 @@ namespace MiningGame
         }
         public void toolAssignment()
         {
-            Debug.Log("Dzia³a");
+            Debug.Log("Dziaï¿½a");
         }
     }
 }

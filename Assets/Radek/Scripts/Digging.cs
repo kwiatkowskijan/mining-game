@@ -73,10 +73,10 @@ namespace MiningGame
                                     miningMultiplier = common.miningMultiplier;
                                 }
 
-                                if (block is Ore ore)
+                                if (block is Mineral mineral)
                                 {
-                                    toSpawn = ore.toSpawn;
-                                    miningMultiplier = ore.miningMultiplier;
+                                    toSpawn = mineral.toSpawn;
+                                    miningMultiplier = mineral.miningMultiplier;
                                 }
 
                                 float blockMiningTime = miningTime * miningMultiplier;

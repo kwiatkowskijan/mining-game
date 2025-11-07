@@ -1,3 +1,5 @@
+using MiningGame.Managers;
+using MiningGame.WorldGeneration;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -5,18 +7,20 @@ namespace MiningGame
 {
     public class MineralPickup : MonoBehaviour
     {
-        public Transform player;
+        [HideInInspector] public Transform player;
+        [SerializeField] private Mineral mineral;
         [SerializeField] private float attractionRange = 2f;
         [SerializeField] private float attractionSpeed = 5f;
         private Rigidbody2D rb;
         //private float randomMass;
-        //pytanie: czy minera³y powinny mieæ losow¹ wagê czy po prostu wartoœæ 1?
-        public Equipment eq;
+        //pytanie: czy mineraï¿½y powinny mieï¿½ losowï¿½ wagï¿½ czy po prostu wartoï¿½ï¿½ 1?
+        [HideInInspector] public Equipment eq;
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
             rb = GetComponent<Rigidbody2D>();
             player = GameObject.FindGameObjectWithTag("Player").transform;
+            
             //randomMass = Random.Range(0.5f, 1.5f);
             //randomMass = Mathf.Round(randomMass * 100f) / 100f;
         }
@@ -42,6 +46,7 @@ namespace MiningGame
                 eq = other.GetComponent<Equipment>();
                 //eq.playerRubble += randomMass;
                 eq.updateMineral();
+                MineralsManager.Instance.DiscoverMineral(mineral);
                 Destroy(gameObject);
             }
         }
