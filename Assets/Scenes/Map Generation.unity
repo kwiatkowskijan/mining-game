@@ -3097,6 +3097,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MiningGame.AmbientManager.AmbientManager
   ambientSound: {fileID: 8300000, guid: 9fb430109a3bd6e4aa6e8e66f4e914f3, type: 3}
+--- !u!114 &730019510 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8814810466493952505, guid: cb301525d46d9fe418d87ad67a220a60, type: 3}
+  m_PrefabInstance: {fileID: 2586959375476954079}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66bdebe5c7b543e44890e21f9572bcc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MiningGame.UI.UI_Manager
 --- !u!1 &806291076 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8078794174190813053, guid: cb301525d46d9fe418d87ad67a220a60, type: 3}
@@ -3880,9 +3891,37 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1599762579217891534, guid: cb301525d46d9fe418d87ad67a220a60, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1599762579217891534, guid: cb301525d46d9fe418d87ad67a220a60, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1599762579217891534, guid: cb301525d46d9fe418d87ad67a220a60, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 958783162}
+    - target: {fileID: 1599762579217891534, guid: cb301525d46d9fe418d87ad67a220a60, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 730019510}
+    - target: {fileID: 1599762579217891534, guid: cb301525d46d9fe418d87ad67a220a60, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1599762579217891534, guid: cb301525d46d9fe418d87ad67a220a60, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: PlayClickAudio
+      objectReference: {fileID: 0}
+    - target: {fileID: 1599762579217891534, guid: cb301525d46d9fe418d87ad67a220a60, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: MiningGame.UI.UI_Manager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1599762579217891534, guid: cb301525d46d9fe418d87ad67a220a60, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 3800263752686466972, guid: cb301525d46d9fe418d87ad67a220a60, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -3963,10 +4002,42 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6819529142053430239, guid: cb301525d46d9fe418d87ad67a220a60, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6819529142053430239, guid: cb301525d46d9fe418d87ad67a220a60, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6819529142053430239, guid: cb301525d46d9fe418d87ad67a220a60, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 730019510}
+    - target: {fileID: 6819529142053430239, guid: cb301525d46d9fe418d87ad67a220a60, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6819529142053430239, guid: cb301525d46d9fe418d87ad67a220a60, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: PlayClickAudio
+      objectReference: {fileID: 0}
+    - target: {fileID: 6819529142053430239, guid: cb301525d46d9fe418d87ad67a220a60, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: MiningGame.UI.UI_Manager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6819529142053430239, guid: cb301525d46d9fe418d87ad67a220a60, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 7324288881707416142, guid: cb301525d46d9fe418d87ad67a220a60, type: 3}
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 8814810466493952505, guid: cb301525d46d9fe418d87ad67a220a60, type: 3}
+      propertyPath: clickSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 85d842fae24687b478898e622c9219e8, type: 3}
     - target: {fileID: 8814810466493952505, guid: cb301525d46d9fe418d87ad67a220a60, type: 3}
       propertyPath: statsComponent
       value: 

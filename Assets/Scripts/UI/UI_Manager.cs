@@ -11,6 +11,8 @@ namespace MiningGame.UI
     public class UI_Manager : MonoBehaviour
     {
         private IMineralsService mineralsService;
+        private IAudioService audioService;
+
 
         [Header("UI Canvas Elements")]
         [SerializeField] private Image healthBar;
@@ -22,10 +24,14 @@ namespace MiningGame.UI
         [SerializeField] private Transform mineralsListContent;
         [SerializeField] private MineralUiEntry mineralEntryPrefab;
         [SerializeField] private Sprite unknownSprite;
+        [Header("Audio")]
+        [SerializeField] private AudioClip clickSFX;
+
 
         private void Awake()
         {
             mineralsService = ServiceLocator.Get<IMineralsService>();
+            audioService = ServiceLocator.Get<IAudioService>();
         }
 
         private void Start()
@@ -44,7 +50,7 @@ namespace MiningGame.UI
                 mineralsService.OnMineralDiscovered += HandleMineralDiscovered;
         }
 
-        void Update()
+        private void Update()
         {
             if (Input.GetKeyDown(KeyCode.F3))
             {
@@ -88,6 +94,11 @@ namespace MiningGame.UI
                     entry.nameText.text = "???";
                 }
             }
+        }
+
+        public void PlayClickAudio()
+        {
+            audioService.PlaySfx(clickSFX);
         }
 
         private void OnDisable()
