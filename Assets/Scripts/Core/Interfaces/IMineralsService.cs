@@ -6,9 +6,9 @@ namespace MiningGame.Core.Interfaces
 {
     public interface IMineralsService
     {
-        event Action<Mineral> OnMineralDiscovered;
         IReadOnlyList<Mineral> Minerals { get; }
+        event Action<Mineral> OnMineralDiscovered;
         void DiscoverMineral(Mineral mineral);
-    
+
     }
 }

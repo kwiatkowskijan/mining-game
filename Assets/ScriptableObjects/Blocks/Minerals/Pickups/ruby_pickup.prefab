@@ -234,7 +234,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  ore: {fileID: 11400000, guid: 37683fae43c7f1b4aa7e6bdb215b7d6c, type: 2}
+  mineral: {fileID: 11400000, guid: 37683fae43c7f1b4aa7e6bdb215b7d6c, type: 2}
   attractionRange: 4
   attractionSpeed: 5
+  pickupAudio: {fileID: 8300000, guid: 4cf4a39293b01d64baf1b4577b845f7c, type: 3}
   eq: {fileID: 0}

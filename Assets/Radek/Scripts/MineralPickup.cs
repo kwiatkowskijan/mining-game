@@ -9,21 +9,23 @@ namespace MiningGame
 {
     public class MineralPickup : MonoBehaviour
     {
-        private IMineralsService mineralsService;
+        private IMineralsService _mineralsService;
+        private IAudioService _audioService;
 
         [HideInInspector] public Transform player;
         [SerializeField] private Mineral mineral;
         [SerializeField] private float attractionRange = 2f;
         [SerializeField] private float attractionSpeed = 5f;
+        [SerializeField] private AudioClip pickupAudio;
         private Rigidbody2D rb;
         //private float randomMass;
         //pytanie: czy minera�y powinny mie� losow� wag� czy po prostu warto�� 1?
         [HideInInspector] public Equipment eq;
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
 
         private void Awake()
         {
-            mineralsService = ServiceLocator.Get<IMineralsService>();
+            _mineralsService = ServiceLocator.Get<IMineralsService>();
+            _audioService = ServiceLocator.Get<IAudioService>();
         }
         void Start()
         {
@@ -34,7 +36,6 @@ namespace MiningGame
             //randomMass = Mathf.Round(randomMass * 100f) / 100f;
         }
 
-        // Update is called once per frame
         void FixedUpdate()
         {
             if (player == null) return;
@@ -55,7 +56,8 @@ namespace MiningGame
                 eq = other.GetComponent<Equipment>();
                 //eq.playerRubble += randomMass;
                 eq.updateMineral();
-                mineralsService.DiscoverMineral(mineral);
+                _mineralsService.DiscoverMineral(mineral);
+                _audioService.PlaySfx(pickupAudio);
                 Destroy(gameObject);
             }
         }
