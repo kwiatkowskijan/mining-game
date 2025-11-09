@@ -8,7 +8,6 @@ namespace MiningGame.Services
         private readonly AudioSource _sfxSource;
         private readonly AudioSource _musicSource;
 
-
         public AudioService(AudioSource sfx, AudioSource music)
         {
             _sfxSource = sfx;

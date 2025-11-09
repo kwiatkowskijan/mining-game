@@ -19,9 +19,9 @@ namespace MiningGame.Core
         private void Awake()
         {
             DontDestroyOnLoad(gameObject);
-
             ServiceLocator.Register<IMineralsService>(new MineralsService(mineralsDatabase));
             ServiceLocator.Register<IAudioService>(new AudioService(sfxSource, musicSource));
+            ServiceLocator.Register<ISceneService>(new SceneService());
         }
     }
 }
