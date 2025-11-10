@@ -29,7 +29,7 @@ namespace MiningGame
                 Debug.Log("Shop opened");
             }
             
-            if (shopOpen && Input.GetKeyDown(KeyCode.Escape))
+            if (shopOpen && !playerInRange || Input.GetKeyDown(KeyCode.Escape))
             {
                 CloseShop();
                 Debug.Log("Shop closed");
