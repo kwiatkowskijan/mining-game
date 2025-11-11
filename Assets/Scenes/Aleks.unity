@@ -495,26 +495,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 140018724}
   m_CullTransparentMesh: 1
---- !u!1 &200187696 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1806712471291776057, guid: 584a56a3ee742074eb77d638164287f4, type: 3}
-  m_PrefabInstance: {fileID: 1459427177657142283}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &200187701
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 200187696}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fb684f3aa1addf4d8d63f1b9357281d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MiningGame.UI.BuildButton
-  buildMode: {fileID: 1186595622}
-  buildTypeIndex: 0
-  displayName: Ladder
 --- !u!1 &278780853
 GameObject:
   m_ObjectHideFlags: 0
@@ -1094,26 +1074,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!1 &587697139 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8217505573613573611, guid: 584a56a3ee742074eb77d638164287f4, type: 3}
-  m_PrefabInstance: {fileID: 1459427177657142283}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &587697144
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 587697139}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fb684f3aa1addf4d8d63f1b9357281d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MiningGame.UI.BuildButton
-  buildMode: {fileID: 1186595622}
-  buildTypeIndex: 2
-  displayName: Rope
 --- !u!1 &598691214
 GameObject:
   m_ObjectHideFlags: 0
@@ -1770,26 +1730,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 821868102}
   m_CullTransparentMesh: 1
---- !u!1 &836319206 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1241823215592578340, guid: 584a56a3ee742074eb77d638164287f4, type: 3}
-  m_PrefabInstance: {fileID: 1459427177657142283}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &836319211
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 836319206}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fb684f3aa1addf4d8d63f1b9357281d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MiningGame.UI.BuildButton
-  buildMode: {fileID: 1186595622}
-  buildTypeIndex: 3
-  displayName: Cart
 --- !u!1 &986993151
 GameObject:
   m_ObjectHideFlags: 0
@@ -4202,6 +4142,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1517143396753753510, guid: 584a56a3ee742074eb77d638164287f4, type: 3}
+      propertyPath: buildMode
+      value: 
+      objectReference: {fileID: 1186595622}
     - target: {fileID: 2014718685259859552, guid: 584a56a3ee742074eb77d638164287f4, type: 3}
       propertyPath: text
       value: 
@@ -4242,6 +4186,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5647431135802356738, guid: 584a56a3ee742074eb77d638164287f4, type: 3}
+      propertyPath: buildMode
+      value: 
+      objectReference: {fileID: 1186595622}
     - target: {fileID: 6114680231250096443, guid: 584a56a3ee742074eb77d638164287f4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -4270,6 +4218,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7559937571044996031, guid: 584a56a3ee742074eb77d638164287f4, type: 3}
+      propertyPath: buildMode
+      value: 
+      objectReference: {fileID: 1186595622}
     - target: {fileID: 7847737467074031777, guid: 584a56a3ee742074eb77d638164287f4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -4325,16 +4277,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1806712471291776057, guid: 584a56a3ee742074eb77d638164287f4, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 200187701}
-    - targetCorrespondingSourceObject: {fileID: 8217505573613573611, guid: 584a56a3ee742074eb77d638164287f4, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 587697144}
-    - targetCorrespondingSourceObject: {fileID: 1241823215592578340, guid: 584a56a3ee742074eb77d638164287f4, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 836319211}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 584a56a3ee742074eb77d638164287f4, type: 3}
 --- !u!1001 &6674472489071704748
 PrefabInstance:

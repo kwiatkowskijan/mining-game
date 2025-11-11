@@ -51,6 +51,7 @@ GameObject:
   - component: {fileID: 7847737467074031777}
   - component: {fileID: 2289655183799340072}
   - component: {fileID: 1883301145669370420}
+  - component: {fileID: 1517143396753753510}
   m_Layer: 5
   m_Name: BtnCart
   m_TagString: Untagged
@@ -171,6 +172,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1517143396753753510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1241823215592578340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fb684f3aa1addf4d8d63f1b9357281d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MiningGame.UI.BuildButton
+  buildMode: {fileID: 0}
+  buildTypeIndex: 3
+  displayName: Cart
 --- !u!1 &1806712471291776057
 GameObject:
   m_ObjectHideFlags: 0
@@ -183,6 +199,7 @@ GameObject:
   - component: {fileID: 932764388445761895}
   - component: {fileID: 4360968778306077207}
   - component: {fileID: 1851290453554919939}
+  - component: {fileID: 5647431135802356738}
   m_Layer: 5
   m_Name: BtnLadder
   m_TagString: Untagged
@@ -303,6 +320,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5647431135802356738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1806712471291776057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fb684f3aa1addf4d8d63f1b9357281d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MiningGame.UI.BuildButton
+  buildMode: {fileID: 0}
+  buildTypeIndex: 0
+  displayName: Ladder
 --- !u!1 &2132632963700486985
 GameObject:
   m_ObjectHideFlags: 0
@@ -330,7 +362,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2132632963700486985}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.69946, y: 0.69946, z: 0.69946}
   m_ConstrainProportionsScale: 0
@@ -1069,6 +1101,7 @@ GameObject:
   - component: {fileID: 605010720003594785}
   - component: {fileID: 3202259366730898304}
   - component: {fileID: 2530926957403271672}
+  - component: {fileID: 7559937571044996031}
   m_Layer: 5
   m_Name: BtnRope
   m_TagString: Untagged
@@ -1189,6 +1222,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7559937571044996031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8217505573613573611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fb684f3aa1addf4d8d63f1b9357281d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MiningGame.UI.BuildButton
+  buildMode: {fileID: 0}
+  buildTypeIndex: 2
+  displayName: Rope
 --- !u!1 &8445912753934303373
 GameObject:
   m_ObjectHideFlags: 0
