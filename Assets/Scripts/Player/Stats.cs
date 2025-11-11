@@ -15,19 +15,17 @@ namespace MiningGame.Player
         [Header("Weight")]
         [SerializeField] private float maxWeight = 100f;
         [SerializeField] private float currentWeight;
-        public float CurrentWeight => currentWeight;
+        public float CurrentWeight => currentWeight = 0f;
         public event Action<float> OnWeightChanged;
 
         [Header("Money")]
-        [SerializeField] private float currentMoney;
+        [SerializeField] private float currentMoney = 100f;
         public float CurrentMoney => currentMoney;
         public event Action<float> OnMoneyChanged;
 
         private void Awake()
         {
             currentHealth = maxHealth;
-            currentWeight = 0;
-            currentMoney = 0;
         }
 
         public void TakeDamage(float amount)
