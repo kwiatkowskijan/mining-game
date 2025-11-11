@@ -27,7 +27,7 @@ namespace MiningGame.Player
         {
             currentHealth = maxHealth;
             currentWeight = 0;
-            currentMoney = 0;
+            currentMoney = 10000;
         }
 
         public void TakeDamage(float amount)

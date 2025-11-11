@@ -14,6 +14,7 @@ namespace MiningGame.Player
         [Header("Tilemaps")]
         [SerializeField] private Tilemap ladderTilemap;
         [SerializeField] private Tilemap buildTilemap;
+        [SerializeField] private Tilemap movingObjectsTilemap;
 
         [Header("Tiles")]
         [SerializeField] private TileBase ladderTile;
@@ -21,6 +22,9 @@ namespace MiningGame.Player
         [SerializeField] private TileBase torchTile;
         [SerializeField] private TileBase cartTile;
         [SerializeField] private TileBase railsTile;
+
+        [Header("Prefabs")]
+        [SerializeField] private GameObject cartPrefab;
 
         [Header("Mode Switching")]
         [SerializeField] private GrappleHook grappleHook;
@@ -49,6 +53,8 @@ namespace MiningGame.Player
         {
             public Tilemap tilemap;
             public TileBase tile;
+            public GameObject prefab;
+            public int type;
             public string name;
         }
 
@@ -68,12 +74,13 @@ namespace MiningGame.Player
         void Start()
         {
             buildOptions = new Dictionary<BuildType, BuildData>
+            //type: 1-Tilemap 2-gameObject 3-tilemapa+gameObject
             {
-                { BuildType.Ladder, new BuildData { tilemap = ladderTilemap, tile = ladderTile, name = "Ladder" } },
-                { BuildType.Torch, new BuildData { tilemap = buildTilemap, tile = torchTile, name = "Torch" } },
-                { BuildType.Rope, new BuildData { tilemap = buildTilemap, tile = ropeTile, name = "Rope" } },
-                { BuildType.Cart, new BuildData { tilemap = buildTilemap, tile = cartTile, name = "Cart" } },
-                { BuildType.Rails, new BuildData { tilemap = buildTilemap, tile = railsTile, name = "Rails" } }
+                { BuildType.Ladder, new BuildData { tilemap = ladderTilemap, tile = ladderTile, type = 1, name = "Ladder" } },
+                { BuildType.Torch, new BuildData { tilemap = buildTilemap, tile = torchTile, type = 1, name = "Torch" } },
+                { BuildType.Rope, new BuildData { tilemap = buildTilemap, tile = ropeTile, type = 1, name = "Rope" } },
+                { BuildType.Cart, new BuildData { tilemap = movingObjectsTilemap, prefab = cartPrefab, type = 2, name = "Cart" } },
+                { BuildType.Rails, new BuildData { tilemap = buildTilemap, tile = railsTile, type = 1, name = "Rails" } }
             };
 
             if (buildUIRoot) buildUIRoot.SetActive(false);
@@ -144,17 +151,37 @@ namespace MiningGame.Player
             {
                 Debug.Log("This tile is occupied: " + buildData.name);
                 return;
-            }
+            }   
 
             int cost = GetCost(currentBuildType);
             if (stats.CurrentMoney < cost) { Debug.Log("Not enough money"); return; }
 
-            buildData.tilemap.SetTile(cellPos, buildData.tile);
-            buildData.tilemap.CompressBounds();
+            //jaka struktura chce zostac postawiona?
+            bool canBePlaced = whichStructure(currentBuildType, cellPos);
+            if (!canBePlaced)
+            {
+                Debug.Log("Can't be placed on this tile");
+                return;
+            }
 
-            TilemapCollider2D collider = buildData.tilemap.GetComponent<TilemapCollider2D>();
-            if (collider != null)
-                collider.ProcessTilemapChanges();
+            //w jaki sposób powinna zostaæ stworzona struktura?
+            switch(buildData.type){
+                case 1:
+                    buildData.tilemap.SetTile(cellPos, buildData.tile);
+                    buildData.tilemap.CompressBounds();
+
+                    TilemapCollider2D collider = buildData.tilemap.GetComponent<TilemapCollider2D>();
+                    if (collider != null)
+                        collider.ProcessTilemapChanges();
+                    break;
+
+                case 2:
+                    Vector3 worldPos = buildData.tilemap.CellToWorld(cellPos) + buildData.tilemap.tileAnchor;
+
+                    GameObject obj = GameObject.Instantiate(buildData.prefab, worldPos, Quaternion.identity);
+                    obj.name = buildData.name;
+                    break;
+            }
 
             Debug.Log($"{buildData.name} placed at {cellPos}");
             previewTilemap.SetTile(cellPos, null);
@@ -206,6 +233,18 @@ namespace MiningGame.Player
             }
 
             previewTilemap.SetTile(cellPos, previewTileBase ?? buildData.tile);
+        }
+
+        private bool whichStructure(BuildType currentStructure, Vector3Int cellPos)
+        {
+            switch (currentStructure)
+            {
+                case BuildType.Cart:
+                    if (!(buildTilemap.GetTile(cellPos) == railsTile)) return false;
+                    break;
+            }
+
+            return true;
         }
 
     }

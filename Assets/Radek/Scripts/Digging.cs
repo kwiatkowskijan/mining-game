@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem.Interactions;
 using UnityEngine.Tilemaps;
 
-namespace MiningGame
+namespace MiningGame.Tools
 {
     public class Digging : MonoBehaviour
     {
@@ -58,7 +58,7 @@ namespace MiningGame
                         TileBase highlightedTile = selector.GetCurrentTileType();
                         if (highlightedTile == null) return;
 
-                        if(MiningGame.WorldGeneration.MineGenerator.TileToBlockMap.TryGetValue(highlightedTile, out Block block))
+                        if(WorldGeneration.MineGenerator.TileToBlockMap.TryGetValue(highlightedTile, out Block block))
                         {
                             if (block.isDescrutable)
                             {
