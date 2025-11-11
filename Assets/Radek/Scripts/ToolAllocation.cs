@@ -5,15 +5,13 @@ namespace MiningGame
 {
     public class ToolAllocation : MonoBehaviour
     {
-        [SerializeField] private GameObject[] itemSlotsImages;
-        [SerializeField] private GameObject tool;
+        [SerializeField] private GameObject[] toolImages;
         [SerializeField] private Sprite toolImage;
         public Equipment equipment;
         private int chosenSlot;
 
         private int i = 0;
 
-        // Update is called once per frame
         void Update()
         {
             if (Input.GetKeyDown(KeyCode.Alpha1))
@@ -42,18 +40,16 @@ namespace MiningGame
         }
         void allocatedSlot()
         {
-            itemSlotsImages[chosenSlot].GetComponent<Image>().sprite = toolImage;
-            itemSlotsImages[chosenSlot].SetActive(true);
-            //equipment.whatInSlots[chosenSlot] = tool;
+            toolImages[chosenSlot].GetComponent<Image>().sprite = toolImage;
+            toolImages[chosenSlot].SetActive(true);
 
-            foreach (var itemSlot in itemSlotsImages) 
+            foreach (var itemSlot in toolImages) 
             {
-                if (itemSlot != itemSlotsImages[chosenSlot])
+                if (itemSlot != toolImages[chosenSlot])
                 {
                     if(itemSlot.GetComponent<Image>().sprite == toolImage)
                     {
                         itemSlot.GetComponent<Image>().sprite = null;
-                        //equipment.whatInSlots[i] = null;
                         itemSlot.SetActive(false);
                     }
                 }
