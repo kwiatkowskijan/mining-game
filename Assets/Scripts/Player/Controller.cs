@@ -1,3 +1,6 @@
+using MiningGame.Core;
+using MiningGame.Core.Interfaces;
+using MiningGame.Services;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -5,6 +8,8 @@ namespace MiningGame.Player
 {
     public class Controller : MonoBehaviour
     {
+        private IAudioService _audioService;
+
         [Header("Input Settings")]
         public InputActionAsset InputActions;
 
@@ -16,7 +21,8 @@ namespace MiningGame.Player
         [SerializeField, Tooltip("The maximum angle of the slope the player can walk on."), Range(0, 90)] private float maxSlopeAngle;
         [SerializeField] private float jumpCooldown;
         [SerializeField] private LayerMask climbableLayer; //drabina
-
+        [Header("Audio")]
+        [SerializeField] private AudioClip jumpAudio;
         [Header("Runtime variables")]
         private bool _isJumping;
         private bool _isFacingRight = true;
@@ -44,6 +50,10 @@ namespace MiningGame.Player
 
         private void Awake()
         {
+            // Services
+            _audioService = ServiceLocator.Get<IAudioService>(); 
+
+            // Components
             _rb = GetComponent<Rigidbody2D>();
             _sr = GetComponentInChildren<SpriteRenderer>();
             _animator = GetComponentInChildren<Animator>();
@@ -145,6 +155,7 @@ namespace MiningGame.Player
         private void Jump()
         {
             _isJumping = true;
+            _audioService.PlaySfx(jumpAudio);
             _jumpCooldownTimer = jumpCooldown;
             _rb.linearVelocityY = 0f;
             _rb.AddForceAtPosition(Vector2.up * jumpForce, _rb.position, ForceMode2D.Impulse);
