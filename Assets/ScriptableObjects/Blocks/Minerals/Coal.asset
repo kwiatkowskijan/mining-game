@@ -24,4 +24,4 @@ MonoBehaviour:
   miningMultiplier: 1
   toSpawn: {fileID: 7910860408734959751, guid: 6a4862844b21afc4db5e3982ad837a27, type: 3}
   icon: {fileID: 3326876337969463224, guid: 0f9152c962a7b1140b23553721191a7d, type: 3}
-  isDiscovered: 0
+  isDiscovered: 1
