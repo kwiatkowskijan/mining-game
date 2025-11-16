@@ -14,6 +14,9 @@ namespace MiningGame.Core
         [Header("Audio Service")]
         [SerializeField] private AudioSource sfxSource;
         [SerializeField] private AudioSource musicSource;
+        [Header("Minimap Service")]
+        [SerializeField] private Camera minimapCamera;
+
 
 
         private void Awake()
@@ -23,6 +26,7 @@ namespace MiningGame.Core
             ServiceLocator.Register<IMineralsService>(new MineralsService(mineralsDatabase));
             ServiceLocator.Register<IAudioService>(new AudioService(sfxSource, musicSource));
             ServiceLocator.Register<ISceneService>(new SceneService());
+            ServiceLocator.Register<IMinimapService>(new MinimapService(minimapCamera));
 
             Debug.Log("[Bootstrap] All services registered!");
         }

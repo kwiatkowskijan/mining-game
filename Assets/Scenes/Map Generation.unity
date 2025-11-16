@@ -3510,6 +3510,11 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!20 &1472777341 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 7202497730722291097, guid: 2b9333fb0c8294b49860adb2cb49c933, type: 3}
+  m_PrefabInstance: {fileID: 1528080366}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1528080366
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3909,6 +3914,10 @@ PrefabInstance:
       propertyPath: musicSource
       value: 
       objectReference: {fileID: 14880836}
+    - target: {fileID: 2190764870723320295, guid: 880fd0b73071ca146a4bced78b437d72, type: 3}
+      propertyPath: minimapCamera
+      value: 
+      objectReference: {fileID: 1472777341}
     - target: {fileID: 3332636488598193827, guid: 880fd0b73071ca146a4bced78b437d72, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1392.7181

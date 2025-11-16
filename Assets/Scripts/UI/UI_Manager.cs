@@ -12,6 +12,8 @@ namespace MiningGame.UI
     {
         private IMineralsService mineralsService;
         private IAudioService audioService;
+        private IMinimapService minimapService;
+
 
 
         [Header("UI Canvas Elements")]
@@ -32,6 +34,7 @@ namespace MiningGame.UI
         {
             mineralsService = ServiceLocator.Get<IMineralsService>();
             audioService = ServiceLocator.Get<IAudioService>();
+            minimapService = ServiceLocator.Get<IMinimapService>();
         }
 
         private void Start()
@@ -95,6 +98,17 @@ namespace MiningGame.UI
                 }
             }
         }
+
+        public void ZoomInMinimap()
+        {
+            minimapService.zoomIn(1f);
+        }
+
+        public void ZoomOutMinimap()
+        {
+            minimapService.zoomOut(1f);
+        }
+
 
         public void PlayClickAudio()
         {
