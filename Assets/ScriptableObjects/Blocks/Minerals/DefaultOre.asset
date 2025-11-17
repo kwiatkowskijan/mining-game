@@ -13,13 +13,15 @@ MonoBehaviour:
   m_Name: DefaultOre
   m_EditorClassIdentifier: 
   id: 0
-  blockName: 
   tiles:
   - {fileID: 11400000, guid: c937a9eedc0294d4489b2c52abf65f44, type: 2}
   isDescrutable: 1
+  mineralName: Default Ore
   commonness: 1
   minDepth: 0
   maxDepth: 0
   rarity: 0
-  miningMultiplier: 0
-  toSpawn: {fileID: 0}
+  miningMultiplier: 1
+  toSpawn: {fileID: 7910860408734959751, guid: 9046f74a2ee50dd49b34f34186bd01b5, type: 3}
+  icon: {fileID: 0}
+  isDiscovered: 0
