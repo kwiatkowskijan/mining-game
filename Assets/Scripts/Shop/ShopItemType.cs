@@ -1,12 +1,13 @@
-﻿namespace MiningGame
+﻿using System;
+
+namespace MiningGame
 {
     public enum ShopItemType
     {
         Tool,
-        Weapon,
         Armor,
-        Mineral,
-        Misc     // rails, ladders etc.
+        Misc,
+        Component
     }
 }
 

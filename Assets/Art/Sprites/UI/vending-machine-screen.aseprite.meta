@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 61fe8d3370426b946813f80e1a5a65f9
+guid: f2847a3f6c7945048921b0920e2aa27e
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -33,10 +33,10 @@ ScriptedImporter:
     sRGBTexture: 1
     spriteMode: 2
     spriteExtrude: 1
-    spriteMeshType: 1
+    spriteMeshType: 0
     alignment: 0
     spritePivot: {x: 0.5, y: 0.5}
-    spritePixelsToUnits: 64
+    spritePixelsToUnits: 32
     spriteBorder: {x: 0, y: 0, z: 0, w: 0}
     spriteGenerateFallbackPhysicsShape: 0
     generateCubemap: 6
@@ -72,7 +72,7 @@ ScriptedImporter:
     textureFormatSet: 0
     applyGammaDecoding: 0
   previousAsepriteImporterSettings:
-    fileImportMode: 1
+    fileImportMode: 0
     importHiddenLayers: 0
     layerImportMode: 1
     defaultPivotSpace: 0
@@ -87,7 +87,7 @@ ScriptedImporter:
     generateIndividualEvents: 1
     generateSpriteAtlas: 1
   asepriteImporterSettings:
-    fileImportMode: 1
+    fileImportMode: 0
     importHiddenLayers: 0
     layerImportMode: 1
     defaultPivotSpace: 0
@@ -102,7 +102,7 @@ ScriptedImporter:
     generateIndividualEvents: 1
     generateSpriteAtlas: 1
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638989705669258261
+  platformSettingsDirtyTick: 638989711742733672
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -127,7 +127,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: Ekey
+  - name: vending-machine-screen
     originalName: 
     pivot: {x: 0.5, y: 0}
     alignment: 9
@@ -137,9 +137,9 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 16
-      height: 16
-    spriteID: 8a9eea70147603645ba41a9c468436c2
+      width: 83
+      height: 62
+    spriteID: c0b08d50622c1124ebf8b673e72f52d2
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -148,9 +148,30 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
-  spriteSheetImportData: []
+  spriteSheetImportData:
+  - name: vending-machine-screen_0
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 4
+      width: 89
+      height: 64
+    spriteID: 481a2dbda2d6f714db31c9ee7662cb00
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
   tileSetImportData:
-  - name: Layer 1
+  - name: background
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 9
@@ -160,9 +181,9 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 16
-      height: 16
-    spriteID: 8a9eea70147603645ba41a9c468436c2
+      width: 83
+      height: 62
+    spriteID: 52acffc39a1bcd1459371ad4b6d86c0a
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -171,28 +192,70 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
+  - name: shop-text
+    originalName: 
+    pivot: {x: 0.619403, y: 0.59615386}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 74
+      width: 67
+      height: 52
+    spriteID: 744a8ba4542fcf149ba32314bf9e5d17
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 74}
+  - name: upgrade-text
+    originalName: 
+    pivot: {x: 1.4310344, y: 4.428571}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 95
+      y: 4
+      width: 29
+      height: 7
+    spriteID: 56c6658aa61cbcd4bb0861b0b261d4c5
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 95, y: 4}
   asepriteLayers:
   - layerIndex: 0
     uuid:
-      value0: 4287466680
+      value0: 2364756302
       value1: 0
       value2: 0
       value3: 0
     guid: 0
-    name: Layer 1
-    layerFlags: 3
+    name: vending-machine-screen
+    layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Ekey
+    - name: vending-machine-screen
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
-        width: 16
-        height: 16
-      spriteId: 8a9eea70147603645ba41a9c468436c2
+        width: 89
+        height: 64
+      spriteId: c0b08d50622c1124ebf8b673e72f52d2
     linkedCells: []
     tileCells: []
     tileSetIndex: 0
@@ -226,5 +289,5 @@ ScriptedImporter:
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 16, y: 16}
-  previousTextureSize: {x: 32, y: 32}
+  canvasSize: {x: 89, y: 64}
+  previousTextureSize: {x: 128, y: 128}
