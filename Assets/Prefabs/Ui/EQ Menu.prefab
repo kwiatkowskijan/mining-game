@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 8952236395207926941}
   - component: {fileID: 7876317744846584925}
   - component: {fileID: 4491904198392360330}
-  - component: {fileID: 2411751671386295931}
   m_Layer: 5
   m_Name: armor icon
   m_TagString: Untagged
@@ -121,18 +120,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &2411751671386295931
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1104338467426105456}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3c96e71463817c47ad2a6dd6c94258a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2749164632256336104
 GameObject:
   m_ObjectHideFlags: 0
@@ -222,7 +209,7 @@ GameObject:
   - component: {fileID: 2018664292626670680}
   - component: {fileID: 1712347030817675863}
   m_Layer: 5
-  m_Name: Checkbox
+  m_Name: Button & Script
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -504,7 +491,7 @@ GameObject:
   - component: {fileID: 3073204059267775867}
   - component: {fileID: 788175408637147891}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Selection Outline & Script
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -579,12 +566,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 584452d85044741428d5417aa197498d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemSlotsImages:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  tool: {fileID: 0}
+  toolImages: []
   toolImage: {fileID: 5459685220871148133, guid: a3701f44c7b2cde4f8e56ec5c97d3323, type: 3}
   equipment: {fileID: 0}
 --- !u!1 &8515292032462502094
@@ -637,7 +619,6 @@ GameObject:
   - component: {fileID: 1393711040875149549}
   - component: {fileID: 4390702112814062927}
   - component: {fileID: 3174800378673782051}
-  - component: {fileID: 7550132530948202874}
   m_Layer: 5
   m_Name: EQ Menu
   m_TagString: Untagged
@@ -654,7 +635,7 @@ RectTransform:
   m_GameObject: {fileID: 8858050206924626495}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.8183699, y: 1.8183699, z: 1.8183699}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9044111075164053473}
@@ -704,15 +685,3 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &7550132530948202874
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8858050206924626495}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9fda533a0257274f95e7d3771468a22, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

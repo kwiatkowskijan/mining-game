@@ -3364,7 +3364,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: EQ Menu
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2411751671386295931, guid: cde88c690e88f06418fce14a39abd592, type: 3}
+    - {fileID: 7550132530948202874, guid: cde88c690e88f06418fce14a39abd592, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -4277,21 +4279,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0669b076914b96c4da1d80b6d787a23f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ores:
-  - {fileID: 11400000, guid: 3740173062bcf91458aefa0e730a6ceb, type: 2}
-  - {fileID: 11400000, guid: 37683fae43c7f1b4aa7e6bdb215b7d6c, type: 2}
-  - {fileID: 11400000, guid: e9a0e25925860d746bdf93bdb8bb2c1c, type: 2}
+  mineTilemap: {fileID: 0}
+  backgroundTilemap: {fileID: 0}
+  minerals: []
   commonBlocks:
   - {fileID: 11400000, guid: f4f2f48293dbc354ea4dbe4f5f6b4b5d, type: 2}
-  deafultOre: {fileID: 11400000, guid: 26cbe6b92d5c66645898bdaa09058c1e, type: 2}
+  defaultMineral: {fileID: 0}
   bedrock: {fileID: 11400000, guid: aee0f65309236fa4a9b5a417425f4d7a, type: 2}
+  caveBackgroundTile: {fileID: 0}
+  startX: 0
   mapHeight: 128
   mapWidth: 128
   chunkSize: 16
   loadDistance: 2
   seed: 0
-  caveNoiseScale: 0.14
-  oreNoiseScale: 0.05
+  mineNoiseScale: 0.13
+  mineralNoiseScale: 0.05
+  structures: []
 --- !u!156049354 &1893802612
 Grid:
   m_ObjectHideFlags: 0

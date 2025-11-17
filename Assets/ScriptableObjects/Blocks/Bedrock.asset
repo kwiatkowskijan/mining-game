@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: Bedrock
   m_EditorClassIdentifier: Assembly-CSharp::MiningGame.WorldGeneration.Bedrock
   id: 0
-  blockName: 
   tiles:
   - {fileID: 11400000, guid: aef2e8929eeb87f4fa4c56a9648aa546, type: 2}
-  isDescrutable: 1
+  isDescrutable: 0
