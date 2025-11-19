@@ -25,9 +25,10 @@ namespace MiningGame.Player
 
         [Header("Prefabs")]
         [SerializeField] private GameObject cartPrefab;
+        [SerializeField] private GameObject torchPrefab;
 
         [Header("Mode Switching")]
-        [SerializeField] private GrappleHook grappleHook;
+        //[SerializeField] private GrappleHook grappleHook;
         [SerializeField] private Image modeIcon;
         [SerializeField] private Sprite normalModeSprite;
         [SerializeField] private Sprite buildModeSprite;
@@ -77,7 +78,7 @@ namespace MiningGame.Player
             //type: 1-Tilemap 2-gameObject 3-tilemapa+gameObject
             {
                 { BuildType.Ladder, new BuildData { tilemap = ladderTilemap, tile = ladderTile, type = 1, name = "Ladder" } },
-                { BuildType.Torch, new BuildData { tilemap = buildTilemap, tile = torchTile, type = 1, name = "Torch" } },
+                { BuildType.Torch, new BuildData { tilemap = buildTilemap, tile = torchTile, prefab = torchPrefab, type = 3, name = "Torch" } },
                 { BuildType.Rope, new BuildData { tilemap = buildTilemap, tile = ropeTile, type = 1, name = "Rope" } },
                 { BuildType.Cart, new BuildData { tilemap = movingObjectsTilemap, prefab = cartPrefab, type = 2, name = "Cart" } },
                 { BuildType.Rails, new BuildData { tilemap = buildTilemap, tile = railsTile, type = 1, name = "Rails" } }
@@ -117,9 +118,6 @@ namespace MiningGame.Player
         public void HandleBuildModeToggle()
         {
             isInBuildMode = !isInBuildMode;
-
-            if (grappleHook != null)
-                grappleHook.enabled = !isInBuildMode;
 
             SetBuildModeIcon(isInBuildMode);
 
@@ -180,6 +178,22 @@ namespace MiningGame.Player
 
                     GameObject obj = GameObject.Instantiate(buildData.prefab, worldPos, Quaternion.identity);
                     obj.name = buildData.name;
+                    break;
+
+                case 3:
+                    buildData.tilemap.SetTile(cellPos, buildData.tile);
+                    buildData.tilemap.CompressBounds();
+
+                    collider = buildData.tilemap.GetComponent<TilemapCollider2D>();
+                    if (collider != null)
+                        collider.ProcessTilemapChanges();
+
+                    if (buildData.prefab != null)
+                    {
+                        worldPos = buildData.tilemap.CellToWorld(cellPos) + buildData.tilemap.tileAnchor;
+                        GameObject obj3 = Instantiate(buildData.prefab, worldPos, Quaternion.identity);
+                        obj3.name = buildData.name;
+                    }
                     break;
             }
 
