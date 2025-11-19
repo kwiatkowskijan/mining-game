@@ -57,6 +57,14 @@ namespace MiningGame.WorldGeneration
 
         private void MapTileToBlock()
         {
+            if (defaultMineral != null && defaultMineral.tiles != null)
+            {
+                foreach (var tile in defaultMineral.tiles)
+                {
+                    if (!TileToBlockMap.ContainsKey(tile))
+                        TileToBlockMap.Add(tile, defaultMineral);
+                }
+            }
             foreach (var mineral in minerals)
             {
                 if (mineral.tiles != null)

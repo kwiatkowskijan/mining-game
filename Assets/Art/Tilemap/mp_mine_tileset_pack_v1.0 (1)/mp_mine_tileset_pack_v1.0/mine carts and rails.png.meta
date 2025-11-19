@@ -136,19 +136,19 @@ TextureImporter:
       name: mine carts and rails_0
       rect:
         serializedVersion: 2
-        x: 17
-        y: 66
-        width: 29
-        height: 29
+        x: 18
+        y: 67
+        width: 27
+        height: 27
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 81ccdae84ac7767b0800000000000000
+      spriteID: 562e898c2e6a8f94da2ef5c398d12ba4
       internalID: -5231075395957306344
       vertices: []
       indices: 
@@ -158,19 +158,19 @@ TextureImporter:
       name: mine carts and rails_1
       rect:
         serializedVersion: 2
-        x: 49
-        y: 80
-        width: 31
-        height: 17
+        x: 50
+        y: 51
+        width: 62
+        height: 45
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 2b0fe140098505f90800000000000000
+      spriteID: edc2b40a2bad3fe478c84ebdfecb6c8b
       internalID: -6966971247974485838
       vertices: []
       indices: 
@@ -180,19 +180,19 @@ TextureImporter:
       name: mine carts and rails_2
       rect:
         serializedVersion: 2
-        x: 114
-        y: 66
-        width: 29
-        height: 29
+        x: 115
+        y: 67
+        width: 27
+        height: 27
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 90af4eca94447d7e0800000000000000
+      spriteID: d09084b693175254382a4459c6ad8514
       internalID: -1740847647731418615
       vertices: []
       indices: 
@@ -202,19 +202,19 @@ TextureImporter:
       name: mine carts and rails_3
       rect:
         serializedVersion: 2
-        x: 143
-        y: 63
-        width: 50
-        height: 22
+        x: 144
+        y: 64
+        width: 48
+        height: 20
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d871ee0030361c110800000000000000
+      spriteID: 1a792a313a388b24bbf5313fa585bfe0
       internalID: 1279412633701586829
       vertices: []
       indices: 
@@ -224,19 +224,19 @@ TextureImporter:
       name: mine carts and rails_4
       rect:
         serializedVersion: 2
-        x: 191
-        y: 79
-        width: 34
-        height: 16
+        x: 192
+        y: 80
+        width: 32
+        height: 14
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 927b075b88358aad0800000000000000
+      spriteID: ccd3558bdd4a61b4c932cd7a85927f46
       internalID: -2690808930729150679
       vertices: []
       indices: 
@@ -246,19 +246,19 @@ TextureImporter:
       name: mine carts and rails_5
       rect:
         serializedVersion: 2
-        x: 191
-        y: 63
-        width: 34
-        height: 17
+        x: 192
+        y: 64
+        width: 32
+        height: 15
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 3a62fc43978941350800000000000000
+      spriteID: b924518bbaab04241914bb1569523f80
       internalID: 5986577451026687651
       vertices: []
       indices: 
@@ -268,19 +268,19 @@ TextureImporter:
       name: mine carts and rails_6
       rect:
         serializedVersion: 2
-        x: 17
-        y: 34
-        width: 29
-        height: 29
+        x: 18
+        y: 35
+        width: 27
+        height: 27
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: db60f0325ea51b0d0800000000000000
+      spriteID: 2f9c84ef6f0c6164bb85a50b58831c31
       internalID: -3408843502760556867
       vertices: []
       indices: 
@@ -290,19 +290,19 @@ TextureImporter:
       name: mine carts and rails_7
       rect:
         serializedVersion: 2
-        x: 47
-        y: 31
-        width: 18
-        height: 18
+        x: 48
+        y: 32
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 2c0f06d4980b88600800000000000000
+      spriteID: 3faff56dd0781464486687ae82306225
       internalID: 470820264815423682
       vertices: []
       indices: 
@@ -312,19 +312,19 @@ TextureImporter:
       name: mine carts and rails_8
       rect:
         serializedVersion: 2
-        x: 95
-        y: 31
-        width: 18
-        height: 18
+        x: 96
+        y: 32
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d4a86922215f7dc00800000000000000
+      spriteID: ae823477243d7f84cb2a092c8db2b828
       internalID: 925477706686433869
       vertices: []
       indices: 
@@ -334,19 +334,19 @@ TextureImporter:
       name: mine carts and rails_9
       rect:
         serializedVersion: 2
-        x: 114
-        y: 34
-        width: 29
-        height: 29
+        x: 115
+        y: 35
+        width: 27
+        height: 27
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 52ab62aa3f5ee1f40800000000000000
+      spriteID: b57dcbfd255ff10469814697c30f9b0b
       internalID: 5701247012992104997
       vertices: []
       indices: 
@@ -356,19 +356,19 @@ TextureImporter:
       name: mine carts and rails_10
       rect:
         serializedVersion: 2
-        x: 143
-        y: 31
-        width: 82
-        height: 33
+        x: 144
+        y: 32
+        width: 80
+        height: 31
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 71911e9cde1656840800000000000000
+      spriteID: 6c3fedd28600f8440960b66f7d6b18a3
       internalID: 5216683417300703511
       vertices: []
       indices: 
@@ -381,16 +381,16 @@ TextureImporter:
         x: 0
         y: 0
         width: 240
-        height: 20
+        height: 19
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ecf3ff7e3a6fea690800000000000000
+      spriteID: 38c919511fd8dc94fb61052b328ebf63
       internalID: -7588857138240340018
       vertices: []
       indices: 
@@ -408,7 +408,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":true,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
+      - key: SpriteEditor.SliceOnImport
+        value: True
     nameFileIdTable:
       mine carts and rails_0: -5231075395957306344
       mine carts and rails_1: -6966971247974485838

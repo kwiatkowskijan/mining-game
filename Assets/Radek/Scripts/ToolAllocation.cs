@@ -6,7 +6,7 @@ namespace MiningGame
     public class ToolAllocation : MonoBehaviour
     {
         [SerializeField] private GameObject[] toolImages;
-        [SerializeField] private Sprite toolImage;
+        [SerializeField] private Sprite toolImageSprite;
         public Equipment equipment;
         private int chosenSlot;
 
@@ -40,14 +40,14 @@ namespace MiningGame
         }
         void allocatedSlot()
         {
-            toolImages[chosenSlot].GetComponent<Image>().sprite = toolImage;
+            toolImages[chosenSlot].GetComponent<Image>().sprite = toolImageSprite;
             toolImages[chosenSlot].SetActive(true);
 
             foreach (var itemSlot in toolImages) 
             {
                 if (itemSlot != toolImages[chosenSlot])
                 {
-                    if(itemSlot.GetComponent<Image>().sprite == toolImage)
+                    if(itemSlot.GetComponent<Image>().sprite == toolImageSprite)
                     {
                         itemSlot.GetComponent<Image>().sprite = null;
                         itemSlot.SetActive(false);
