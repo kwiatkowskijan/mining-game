@@ -15,7 +15,6 @@ namespace MiningGame.Core
         [SerializeField] private AudioSource sfxSource;
         [SerializeField] private AudioSource musicSource;
 
-
         private void Awake()
         {
             DontDestroyOnLoad(gameObject);
@@ -23,6 +22,7 @@ namespace MiningGame.Core
             ServiceLocator.Register<IMineralsService>(new MineralsService(mineralsDatabase));
             ServiceLocator.Register<IAudioService>(new AudioService(sfxSource, musicSource));
             ServiceLocator.Register<ISceneService>(new SceneService());
+            ServiceLocator.Register<IMinimapService>(new MinimapService());
 
             Debug.Log("[Bootstrap] All services registered!");
         }

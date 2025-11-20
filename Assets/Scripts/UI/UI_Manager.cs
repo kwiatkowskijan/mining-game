@@ -12,11 +12,15 @@ namespace MiningGame.UI
     {
         private IMineralsService mineralsService;
         private IAudioService audioService;
+        private IMinimapService minimapService;
+
 
 
         [Header("UI Canvas Elements")]
         [SerializeField] private Image healthBar;
         [SerializeField] private GameObject debugPanel;
+        [Header("Minimap")]
+        [SerializeField] private Camera minimapCamera;
 
         [Header("Components")]
         [SerializeField] private Stats statsComponent;
@@ -32,6 +36,7 @@ namespace MiningGame.UI
         {
             mineralsService = ServiceLocator.Get<IMineralsService>();
             audioService = ServiceLocator.Get<IAudioService>();
+            minimapService = ServiceLocator.Get<IMinimapService>();
         }
 
         private void Start()
@@ -56,6 +61,8 @@ namespace MiningGame.UI
             {
                 ToggleDebugPanel();
             }
+
+            minimapCamera.orthographicSize = minimapService.CurrentZoom;
         }
 
         private void UpdateHealthBar(float health)
@@ -95,6 +102,17 @@ namespace MiningGame.UI
                 }
             }
         }
+
+        public void ZoomInMinimap()
+        {
+            minimapService.ZoomIn(1f);
+        }
+
+        public void ZoomOutMinimap()
+        {
+            minimapService.ZoomOut(1f);
+        }
+
 
         public void PlayClickAudio()
         {
