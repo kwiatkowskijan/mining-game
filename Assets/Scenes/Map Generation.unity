@@ -3200,6 +3200,10 @@ PrefabInstance:
       propertyPath: jumpAudio
       value: 
       objectReference: {fileID: 8300000, guid: af22af39af2ca9a4e9ab2353dcd2fffd, type: 3}
+    - target: {fileID: 8306432959550378032, guid: 9d9c9a2ee19e745498519946acfe4739, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3277,12 +3281,14 @@ MonoBehaviour:
   maxBuildDistance: 3
   ladderTilemap: {fileID: 0}
   buildTilemap: {fileID: 0}
+  movingObjectsTilemap: {fileID: 0}
   ladderTile: {fileID: 0}
   ropeTile: {fileID: 0}
   torchTile: {fileID: 0}
   cartTile: {fileID: 0}
   railsTile: {fileID: 0}
-  grappleHook: {fileID: 0}
+  cartPrefab: {fileID: 0}
+  torchPrefab: {fileID: 0}
   modeIcon: {fileID: 1952824128}
   normalModeSprite: {fileID: 7660383119723419664, guid: 785000fce8c88844badb332e582c3e7b, type: 3}
   buildModeSprite: {fileID: 326418909675698413, guid: bb93548d052754f44a470f190884e87d, type: 3}
@@ -3395,7 +3401,7 @@ GameObject:
   - component: {fileID: 1380810203}
   - component: {fileID: 1380810205}
   - component: {fileID: 1380810204}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3603,6 +3609,10 @@ PrefabInstance:
       propertyPath: m_Depth
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7202497730722291097, guid: 2b9333fb0c8294b49860adb2cb49c933, type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 13312
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 8250487836478007388, guid: 2b9333fb0c8294b49860adb2cb49c933, type: 3}
@@ -3682,10 +3692,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f4f2f48293dbc354ea4dbe4f5f6b4b5d, type: 2}
   defaultMineral: {fileID: 11400000, guid: 26cbe6b92d5c66645898bdaa09058c1e, type: 2}
   bedrock: {fileID: 11400000, guid: d57d2f2375917e34ba231929d61dd985, type: 2}
-  caveBackgroundTile: {fileID: 11400000, guid: 1c06081197519a54e9d1a910e28a3b67, type: 2}
+  caveBackgroundTile: {fileID: 11400000, guid: 83fdf55bc73cc674c99982631ded74a2, type: 2}
   startX: 20
-  mapHeight: 128
-  mapWidth: 128
+  mapHeight: 1000
+  mapWidth: 1000
   chunkSize: 16
   loadDistance: 2
   seed: 10
@@ -3772,6 +3782,26 @@ PrefabInstance:
     - target: {fileID: 1599762579217891534, guid: cb301525d46d9fe418d87ad67a220a60, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1822295933721607672, guid: cb301525d46d9fe418d87ad67a220a60, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1822295933721607672, guid: cb301525d46d9fe418d87ad67a220a60, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1822295933721607672, guid: cb301525d46d9fe418d87ad67a220a60, type: 3}
+      propertyPath: m_Color.b
+      value: 0.15686275
+      objectReference: {fileID: 0}
+    - target: {fileID: 1822295933721607672, guid: cb301525d46d9fe418d87ad67a220a60, type: 3}
+      propertyPath: m_Color.g
+      value: 0.15686275
+      objectReference: {fileID: 0}
+    - target: {fileID: 1822295933721607672, guid: cb301525d46d9fe418d87ad67a220a60, type: 3}
+      propertyPath: m_Color.r
+      value: 0.15686275
       objectReference: {fileID: 0}
     - target: {fileID: 3800263752686466972, guid: cb301525d46d9fe418d87ad67a220a60, type: 3}
       propertyPath: m_Pivot.x
