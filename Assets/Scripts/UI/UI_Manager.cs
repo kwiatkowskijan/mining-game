@@ -19,6 +19,8 @@ namespace MiningGame.UI
         [Header("UI Canvas Elements")]
         [SerializeField] private Image healthBar;
         [SerializeField] private GameObject debugPanel;
+        [Header("Minimap")]
+        [SerializeField] private Camera minimapCamera;
 
         [Header("Components")]
         [SerializeField] private Stats statsComponent;
@@ -59,6 +61,8 @@ namespace MiningGame.UI
             {
                 ToggleDebugPanel();
             }
+
+            minimapCamera.orthographicSize = minimapService.CurrentZoom;
         }
 
         private void UpdateHealthBar(float health)
@@ -101,12 +105,12 @@ namespace MiningGame.UI
 
         public void ZoomInMinimap()
         {
-            minimapService.zoomIn(1f);
+            minimapService.ZoomIn(1f);
         }
 
         public void ZoomOutMinimap()
         {
-            minimapService.zoomOut(1f);
+            minimapService.ZoomOut(1f);
         }
 
 

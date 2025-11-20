@@ -5,31 +5,24 @@ namespace MiningGame.Services
 {
     public class MinimapService : IMinimapService
     {
-        public Camera minimapCamera;
-        private int _maxZoom = 20;
-        private int _minZoom = 10;
+        private float initialZoom = 15f;
+        public float CurrentZoom { get; private set; }
+        public float MinZoom => 10f;
+        public float MaxZoom => 20f;
 
-
-        public MinimapService(Camera camera)
+        public MinimapService()
         {
-            minimapCamera = camera;
+            CurrentZoom = initialZoom;
         }
 
-        public void zoomIn(float amount)
+        public void ZoomIn(float amount)
         {
-            if (minimapCamera.orthographicSize > _minZoom)
-                minimapCamera.orthographicSize -= amount;
-            else
-                return;
+            CurrentZoom = Mathf.Max(CurrentZoom - amount, MinZoom);
         }
 
-        public void zoomOut(float amount)
+        public void ZoomOut(float amount)
         {
-            if (minimapCamera.orthographicSize < _maxZoom)
-                minimapCamera.orthographicSize += amount;
-            else
-                return;
+            CurrentZoom = Mathf.Min(CurrentZoom + amount, MaxZoom);
         }
-    
     }
 }

@@ -3920,6 +3920,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: 85d842fae24687b478898e622c9219e8, type: 3}
     - target: {fileID: 8814810466493952505, guid: cb301525d46d9fe418d87ad67a220a60, type: 3}
+      propertyPath: minimapCamera
+      value: 
+      objectReference: {fileID: 1472777341}
+    - target: {fileID: 8814810466493952505, guid: cb301525d46d9fe418d87ad67a220a60, type: 3}
       propertyPath: statsComponent
       value: 
       objectReference: {fileID: 958783163}

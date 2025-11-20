@@ -2,7 +2,11 @@ namespace MiningGame.Core.Interfaces
 {
     public interface IMinimapService
     {
-        void zoomIn(float amoount);
-        void zoomOut(float amoount);
+        float CurrentZoom { get; }
+        float MinZoom { get; }
+        float MaxZoom { get; }
+
+        void ZoomIn(float amoount);
+        void ZoomOut(float amoount);
     }
 }
