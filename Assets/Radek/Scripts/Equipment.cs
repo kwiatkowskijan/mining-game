@@ -24,13 +24,11 @@ namespace MiningGame
 
         public bool slotsChange=true;
         
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
             chosenSlot = 1;
         }
 
-        // Update is called once per frame
         void Update()
         {
             if (slotsChange)
@@ -107,10 +105,6 @@ namespace MiningGame
         {
             playerMinerals++;
             minerals.text=playerMinerals.ToString();
-        }
-        public void toolAssignment()
-        {
-            Debug.Log("Dzia�a");
         }
     }
 }

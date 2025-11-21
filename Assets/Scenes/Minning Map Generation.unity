@@ -2760,6 +2760,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -0.030390263
       objectReference: {fileID: 0}
+    - target: {fileID: 1295377667548130167, guid: 2b9333fb0c8294b49860adb2cb49c933, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3797525798217509190, guid: 2b9333fb0c8294b49860adb2cb49c933, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.6150436
@@ -3095,6 +3099,10 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 5370690400421621711, guid: 9d9c9a2ee19e745498519946acfe4739, type: 3}
+      propertyPath: jumpAudio
+      value: 
+      objectReference: {fileID: 8300000, guid: af22af39af2ca9a4e9ab2353dcd2fffd, type: 3}
     - target: {fileID: 8522725513187923077, guid: 9d9c9a2ee19e745498519946acfe4739, type: 3}
       propertyPath: currentMoney
       value: 999999
@@ -4464,13 +4472,14 @@ MonoBehaviour:
   cartTile: {fileID: 11400000, guid: f34810e83cfb5df498ba044e00dc0244, type: 2}
   railsTile: {fileID: 11400000, guid: 99e083f565d52a54880a9421c8af0050, type: 2}
   cartPrefab: {fileID: 2475442125232107701, guid: 447d07275c8b7eb4e9711fc81643bcdb, type: 3}
-  grappleHook: {fileID: 0}
+  torchPrefab: {fileID: 0}
   modeIcon: {fileID: 1503520585}
   normalModeSprite: {fileID: 4301844918096825189, guid: e1c48835f9e9831419ccaed564e783ad, type: 3}
   buildModeSprite: {fileID: 4623475503148966754, guid: 33ead916b826a7e4e9c1847ed6a850e9, type: 3}
   previewTilemap: {fileID: 1486393977}
   previewTileBase: {fileID: 11400000, guid: 55c7a4f1426cb054aaff704df79e7a68, type: 2}
   buildUIRoot: {fileID: 1503520584}
+  activeTool: {fileID: 0}
 --- !u!1 &1954160941 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7680186501951041710, guid: d549e389e49f9494782a15d9d47c5287, type: 3}

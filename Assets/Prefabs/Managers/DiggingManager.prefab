@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3391409700887757371}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0.93981457, w: 0.34168488}
+  m_LocalRotation: {x: 0, y: 0, z: -0.9398149, w: 0.341684}
   m_LocalPosition: {x: -5.1007004, y: -3.3161998, z: 0}
   m_LocalScale: {x: 0.7447999, y: 0.7447999, z: 0.7448}
   m_ConstrainProportionsScale: 0
@@ -54,6 +54,8 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -75,6 +77,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
@@ -120,26 +123,8 @@ MonoBehaviour:
   selector: {fileID: 6518058074685287167}
   tilemap: {fileID: 0}
   eq: {fileID: 0}
-  miningTime: 2
+  miningTime: 0.5
   holdTimer: 0
   rubbleMessage: {fileID: 0}
-  dirtTiles:
-  - {fileID: 11400000, guid: 5d47e25ea610ca64fb4d67c0703456ab, type: 2}
-  - {fileID: 11400000, guid: 24ad0fbf953234945abb2af8fcfa0df3, type: 2}
-  - {fileID: 11400000, guid: 6aec03f3ee23e9b4d8b4060475117361, type: 2}
-  - {fileID: 11400000, guid: f559e23137086af4f8b4638d2f1e801f, type: 2}
-  - {fileID: 11400000, guid: f7afe343777a8f9439024c0d812f4356, type: 2}
-  - {fileID: 11400000, guid: 8ad30995abe66a34397c94e8e21b2db2, type: 2}
-  - {fileID: 11400000, guid: 1485bba848d04ab43be445933a0957c6, type: 2}
-  - {fileID: 11400000, guid: 913e5a237b1fe1f43ad623c9c3634a0f, type: 2}
-  - {fileID: 11400000, guid: e371fe64bdf2e174697e1845a3228e83, type: 2}
-  - {fileID: 11400000, guid: bb2e5564fe0134a459ca5a2100d894e6, type: 2}
   dirtPickup: {fileID: 3461270386126559627, guid: a459c29f58a86f5499eac77ada5d0154, type: 3}
-  mineralTiles:
-  - {fileID: 11400000, guid: 01ca0cbb848d46445bb878d23f86c9f4, type: 2}
-  - {fileID: 11400000, guid: 08b8957e97dbbc84bb6408163bf52a39, type: 2}
-  - {fileID: 11400000, guid: bca95b065161ab448b2986954014291c, type: 2}
-  - {fileID: 11400000, guid: 324b8cf33dabb904babaab70ef9e06cc, type: 2}
-  - {fileID: 11400000, guid: b77b5d6fda08cdb4d84d3919d5bf1b99, type: 2}
-  - {fileID: 11400000, guid: ed4bd924643491d41a17cc62f26c365c, type: 2}
   mineralPickup: {fileID: 7910860408734959751, guid: 39ae3d9c7ae20e84195564ab82f074f4, type: 3}
