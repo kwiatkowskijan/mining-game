@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08c8ffa272d389447bcf4db8401be3cb, type: 3}
+  m_Name: Obsidian
+  m_EditorClassIdentifier: Assembly-CSharp::MiningGame.WorldGeneration.Mineral
+  id: 0
+  tiles:
+  - {fileID: 11400000, guid: 2c1747a88318d334fa2eadc6a6f004a7, type: 2}
+  isDescrutable: 1
+  mineralName: Obsidian
+  commonness: 40
+  minDepth: 0
+  maxDepth: -400
+  miningMultiplier: 1
+  toSpawn: {fileID: 0}
+  icon: {fileID: 8504214004179876900, guid: 21ce18fe7c98e914bacffaaedadfc83e, type: 3}
+  isDiscovered: 0
