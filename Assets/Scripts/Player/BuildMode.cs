@@ -124,6 +124,18 @@ namespace MiningGame.Player
             if (buildUIRoot) buildUIRoot.SetActive(isInBuildMode);
 
             Debug.Log("Build mode: " + (isInBuildMode ? "ON" : "OFF"));
+
+            if (isInBuildMode)
+            {
+                DisableUnnecessarySystems();
+            }
+        }
+
+        [Header("Systems to Disable")]
+        [SerializeField] private ActiveTool activeTool;
+        private void DisableUnnecessarySystems()
+        {
+
         }
 
         private void TryPlaceTile()

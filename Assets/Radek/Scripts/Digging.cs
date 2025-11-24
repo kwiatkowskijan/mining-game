@@ -22,7 +22,6 @@ namespace MiningGame.Tools
         [SerializeField] private GameObject dirtPickup;
 
         [Header("Mineral Block")]
-        [SerializeField] private TileBase[] mineralTiles;
         [SerializeField] private GameObject mineralPickup;
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created

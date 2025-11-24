@@ -1,5 +1,12 @@
+using MiningGame.Core;
+using MiningGame.Core.Interfaces;
+using MiningGame.Managers;
+using MiningGame.Services;
+using MiningGame.WorldGeneration;
+using NUnit.Framework;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace MiningGame.Player
@@ -12,11 +19,13 @@ namespace MiningGame.Player
         public float CurrentHealth => currentHealth;
         public event Action<float> OnHealthChanged;
 
-        [Header("Weight")]
-        [SerializeField] private float maxWeight = 100f;
-        [SerializeField] private float currentWeight;
-        public float CurrentWeight => currentWeight;
+        [Header("Rubble")]
+        [SerializeField] private float maxRubble = 10f;
+        [SerializeField] private float currentRubble;
+        public float CurrentWeight => currentRubble;
         public event Action<float> OnWeightChanged;
+
+        [Header("Minerals")]
 
         [Header("Money")]
         [SerializeField] private float currentMoney;
@@ -26,8 +35,14 @@ namespace MiningGame.Player
         private void Awake()
         {
             currentHealth = maxHealth;
-            currentWeight = 0;
+            currentRubble = 0;
             currentMoney = 10000;
+
+            var minerals = ServiceLocator.Get<IMineralsService>().Minerals;
+            foreach (var mineral in minerals)
+            {
+                Debug.Log("Mineral: " + mineral.name);
+            }
         }
 
         public void TakeDamage(float amount)
@@ -49,10 +64,10 @@ namespace MiningGame.Player
 
         public void AddWeight(float amount)
         {
-            currentWeight += amount;
-            OnWeightChanged?.Invoke(currentWeight);
+            currentRubble += amount;
+            OnWeightChanged?.Invoke(currentRubble);
             
-            if (currentWeight >= maxWeight) 
+            if (currentRubble >= maxRubble) 
             {
                 Debug.Log("Player is overloaded");
                 //jakas mechanika obciazenia
@@ -61,8 +76,8 @@ namespace MiningGame.Player
 
         public void RemoveWeight(float amount)
         {
-            currentWeight -= amount;
-            OnWeightChanged?.Invoke(currentWeight);
+            currentRubble -= amount;
+            OnWeightChanged?.Invoke(currentRubble);
 
             //tutaj też to bedzie trzeba rozwinac pewnie
         }
