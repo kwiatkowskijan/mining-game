@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5595634999526340171}
   - component: {fileID: 5801739980333995286}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Freeform Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
