@@ -291,7 +291,7 @@ GameObject:
   - component: {fileID: 27475737}
   - component: {fileID: 27475736}
   - component: {fileID: 27475735}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: BuildableTilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -856,7 +856,7 @@ GameObject:
   m_Component:
   - component: {fileID: 393598498}
   - component: {fileID: 393598499}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: PlayerLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1182,7 +1182,7 @@ MonoBehaviour:
     rid: 1749345436662235207
   m_ShadowCastingSource: 2
   m_ShadowMesh:
-    m_Mesh: {fileID: 1415949218}
+    m_Mesh: {fileID: 1418414306}
     m_LocalBounds:
       m_Center: {x: 0, y: 0, z: 0}
       m_Extent: {x: 0, y: 0, z: 0}
@@ -1491,7 +1491,7 @@ GameObject:
   - component: {fileID: 486865811}
   - component: {fileID: 486865813}
   - component: {fileID: 486865812}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2321,7 +2321,7 @@ GameObject:
   - component: {fileID: 504074566}
   - component: {fileID: 504074568}
   - component: {fileID: 504074567}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Decorations
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3567,6 +3567,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cam
       objectReference: {fileID: 0}
+    - target: {fileID: 1261582984415587290, guid: 2b9333fb0c8294b49860adb2cb49c933, type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 44479
+      objectReference: {fileID: 0}
     - target: {fileID: 1295377667548130167, guid: 2b9333fb0c8294b49860adb2cb49c933, type: 3}
       propertyPath: m_LocalPosition.x
       value: 59.228
@@ -3578,6 +3582,22 @@ PrefabInstance:
     - target: {fileID: 1295377667548130167, guid: 2b9333fb0c8294b49860adb2cb49c933, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3778519626346300426, guid: 2b9333fb0c8294b49860adb2cb49c933, type: 3}
+      propertyPath: m_Antialiasing
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3778519626346300426, guid: 2b9333fb0c8294b49860adb2cb49c933, type: 3}
+      propertyPath: m_RenderShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3778519626346300426, guid: 2b9333fb0c8294b49860adb2cb49c933, type: 3}
+      propertyPath: m_RendererIndex
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3778519626346300426, guid: 2b9333fb0c8294b49860adb2cb49c933, type: 3}
+      propertyPath: m_AllowXRRendering
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3797525798217509190, guid: 2b9333fb0c8294b49860adb2cb49c933, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3591,6 +3611,10 @@ PrefabInstance:
       propertyPath: Target.TrackingTarget
       value: 
       objectReference: {fileID: 958783159}
+    - target: {fileID: 4960298915323763099, guid: 2b9333fb0c8294b49860adb2cb49c933, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6072767056430883603, guid: 2b9333fb0c8294b49860adb2cb49c933, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -3630,6 +3654,18 @@ PrefabInstance:
     - target: {fileID: 6072767056430883603, guid: 2b9333fb0c8294b49860adb2cb49c933, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7202497730722291097, guid: 2b9333fb0c8294b49860adb2cb49c933, type: 3}
+      propertyPath: orthographic
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7202497730722291097, guid: 2b9333fb0c8294b49860adb2cb49c933, type: 3}
+      propertyPath: m_OcclusionCulling
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7202497730722291097, guid: 2b9333fb0c8294b49860adb2cb49c933, type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 46232
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4440,7 +4476,7 @@ GameObject:
   - component: {fileID: 1000963630}
   - component: {fileID: 1000963632}
   - component: {fileID: 1000963631}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Rails
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11651,7 +11687,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1362318245}
   - component: {fileID: 1362318244}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: LampLight (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11785,7 +11821,7 @@ GameObject:
   - component: {fileID: 1380810203}
   - component: {fileID: 1380810205}
   - component: {fileID: 1380810204}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11900,7 +11936,7 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!43 &1415949218
+--- !u!43 &1418414306
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -12259,7 +12295,7 @@ GameObject:
   - component: {fileID: 1598544007}
   - component: {fileID: 1598544009}
   - component: {fileID: 1598544008}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Sky
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29213,7 +29249,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1833118954}
   - component: {fileID: 1833118953}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: LampLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29611,7 +29647,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4151138291346690526, guid: cb301525d46d9fe418d87ad67a220a60, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.00004500114
+      value: 0.00053014385
       objectReference: {fileID: 0}
     - target: {fileID: 4573213150188770456, guid: cb301525d46d9fe418d87ad67a220a60, type: 3}
       propertyPath: m_IsActive
@@ -29876,6 +29912,10 @@ PrefabInstance:
     - target: {fileID: 1029408929184337079, guid: 071b910eb9b218c4c810ee4f4da1d146, type: 3}
       propertyPath: m_Name
       value: Freeform Light 2D
+      objectReference: {fileID: 0}
+    - target: {fileID: 1029408929184337079, guid: 071b910eb9b218c4c810ee4f4da1d146, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1029408929184337079, guid: 071b910eb9b218c4c810ee4f4da1d146, type: 3}
       propertyPath: m_IsActive
