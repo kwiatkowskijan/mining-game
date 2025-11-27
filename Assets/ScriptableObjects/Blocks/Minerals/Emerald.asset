@@ -13,13 +13,14 @@ MonoBehaviour:
   m_Name: Emerald
   m_EditorClassIdentifier: 
   id: 0
-  blockName: 
   tiles:
-  - {fileID: 11400000, guid: b863d4784fec6e448a7d450725fe780e, type: 2}
+  - {fileID: 11400000, guid: dc47c9716178423409b23d6467287f18, type: 2}
   isDescrutable: 1
-  commonness: 10
-  minDepth: -20
-  maxDepth: -40
-  rarity: 0
-  miningMultiplier: 0
-  toSpawn: {fileID: 0}
+  mineralName: Emerald
+  commonness: 30
+  minDepth: -50
+  maxDepth: -350
+  miningMultiplier: 1
+  toSpawn: {fileID: 7910860408734959751, guid: 99782f22dbe1b9e4380a4fbbc845dce6, type: 3}
+  icon: {fileID: 984500575053647298, guid: 3418dfbc9224df34095927adc4a0951d, type: 3}
+  isDiscovered: 0

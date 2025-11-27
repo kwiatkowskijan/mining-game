@@ -14,13 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   tiles:
-  - {fileID: 11400000, guid: 6dd172a0d32124b4e81d43548b7275ef, type: 2}
+  - {fileID: 11400000, guid: 2048de9a107586542b10a40121468344, type: 2}
   isDescrutable: 1
   mineralName: Ruby
-  commonness: 50
-  minDepth: 40
-  maxDepth: 20
-  rarity: 0
+  commonness: 25
+  minDepth: -100
+  maxDepth: -350
   miningMultiplier: 1.5
   toSpawn: {fileID: 7910860408734959751, guid: 9046f74a2ee50dd49b34f34186bd01b5, type: 3}
   icon: {fileID: 1145663082681699642, guid: 543a42b0d087162468f5534c3ebc8afb, type: 3}

@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08c8ffa272d389447bcf4db8401be3cb, type: 3}
+  m_Name: Topaz
+  m_EditorClassIdentifier: Assembly-CSharp::MiningGame.WorldGeneration.Mineral
+  id: 0
+  tiles:
+  - {fileID: 11400000, guid: 5fef730e114c3e6409ccdf25fe33a28e, type: 2}
+  isDescrutable: 1
+  mineralName: Topaz
+  commonness: 35
+  minDepth: 0
+  maxDepth: -300
+  miningMultiplier: 1
+  toSpawn: {fileID: 7910860408734959751, guid: 604a8ced11186ba4fbce7247678d112b, type: 3}
+  icon: {fileID: 1966869010705998647, guid: b6ea0da821afd5343b29980b25118305, type: 3}
+  isDiscovered: 0

@@ -20,7 +20,6 @@ MonoBehaviour:
   commonness: 1
   minDepth: 0
   maxDepth: 0
-  rarity: 0
   miningMultiplier: 1
   toSpawn: {fileID: 7910860408734959751, guid: 9046f74a2ee50dd49b34f34186bd01b5, type: 3}
   icon: {fileID: 0}
