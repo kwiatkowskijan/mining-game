@@ -10,9 +10,9 @@ namespace MiningGame
         [SerializeField] private Sprite crudePickaxe;
         [SerializeField] private GameObject diggingManager;
 
-        void Update()
+        public void EnableToolScripts()
         {
-            if(eq.activeTool == crudePickaxe && eq.enabled)
+            if (eq.activeTool == crudePickaxe && eq.enabled)
             {
                 diggingManager.SetActive(true);
             }

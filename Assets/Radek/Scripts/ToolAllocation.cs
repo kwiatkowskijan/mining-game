@@ -58,6 +58,7 @@ namespace MiningGame
             }
             i = 0;
             equipment.slotsChange = true;
+            equipment.SlotSwitch(chosenSlot);
             gameObject.SetActive(false);
         }
     }

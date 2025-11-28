@@ -37,7 +37,8 @@ namespace MiningGame.Player
 
         [SerializeField] private GameObject buildUIRoot;
 
-        private bool isInBuildMode = false;
+        [HideInInspector] public bool isInBuildMode = false;
+        [HideInInspector] public bool inOtherMenu = false;
         private BuildType currentBuildType = BuildType.Ladder;
         private Dictionary<BuildType, BuildData> buildOptions;
 
@@ -89,7 +90,7 @@ namespace MiningGame.Player
 
         void Update()
         {
-            if (Input.GetKeyDown(KeyCode.B))
+            if (Input.GetKeyDown(KeyCode.B) && !inOtherMenu)
             {
                 HandleBuildModeToggle();
             }
