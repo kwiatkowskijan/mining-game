@@ -95,12 +95,6 @@ namespace MiningGame
             activeTool = toolsImages[chosenSlot - 1].GetComponent<Image>().sprite;
         }
 
-        public void updateRubble()
-        {
-            if(playerRubble>=5) playerRubble=5;
-            rubble.text = playerRubble.ToString();
-        }
-
         public void updateMineral()
         {
             playerMinerals++;

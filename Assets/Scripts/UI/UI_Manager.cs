@@ -1,10 +1,13 @@
-using UnityEngine;
-using UnityEngine.UI;
 using MiningGame.Core;
+using MiningGame.Core.Interfaces;
 using MiningGame.Managers;
 using MiningGame.Player;
 using MiningGame.WorldGeneration;
-using MiningGame.Core.Interfaces;
+using System.Data;
+using TMPro;
+using UnityEditor.UIElements;
+using UnityEngine;
+using UnityEngine.UI;
 
 namespace MiningGame.UI
 {
@@ -18,6 +21,8 @@ namespace MiningGame.UI
 
         [Header("UI Canvas Elements")]
         [SerializeField] private Image healthBar;
+        [SerializeField] private TextMeshProUGUI rubbleNumber;
+        [SerializeField] private TextMeshProUGUI mineralNumber; 
         [SerializeField] private GameObject debugPanel;
         [Header("Minimap")]
         [SerializeField] private Camera minimapCamera;
@@ -123,6 +128,17 @@ namespace MiningGame.UI
         {
             if (mineralsService != null)
                 mineralsService.OnMineralDiscovered -= HandleMineralDiscovered;
+        }
+
+        public void updateRubble(float playerRubble, float maxRubble)
+        {
+            if (playerRubble >= maxRubble) playerRubble = maxRubble;
+            rubbleNumber.text = playerRubble.ToString();
+        }
+
+        public void UpdateMineralNumber(Mineral mineral, int amount)
+        {
+            mineralNumber.text = amount.ToString();
         }
     }
 }
