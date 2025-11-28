@@ -12,7 +12,7 @@ namespace MiningGame
 
         void Update()
         {
-            if(eq.activeTool == crudePickaxe)
+            if(eq.activeTool == crudePickaxe && eq.enabled)
             {
                 diggingManager.SetActive(true);
             }

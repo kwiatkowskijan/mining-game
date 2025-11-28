@@ -94,11 +94,5 @@ namespace MiningGame
 
             activeTool = toolsImages[chosenSlot - 1].GetComponent<Image>().sprite;
         }
-
-        public void updateMineral()
-        {
-            playerMinerals++;
-            minerals.text=playerMinerals.ToString();
-        }
     }
 }
