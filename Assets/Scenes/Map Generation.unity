@@ -3295,6 +3295,7 @@ MonoBehaviour:
   previewTilemap: {fileID: 0}
   previewTileBase: {fileID: 0}
   buildUIRoot: {fileID: 0}
+  activeTool: {fileID: 0}
 --- !u!114 &958783163 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8522725513187923077, guid: 9d9c9a2ee19e745498519946acfe4739, type: 3}
@@ -3932,6 +3933,10 @@ PrefabInstance:
     - target: {fileID: 7324288881707416142, guid: cb301525d46d9fe418d87ad67a220a60, type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 7324288881707416142, guid: cb301525d46d9fe418d87ad67a220a60, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8814810466493952505, guid: cb301525d46d9fe418d87ad67a220a60, type: 3}
       propertyPath: clickSFX
