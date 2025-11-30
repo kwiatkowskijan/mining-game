@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: feef3c7a6a33b6b4bb017d435f0ebeff, type: 3}
-  m_Name: Default
+  m_Name: Shroom
   m_EditorClassIdentifier: Assembly-CSharp::MiningGame.WorldGeneration.Biome
-  biomeName: Default
-  startY: -125
+  biomeName: Shroom
+  startY: 300
   commonBlocks:
   - {fileID: 11400000, guid: f4f2f48293dbc354ea4dbe4f5f6b4b5d, type: 2}

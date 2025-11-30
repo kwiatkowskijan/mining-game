@@ -3690,6 +3690,9 @@ MonoBehaviour:
   backgroundTilemap: {fileID: 1380810205}
   biomes:
   - {fileID: 11400000, guid: bbfba96df817039419172cbfcf13e9b4, type: 2}
+  - {fileID: 11400000, guid: 23850a95b7d915042bea79e2c75900a8, type: 2}
+  - {fileID: 11400000, guid: 8d841703da13cc141bf598009850b814, type: 2}
+  - {fileID: 11400000, guid: 69a58e032ec3e2b4cb553a15665ca68a, type: 2}
   - {fileID: 11400000, guid: 95ac26039f3c52b448286412f94b4f5c, type: 2}
   minerals:
   - {fileID: 11400000, guid: 5b766a11255400447a8957f21519ddc2, type: 2}

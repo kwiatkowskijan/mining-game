@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Woods
   m_EditorClassIdentifier: Assembly-CSharp::MiningGame.WorldGeneration.Biome
   biomeName: Woods
-  startY: 0
+  startY: 125
   commonBlocks:
   - {fileID: 11400000, guid: d0cfe836e9a56e04ba16a6bbd690b136, type: 2}
