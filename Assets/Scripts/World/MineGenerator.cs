@@ -54,6 +54,7 @@ namespace MiningGame.WorldGeneration
             if (seed == 0)
                 seed = Random.Range(-1000000, 1000000);
             _player = GameObject.FindGameObjectWithTag("Player").transform;
+            biomes.Sort((a, b) => a.startY.CompareTo(b.startY));
         }
 
         private void MapTileToBlock()
