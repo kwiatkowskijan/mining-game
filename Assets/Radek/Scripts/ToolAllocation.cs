@@ -11,32 +11,31 @@ namespace MiningGame
         private int chosenSlot;
 
         private int i = 0;
-
         void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Alpha1))
-            {
-                chosenSlot = 0;
-                allocatedSlot();
-            }
+                if (Input.GetKeyDown(KeyCode.Alpha1))
+                {
+                    chosenSlot = 0;
+                    allocatedSlot();
+                }
 
-            if (Input.GetKeyDown(KeyCode.Alpha2))
-            {
-                chosenSlot = 1;
-                allocatedSlot();
-            }
+                if (Input.GetKeyDown(KeyCode.Alpha2))
+                {
+                    chosenSlot = 1;
+                    allocatedSlot();
+                }
 
-            if (Input.GetKeyDown(KeyCode.Alpha3))
-            {
-                chosenSlot = 2;
-                allocatedSlot();
-            }
+                if (Input.GetKeyDown(KeyCode.Alpha3))
+                {
+                    chosenSlot = 2;
+                    allocatedSlot();
+                }
 
-            if (Input.GetKeyDown(KeyCode.Alpha4))
-            {
-                chosenSlot = 3;
-                allocatedSlot();
-            }
+                if (Input.GetKeyDown(KeyCode.Alpha4))
+                {
+                    chosenSlot = 3;
+                    allocatedSlot();
+                }
         }
         void allocatedSlot()
         {
@@ -59,6 +58,26 @@ namespace MiningGame
             i = 0;
             equipment.slotsChange = true;
             equipment.SlotSwitch(chosenSlot);
+            gameObject.SetActive(false);
+        }
+
+        private EquipmentSwaping eqSwap;
+
+        public void Register(EquipmentSwaping swap)
+        {
+            eqSwap = swap;
+            eqSwap.OnEQMenuClosed += HandleMenuClosed;
+        }
+
+        private void OnDisable()
+        {
+            if (eqSwap != null)
+                eqSwap.OnEQMenuClosed -= HandleMenuClosed;
+        }
+
+        private void HandleMenuClosed()
+        {
+            equipment.slotsChange = true;
             gameObject.SetActive(false);
         }
     }

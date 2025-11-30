@@ -1,4 +1,6 @@
 using MiningGame.Player;
+using System;
+using UnityEditor.Profiling.Memory.Experimental;
 using UnityEngine;
 
 namespace MiningGame
@@ -11,11 +13,7 @@ namespace MiningGame
         private BuildMode buildMode;
         [SerializeField] private GameObject EQMenu;
         public bool inEQMenu=false;
-
-        void Start()
-        {
-        
-        }
+        public event Action OnEQMenuClosed;
 
         void Update()
         {
@@ -60,14 +58,23 @@ namespace MiningGame
             movement.disableMovement();
             if (buildMode.isInBuildMode) buildMode.HandleBuildModeToggle();
             buildMode.inOtherMenu = true;
+
+            var allocations = EQMenu.GetComponentsInChildren <ToolAllocation>(true);
+            foreach (var allocation in allocations)
+            {
+                allocation.Register(this);
+            }
         }
 
         private void CloseEQMenu()
         {
-            EQMenu.SetActive(false);
+            OnEQMenuClosed?.Invoke();
+            
             inEQMenu = false;
             buildMode.inOtherMenu = false;
             movement.enableMovement();
+
+            EQMenu.SetActive(false);
         }
     }
 }
