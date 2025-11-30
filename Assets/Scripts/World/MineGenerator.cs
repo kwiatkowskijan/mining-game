@@ -167,8 +167,10 @@ namespace MiningGame.WorldGeneration
                         }
                         else
                         {
-                            CommonBlock commonBlock = ChooseCommonBlock();
-                            mineTilemap.SetTile(tilePosition, commonBlock.tiles[Random.Range(0, commonBlock.tiles.Count)]);
+                            CommonBlock commonBlock = ChooseCommonBlock(x, y);
+                            int tileIndex = Mathf.FloorToInt(DeterministicRandom(x + 7000, y + 8000, seed) * commonBlock.tiles.Count);
+                            tileIndex = Mathf.Clamp(tileIndex, 0, commonBlock.tiles.Count - 1);
+                            mineTilemap.SetTile(tilePosition, commonBlock.tiles[tileIndex]);
                         }
                         backgroundTilemap.SetTile(tilePosition, caveBackgroundTile);
                     }
@@ -177,11 +179,11 @@ namespace MiningGame.WorldGeneration
             TryPlaceStructure(chunkX, chunkY);
         }
 
-        private CommonBlock ChooseCommonBlock()
-        { 
+        private CommonBlock ChooseCommonBlock(int x, int y)
+        {
             foreach (var block in commonBlocks)
             {
-                float roll = Random.Range(0f, 1f);
+                float roll = DeterministicRandom(x + 5000, y + 6000, seed);
                 if (roll < (1f / commonBlocks.Count))
                 {
                     return block;
