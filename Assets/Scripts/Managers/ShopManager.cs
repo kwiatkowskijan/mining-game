@@ -1,5 +1,6 @@
 using System.Linq;
 using UnityEngine;
+using MiningGame.Shop;
 
 namespace MiningGame
 {
@@ -7,6 +8,9 @@ namespace MiningGame
     {
         [Header("Shop Settings")]
         private const int ItemsToGenerate = 3;
+        
+        [Header("Price Configuration")]
+        [SerializeField] private ShopPriceConfig priceConfig;
         
         private ShopItemType[] _generatedItems = new ShopItemType[0];
 
@@ -58,5 +62,22 @@ namespace MiningGame
         }
         
         public ShopItemType[] GetGeneratedItems() => _generatedItems;
+        
+        public int GetItemPrice(ShopItemType itemType)
+        {
+            if (priceConfig == null)
+            {
+                Debug.LogWarning("ShopManager: Price config is not assigned!");
+                return 0;
+            }
+            return priceConfig.GetPrice(itemType);
+        }
+        
+        public ShopItemData GetItemData(ShopItemType itemType)
+        {
+            int price = GetItemPrice(itemType);
+            Sprite icon = priceConfig != null ? priceConfig.GetIcon(itemType) : null;
+            return new ShopItemData(itemType, price, icon);
+        }
     }
 }

@@ -110,7 +110,66 @@ namespace MiningGame
         }
         public void toolAssignment()
         {
-            Debug.Log("Dzia�a");
+            Debug.Log("Działa");
+        }
+        
+        public bool AddItem(ShopItemType itemType, Sprite itemSprite = null)
+        {
+            Debug.Log($"Equipment.AddItem called: itemType={itemType}, itemSprite={(itemSprite != null ? itemSprite.name : "NULL")}");
+            Debug.Log($"Equipment: toolsImages array length = {toolsImages.Length}");
+            
+            for (int i = 0; i < toolsImages.Length; i++)
+            {
+                if (toolsImages[i] == null)
+                {
+                    Debug.LogWarning($"Equipment: toolsImages[{i}] is NULL!");
+                    continue;
+                }
+                
+                Image slotImage = toolsImages[i].GetComponent<Image>();
+                if (slotImage == null)
+                {
+                    Debug.LogWarning($"Equipment: toolsImages[{i}] has no Image component!");
+                    continue;
+                }
+                
+                Debug.Log($"Equipment: Checking slot {i}: sprite={(slotImage.sprite != null ? slotImage.sprite.name : "NULL")}, alpha={slotImage.color.a}");
+                
+                if (slotImage.sprite == null || slotImage.color.a < 0.1f)
+                {
+                    Debug.Log($"Equipment: Found empty slot at index {i}");
+                    
+                    if (itemSprite != null)
+                    {
+                        slotImage.sprite = itemSprite;
+                        slotImage.color = Color.white;
+                        Debug.Log($"Equipment: Set sprite to '{itemSprite.name}' and color to white");
+                    }
+                    else
+                    {
+                        Debug.LogWarning($"Equipment: itemSprite is NULL, cannot set sprite!");
+                    }
+                    
+                    Debug.Log($"Equipment: Added {itemType} to slot {i + 1}");
+                    return true;
+                }
+            }
+            
+            Debug.Log("Equipment: All slots are full!");
+            return false;
+        }
+        
+        public bool HasEmptySlot()
+        {
+            for (int i = 0; i < toolsImages.Length; i++)
+            {
+                Image slotImage = toolsImages[i].GetComponent<Image>();
+                if (slotImage != null && (slotImage.sprite == null || slotImage.color.a < 0.1f))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

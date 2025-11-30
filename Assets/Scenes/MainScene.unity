@@ -179,6 +179,10 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 99
       objectReference: {fileID: 0}
+    - target: {fileID: 8522725513187923077, guid: 9d9c9a2ee19e745498519946acfe4739, type: 3}
+      propertyPath: currentMoney
+      value: 75
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -18063,13 +18067,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mineTilemap: {fileID: 2065844682}
   backgroundTilemap: {fileID: 236160307}
-  ores:
-  - {fileID: 11400000, guid: 3740173062bcf91458aefa0e730a6ceb, type: 2}
-  - {fileID: 11400000, guid: 37683fae43c7f1b4aa7e6bdb215b7d6c, type: 2}
-  - {fileID: 11400000, guid: e9a0e25925860d746bdf93bdb8bb2c1c, type: 2}
+  minerals: []
   commonBlocks:
   - {fileID: 11400000, guid: f4f2f48293dbc354ea4dbe4f5f6b4b5d, type: 2}
-  deafultOre: {fileID: 11400000, guid: 26cbe6b92d5c66645898bdaa09058c1e, type: 2}
+  defaultMineral: {fileID: 0}
   bedrock: {fileID: 11400000, guid: d57d2f2375917e34ba231929d61dd985, type: 2}
   caveBackgroundTile: {fileID: 11400000, guid: 72cb1049819db4d4d8f9003f9588db2a, type: 2}
   startX: 56
@@ -18079,11 +18080,7 @@ MonoBehaviour:
   loadDistance: 2
   seed: 10
   mineNoiseScale: 0.13
-  oreNoiseScale: 0.05
-  caveChance: 0.1
-  caveWalkers: 2
-  caveWalkLength: 50
-  caveCarveRadius: 2
+  mineralNoiseScale: 0.05
   structures: []
 --- !u!1 &643358898
 GameObject:

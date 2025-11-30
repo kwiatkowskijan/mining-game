@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using MiningGame.Shop;
+using MiningGame.Player;
 
 namespace MiningGame
 {
@@ -14,9 +15,14 @@ namespace MiningGame
 
         [Header("Shop UI")]
         [SerializeField] private ShopUIController shopUIController;
+        
+        [Header("Player References")]
+        [SerializeField] private Stats playerStats;
+        [SerializeField] private Equipment playerEquipment;
 
         private bool _playerInRange;
         private bool _shopOpen;
+        private ShopItemData[] _currentShopItems;
 
         private void Start()
         {
@@ -37,6 +43,28 @@ namespace MiningGame
 
             if (shopUIController == null)
                 Debug.LogWarning("ShopTrigger: shopUIcontroller not assigned on " + gameObject.name + ". Assign to display items when opening shop.");
+            else
+                shopUIController.OnBuyButtonClicked += HandlePurchase;
+            
+            if (playerStats == null)
+            {
+                var player = GameObject.FindGameObjectWithTag("Player");
+                if (player != null)
+                    playerStats = player.GetComponent<Stats>();
+                
+                if (playerStats == null)
+                    Debug.LogWarning("ShopTrigger: Could not find Player Stats component!");
+            }
+            
+            if (playerEquipment == null)
+            {
+                var player = GameObject.FindGameObjectWithTag("Player");
+                if (player != null)
+                    playerEquipment = player.GetComponent<Equipment>();
+                
+                if (playerEquipment == null)
+                    Debug.LogWarning("ShopTrigger: Could not find Player Equipment component!");
+            }
             
             var col2d = GetComponent<Collider2D>();
             var col3d = GetComponent<Collider>();
@@ -106,12 +134,21 @@ namespace MiningGame
 
         private void OpenShop()
         {
-            ShopItemType[] items = new ShopItemType[0];
+            _currentShopItems = new ShopItemData[0];
+            
             if (shopManager != null)
             {
                 shopManager.GenerateShopItems();
-                items = shopManager.GetGeneratedItems();
-                Debug.Log("ShopTrigger: Generated items: " + string.Join(", ", items));
+                ShopItemType[] itemTypes = shopManager.GetGeneratedItems();
+                
+                
+                _currentShopItems = new ShopItemData[itemTypes.Length];
+                for (int i = 0; i < itemTypes.Length; i++)
+                {
+                    _currentShopItems[i] = shopManager.GetItemData(itemTypes[i]);
+                }
+                
+                Debug.Log("ShopTrigger: Generated items: " + string.Join(", ", itemTypes));
             }
 
             _shopOpen = true;
@@ -120,7 +157,7 @@ namespace MiningGame
 
             if (shopUIController != null)
             {
-                shopUIController.ShowItems(items);
+                shopUIController.ShowItems(_currentShopItems);
             }
 
             if (tooltipE != null) tooltipE.SetActive(false);
@@ -137,6 +174,94 @@ namespace MiningGame
             if (tooltipE != null && _playerInRange) tooltipE.SetActive(true);
 
             Debug.Log("ShopTrigger: Shop closed");
+        }
+        
+        private void HandlePurchase(int itemIndex)
+        {
+            if (_currentShopItems == null || itemIndex >= _currentShopItems.Length)
+            {
+                Debug.LogError("ShopTrigger: Invalid item index!");
+                return;
+            }
+            
+            ShopItemData item = _currentShopItems[itemIndex];
+            
+            if (playerStats == null)
+            {
+                Debug.LogError("ShopTrigger: Player Stats not found! Cannot complete purchase.");
+                return;
+            }
+            
+            if (playerEquipment == null)
+            {
+                Debug.LogError("ShopTrigger: Player Equipment not found! Cannot complete purchase.");
+                return;
+            }
+            
+            if (!playerEquipment.HasEmptySlot())
+            {
+                Debug.Log("ShopTrigger: Equipment is full! Cannot purchase item.");
+                return;
+            }
+            
+            if (playerStats.CurrentMoney < item.price)
+            {
+                Debug.Log($"ShopTrigger: Not enough money! Need ${item.price}, have ${playerStats.CurrentMoney}");
+                return;
+            }
+            
+            playerStats.RemoveMoney(item.price);
+            
+            Debug.Log($"ShopTrigger: About to add item. Icon = {(item.icon != null ? item.icon.name : "NULL")}");
+            
+            bool added = playerEquipment.AddItem(item.itemType, item.icon);
+            
+            if (added)
+            {
+                Debug.Log($"ShopTrigger: Successfully purchased {item.itemType} for ${item.price}. Remaining money: ${playerStats.CurrentMoney}");
+                
+                Debug.Log("=== EQUIPMENT AFTER PURCHASE ===");
+                var toolsImages = playerEquipment.GetType()
+                    .GetField("toolsImages", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)
+                    ?.GetValue(playerEquipment) as UnityEngine.GameObject[];
+                
+                if (toolsImages != null)
+                {
+                    for (int i = 0; i < toolsImages.Length; i++)
+                    {
+                        if (toolsImages[i] == null)
+                        {
+                            Debug.Log($"  Slot {i + 1}: GameObject = NULL");
+                            continue;
+                        }
+                        
+                        var img = toolsImages[i].GetComponent<UnityEngine.UI.Image>();
+                        if (img == null)
+                        {
+                            Debug.Log($"  Slot {i + 1}: brak Image component");
+                            continue;
+                        }
+                        
+                        string spriteName = img.sprite != null ? img.sprite.name : "EMPTY";
+                        Debug.Log($"  Slot {i + 1}: Sprite = '{spriteName}', Alpha = {img.color.a:F2}");
+                    }
+                }
+                else
+                {
+                    Debug.LogWarning("  Could not access toolsImages array!");
+                }
+            }
+            else
+            {
+                playerStats.AddMoney(item.price);
+                Debug.LogError("ShopTrigger: Failed to add item to equipment. Money refunded.");
+            }
+        }
+        
+        private void OnDestroy()
+        {
+            if (shopUIController != null)
+                shopUIController.OnBuyButtonClicked -= HandlePurchase;
         }
     }
 }
