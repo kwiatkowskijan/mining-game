@@ -6,16 +6,15 @@ namespace MiningGame
     public class RubbleDisposal : MonoBehaviour
     {
         [SerializeField] private float disposalRate = 2f;
-        [SerializeField] private float rubbleAmount;
         private bool playerInRange = false;
-        private Equipment eq;
+        private Stats stats;
         private Controller movement;
 
         private void Update()
         {
-            if (playerInRange && eq != null && movement != null)
+            if (playerInRange && stats != null && movement != null)
             {
-                if (Input.GetKey(KeyCode.E) && eq.playerRubble > 0f)
+                if (Input.GetKey(KeyCode.E) && stats.CurrentRubble > 0f)
                 {
                     DisposeRubble();
                     movement.disableMovement();
@@ -33,7 +32,7 @@ namespace MiningGame
             {
                 movement = other.GetComponent<Controller>();
                 movement.saveDefaults();
-                eq = other.GetComponent<Equipment>();
+                stats = other.GetComponent<Stats>();
                 playerInRange = true;
             }
         }
@@ -43,16 +42,15 @@ namespace MiningGame
             if (other.CompareTag("Player"))
             {
                 movement = null;
-                eq = null;
+                stats = null;
                 playerInRange = false;
             }
         }
         
         private void DisposeRubble()
         {
-            eq.playerRubble = Mathf.Max(0, eq.playerRubble - disposalRate * Time.deltaTime);
-            eq.playerRubble = Mathf.Round(eq.playerRubble * 100f) / 100f;
-            eq.updateRubble();
+            stats.RemoveRubble(disposalRate);
+            stats.UpdateRubbleUI();
         }
     }
 }

@@ -1,25 +1,30 @@
+using MiningGame.Player;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace MiningGame
 {
     public class DirtBall : MonoBehaviour
     {
-        public Transform player;
-        public float attractionRange = 3f;
-        public float attractionSpeed = 5f;
-        Rigidbody2D rb;
+        private Transform player;
+        [Header("Attraction to Player")]
+        [SerializeField] private float attractionRange = 3f;
+        [SerializeField] private float attractionSpeed = 5f;
+        private Rigidbody2D rb;
         private float randomMass;
-        public Equipment eq;
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
+        [Header("Rubble Amount")]
+        [SerializeField] private float randomMassLowerRange;
+        [SerializeField] private float randomMassHigherRange;
+        private Stats stats;
+
         void Start()
         {
             rb= GetComponent<Rigidbody2D>();
             player = GameObject.FindGameObjectWithTag("Player").transform;
-            randomMass = Random.Range(0.5f,1.5f);
+            randomMass = Random.Range(randomMassLowerRange,randomMassHigherRange);
             randomMass = Mathf.Round(randomMass * 100f) / 100f;
         }
 
-        // Update is called once per frame
         void FixedUpdate()
         {
             if (player == null) return;
@@ -37,9 +42,8 @@ namespace MiningGame
         {
             if (other.CompareTag("Player"))
             {
-                eq = other.GetComponent<Equipment>();
-                eq.playerRubble += randomMass;
-                eq.updateRubble();
+                stats = other.GetComponent<Stats>();
+                stats.AddRubble(randomMass);
                 Destroy(gameObject);
             }
         }

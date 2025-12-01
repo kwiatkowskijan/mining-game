@@ -1,4 +1,6 @@
 using MiningGame.Player;
+using System;
+using UnityEditor.Profiling.Memory.Experimental;
 using UnityEngine;
 
 namespace MiningGame
@@ -7,31 +9,21 @@ namespace MiningGame
     {
         [SerializeField] private GameObject interactionTooltip;
         private bool inTrigger=false;
-        public Controller movement;
+        private Controller movement;
+        private BuildMode buildMode;
         [SerializeField] private GameObject EQMenu;
-        public bool inMenu=false;
+        public bool inEQMenu=false;
+        public event Action OnEQMenuClosed;
 
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
-        void Start()
-        {
-        
-        }
-
-        // Update is called once per frame
         void Update()
         {
-            if (inTrigger && Input.GetKeyDown(KeyCode.E) && !inMenu)
+            if (inTrigger && Input.GetKeyDown(KeyCode.E) && !inEQMenu)
             {
-                EQMenu.SetActive(true);
-                inMenu = true;
-                movement.saveDefaults();
-                movement.disableMovement();
+                OpenEQMenu();
             }
-            else if(inTrigger && Input.GetKeyDown(KeyCode.E) && inMenu)
+            else if(inTrigger && Input.GetKeyDown(KeyCode.E) && inEQMenu)
             {
-                EQMenu.SetActive(false);
-                inMenu = false;
-                movement.enableMovement();
+                CloseEQMenu();
             }
         }
 
@@ -41,7 +33,8 @@ namespace MiningGame
             {
                 interactionTooltip.SetActive(true);
                 inTrigger = true;
-                
+                movement = collision.gameObject.GetComponent<Controller>();
+                buildMode = collision.gameObject.GetComponent<BuildMode>();
             }
             
         }
@@ -52,7 +45,36 @@ namespace MiningGame
             {
                 interactionTooltip.SetActive(false);
                 inTrigger = false;
+                movement = null;
+                buildMode = null;
             }
+        }
+
+        private void OpenEQMenu()
+        {
+            EQMenu.SetActive(true);
+            inEQMenu = true;
+            movement.saveDefaults();
+            movement.disableMovement();
+            if (buildMode.isInBuildMode) buildMode.HandleBuildModeToggle();
+            buildMode.inOtherMenu = true;
+
+            var allocations = EQMenu.GetComponentsInChildren <ToolAllocation>(true);
+            foreach (var allocation in allocations)
+            {
+                allocation.Register(this);
+            }
+        }
+
+        private void CloseEQMenu()
+        {
+            OnEQMenuClosed?.Invoke();
+            
+            inEQMenu = false;
+            buildMode.inOtherMenu = false;
+            movement.enableMovement();
+
+            EQMenu.SetActive(false);
         }
     }
 }

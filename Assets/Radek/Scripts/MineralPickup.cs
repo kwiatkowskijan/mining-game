@@ -4,6 +4,7 @@ using MiningGame.Managers;
 using MiningGame.WorldGeneration;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using MiningGame.Player;
 
 namespace MiningGame
 {
@@ -18,9 +19,7 @@ namespace MiningGame
         [SerializeField] private float attractionSpeed = 5f;
         [SerializeField] private AudioClip pickupAudio;
         private Rigidbody2D rb;
-        //private float randomMass;
-        //pytanie: czy minera�y powinny mie� losow� wag� czy po prostu warto�� 1?
-        [HideInInspector] public Equipment eq;
+        private Stats stats;
 
         private void Awake()
         {
@@ -31,9 +30,6 @@ namespace MiningGame
         {
             rb = GetComponent<Rigidbody2D>();
             player = GameObject.FindGameObjectWithTag("Player").transform;
-            
-            //randomMass = Random.Range(0.5f, 1.5f);
-            //randomMass = Mathf.Round(randomMass * 100f) / 100f;
         }
 
         void FixedUpdate()
@@ -53,9 +49,8 @@ namespace MiningGame
         {
             if (other.CompareTag("Player"))
             {
-                eq = other.GetComponent<Equipment>();
-                //eq.playerRubble += randomMass;
-                eq.updateMineral();
+                stats = other.GetComponent<Stats>();
+                stats.AddMineral(mineral, 1);
                 _mineralsService.DiscoverMineral(mineral);
                 _audioService.PlaySfx(pickupAudio);
                 Destroy(gameObject);

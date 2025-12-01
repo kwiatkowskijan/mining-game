@@ -22,11 +22,13 @@ namespace MiningGame
         [SerializeField] private Sprite[] activeSlots;
         [SerializeField] private Sprite[] inactiveSlots;
 
+        [SerializeField] private ActiveTool activeToolScript;
+
         public bool slotsChange=true;
         
         void Start()
         {
-            chosenSlot = 1;
+            chosenSlot = 0;
         }
 
         void Update()
@@ -35,56 +37,56 @@ namespace MiningGame
             {
                 if (Input.GetKeyDown(KeyCode.Alpha1))
                 {
-                    chosenSlot = 1;
+                    chosenSlot = 0;
                     SlotSwitch(chosenSlot);
                 }
 
                 if (Input.GetKeyDown(KeyCode.Alpha2))
                 {
-                    chosenSlot = 2;
+                    chosenSlot = 1;
                     SlotSwitch(chosenSlot);
                 }
 
                 if (Input.GetKeyDown(KeyCode.Alpha3))
                 {
-                    chosenSlot = 3;
+                    chosenSlot = 2;
                     SlotSwitch(chosenSlot);
                 }
 
                 if (Input.GetKeyDown(KeyCode.Alpha4))
                 {
-                    chosenSlot = 4;
+                    chosenSlot = 3;
                     SlotSwitch(chosenSlot);
                 }
             }
         }
 
-        void SlotSwitch(int chosenSlot)
+        public void SlotSwitch(int chosenSlot)
         {
             switch(chosenSlot)
             {
-                case 1:
+                case 0:
                     slots[0].gameObject.GetComponent<Image>().sprite = activeSlots[0];
                     slots[1].gameObject.GetComponent<Image>().sprite = inactiveSlots[1];
                     slots[2].gameObject.GetComponent<Image>().sprite = inactiveSlots[2];
                     slots[3].gameObject.GetComponent<Image>().sprite = inactiveSlots[3];
                     break;
 
-                case 2:
+                case 1:
                     slots[0].gameObject.GetComponent<Image>().sprite = inactiveSlots[0];
                     slots[1].gameObject.GetComponent<Image>().sprite = activeSlots[1];
                     slots[2].gameObject.GetComponent<Image>().sprite = inactiveSlots[2];
                     slots[3].gameObject.GetComponent<Image>().sprite = inactiveSlots[3];
                     break;
 
-                case 3:
+                case 2:
                     slots[0].gameObject.GetComponent<Image>().sprite = inactiveSlots[0];
                     slots[1].gameObject.GetComponent<Image>().sprite = inactiveSlots[1];
                     slots[2].gameObject.GetComponent<Image>().sprite = activeSlots[2];
                     slots[3].gameObject.GetComponent<Image>().sprite = inactiveSlots[3];
                     break;
 
-                case 4:
+                case 3:
                     slots[0].gameObject.GetComponent<Image>().sprite = inactiveSlots[0];
                     slots[1].gameObject.GetComponent<Image>().sprite = inactiveSlots[1];
                     slots[2].gameObject.GetComponent<Image>().sprite = inactiveSlots[2];
@@ -92,19 +94,13 @@ namespace MiningGame
                     break;
             }
 
-            activeTool = toolsImages[chosenSlot - 1].GetComponent<Image>().sprite;
+            activeTool = toolsImages[chosenSlot].GetComponent<Image>().sprite;
+            CheckChosenSlot();
         }
 
-        public void updateRubble()
+        public void CheckChosenSlot()
         {
-            if(playerRubble>=5) playerRubble=5;
-            rubble.text = playerRubble.ToString();
-        }
-
-        public void updateMineral()
-        {
-            playerMinerals++;
-            minerals.text=playerMinerals.ToString();
+            activeToolScript.EnableToolScripts();
         }
     }
 }

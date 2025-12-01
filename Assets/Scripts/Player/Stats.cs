@@ -2,11 +2,13 @@ using MiningGame.Core;
 using MiningGame.Core.Interfaces;
 using MiningGame.Managers;
 using MiningGame.Services;
+using MiningGame.UI;
 using MiningGame.WorldGeneration;
 using NUnit.Framework;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 
 namespace MiningGame.Player
@@ -22,15 +24,20 @@ namespace MiningGame.Player
         [Header("Rubble")]
         [SerializeField] private float maxRubble = 10f;
         [SerializeField] private float currentRubble;
-        public float CurrentWeight => currentRubble;
+        public float CurrentRubble => currentRubble;
+        public float MaxRubble => maxRubble;
         public event Action<float> OnWeightChanged;
 
         [Header("Minerals")]
+        private Dictionary<Mineral, int> mineralAmounts = new();
 
         [Header("Money")]
         [SerializeField] private float currentMoney;
         public float CurrentMoney => currentMoney;
         public event Action<float> OnMoneyChanged;
+
+        [Header("UI")]
+        [SerializeField] private UI_Manager ui;
 
         private void Awake()
         {
@@ -62,24 +69,38 @@ namespace MiningGame.Player
             //tutaj trzeba dodac jakas animacje, respawn albo cokolwiek
         }
 
-        public void AddWeight(float amount)
+        public void AddRubble(float amount)
         {
             currentRubble += amount;
             OnWeightChanged?.Invoke(currentRubble);
-            
-            if (currentRubble >= maxRubble) 
-            {
-                Debug.Log("Player is overloaded");
-                //jakas mechanika obciazenia
-            }
+            UpdateRubbleUI();
         }
 
-        public void RemoveWeight(float amount)
+        public void RemoveRubble(float disposalRate)
         {
-            currentRubble -= amount;
-            OnWeightChanged?.Invoke(currentRubble);
+            currentRubble = Mathf.Max(0, currentRubble - disposalRate * Time.deltaTime);
+            currentRubble = Mathf.Round(currentRubble * 100f) / 100f;
 
-            //tutaj też to bedzie trzeba rozwinac pewnie
+            UpdateRubbleUI();
+        }
+
+        public void UpdateRubbleUI()
+        {
+            ui.updateRubble(currentRubble, maxRubble);
+        }
+
+        public void AddMineral(Mineral mineral, int amount = 1)
+        {
+            if (!mineralAmounts.ContainsKey(mineral))
+                mineralAmounts[mineral] = 0;
+
+            mineralAmounts[mineral] += amount;
+            ui.UpdateMineralNumber(mineral, mineralAmounts[mineral]);
+        }
+
+        public int GetMineralAmount(Mineral mineral)
+        {
+            return mineralAmounts.TryGetValue(mineral, out int amt) ? amt : 0;
         }
 
         public void AddMoney(float amount)

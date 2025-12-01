@@ -1,3 +1,4 @@
+using MiningGame.Player;
 using MiningGame.WorldGeneration;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -10,7 +11,7 @@ namespace MiningGame.Tools
     {
         public TileSnapSelector selector;
         public Tilemap tilemap;
-        public Equipment eq;
+        public Stats stats;
 
         public float miningTime = 2f;
         [SerializeField] private float holdTimer = 0f;
@@ -24,13 +25,11 @@ namespace MiningGame.Tools
         [Header("Mineral Block")]
         [SerializeField] private GameObject mineralPickup;
 
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
-            eq = GameObject.FindGameObjectWithTag("Player").GetComponent<Equipment>();
+            stats = GameObject.FindGameObjectWithTag("Player").GetComponent<Stats>();
         }
 
-        // Update is called once per frame
         void Update()
         {
             Vector3Int? tileToDig = selector.GetCurrentTile();
@@ -48,7 +47,7 @@ namespace MiningGame.Tools
                 lastTargetedTile = tileToDig;
             }
 
-            if (eq.playerRubble < eq.rubbleMax)
+            if (stats.CurrentRubble < stats.MaxRubble)
             {
                 rubbleMessage.SetActive(false);
                 if (Input.GetMouseButton(0)) // lewy przycisk myszy
