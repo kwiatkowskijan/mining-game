@@ -134,14 +134,17 @@ namespace MiningGame.Player
 
         [Header("Systems to Disable")]
         [SerializeField] private Equipment eq;
+        [SerializeField] private ActiveTool activeTool;
         private void DisableUnnecessarySystems()
         {
             eq.enabled = false;
+            activeTool.EnableToolScripts();
         }
 
         private void EnableSystems()
         {
             eq.enabled = true;
+            activeTool.EnableToolScripts();
         }
 
         private void TryPlaceTile()
