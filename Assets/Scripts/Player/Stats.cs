@@ -86,7 +86,10 @@ namespace MiningGame.Player
 
         public void UpdateRubbleUI()
         {
-            ui.updateRubble(currentRubble, maxRubble);
+            if (ui != null)
+            {
+                ui.updateRubble(currentRubble, maxRubble);
+            }
         }
 
         public void AddMineral(Mineral mineral, int amount = 1)
@@ -95,7 +98,11 @@ namespace MiningGame.Player
                 mineralAmounts[mineral] = 0;
 
             mineralAmounts[mineral] += amount;
-            ui.UpdateMineralNumber(mineral, mineralAmounts[mineral]);
+            
+            if (ui != null)
+            {
+                ui.UpdateMineralNumber(mineral, mineralAmounts[mineral]);
+            }
         }
 
         public int GetMineralAmount(Mineral mineral)
@@ -113,6 +120,41 @@ namespace MiningGame.Player
         {
             currentMoney -= amount;
             OnMoneyChanged?.Invoke(currentMoney);
+        }
+
+        // === METODY DO WCZYTYWANIA SAVE'A ===
+        
+        public void SetHealthFromSave(float health)
+        {
+            currentHealth = Mathf.Clamp(health, 0, maxHealth);
+            OnHealthChanged?.Invoke(currentHealth);
+        }
+
+        public void SetMoneyFromSave(float money)
+        {
+            currentMoney = money;
+            OnMoneyChanged?.Invoke(currentMoney);
+        }
+
+        public void SetRubbleFromSave(float rubble)
+        {
+            currentRubble = Mathf.Clamp(rubble, 0, maxRubble);
+            OnWeightChanged?.Invoke(currentRubble);
+            UpdateRubbleUI();
+        }
+
+        public void SetMineralAmountsFromSave(Dictionary<Mineral, int> amounts)
+        {
+            mineralAmounts = amounts ?? new Dictionary<Mineral, int>();
+            
+            // Zaktualizuj UI dla wszystkich minerałów - tylko jeśli ui istnieje
+            if (ui != null)
+            {
+                foreach (var kvp in mineralAmounts)
+                {
+                    ui.UpdateMineralNumber(kvp.Key, kvp.Value);
+                }
+            }
         }
     }
 }
