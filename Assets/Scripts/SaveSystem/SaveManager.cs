@@ -22,7 +22,7 @@ namespace MiningGame.SaveSystem
 
         private float _sessionStartTime;
         private float _previousPlayTime;
-        private bool _shouldLoadAfterSceneLoad = false; // Flaga do wczytania save po zmianie sceny
+        private bool _shouldLoadAfterSceneLoad = false;
 
         private string SaveFilePath => Path.Combine(Application.persistentDataPath, saveFileName);
 
@@ -50,7 +50,6 @@ namespace MiningGame.SaveSystem
                 StartCoroutine(AutoSaveCoroutine());
             }
             
-            // Subskrybuj event zmiany sceny
             SceneManager.sceneLoaded += OnSceneLoaded;
         }
 
@@ -63,7 +62,6 @@ namespace MiningGame.SaveSystem
         {
             Debug.Log($"SaveManager: Scene loaded - {scene.name}");
             
-            // Jeśli flaga jest ustawiona, wczytaj save po opóźnieniu
             if (_shouldLoadAfterSceneLoad)
             {
                 _shouldLoadAfterSceneLoad = false;
@@ -73,7 +71,6 @@ namespace MiningGame.SaveSystem
 
         private IEnumerator LoadGameAfterDelay()
         {
-            // Poczekaj aż wszystko się zainicjalizuje
             yield return new WaitForSeconds(1f);
             
             Debug.Log("SaveManager: Auto-loading save file after scene load...");
@@ -132,18 +129,15 @@ namespace MiningGame.SaveSystem
             var stats = player.GetComponent<Stats>();
             
             GameSaveData data = new GameSaveData();
-
-            // Metadata
+            
             data.saveVersion = "1.0";
             data.saveDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             data.totalPlayTime = _previousPlayTime + (Time.time - _sessionStartTime);
-
-            // Player Position
+            
             data.playerPosX = player.transform.position.x;
             data.playerPosY = player.transform.position.y;
             data.playerPosZ = player.transform.position.z;
-
-            // Player Stats
+            
             if (stats != null)
             {
                 data.playerHealth = stats.CurrentHealth;
@@ -152,7 +146,6 @@ namespace MiningGame.SaveSystem
                 data.playerRubble = stats.CurrentRubble;
                 data.playerMaxRubble = stats.MaxRubble;
                 
-                // Minerały przez refleksję
                 var field = typeof(Stats).GetField("mineralAmounts", 
                     System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
                 if (field != null)
@@ -179,8 +172,7 @@ namespace MiningGame.SaveSystem
             {
                 data.chosenSlot = equipment.chosenSlot;
             }
-
-            // Discovered Minerals
+            
             if (MineralsManager.Instance != null && MineralsManager.Instance.minerals != null)
             {
                 foreach (var mineral in MineralsManager.Instance.minerals)
@@ -191,16 +183,14 @@ namespace MiningGame.SaveSystem
                     }
                 }
             }
-
-            // Zniszczone bloki i postawione budynki
+            
             if (WorldChangeTracker.Instance != null)
             {
                 data.destroyedBlocks = WorldChangeTracker.Instance.GetDestroyedTiles();
                 data.placedBuildings = WorldChangeTracker.Instance.GetPlacedBuildings();
                 Debug.Log($"SaveManager: Saving {data.destroyedBlocks.Count} destroyed blocks, {data.placedBuildings.Count} buildings");
             }
-
-            // ZAPISZ DO PLIKU
+            
             try
             {
                 string json = JsonUtility.ToJson(data, true);
@@ -214,11 +204,7 @@ namespace MiningGame.SaveSystem
                 Debug.LogError($"SaveManager: SAVE FAILED - {e.Message}");
             }
         }
-
-        /// <summary>
-        /// Ustaw flagę do automatycznego wczytania save po załadowaniu następnej sceny.
-        /// Wywołaj z MainMenu przed LoadScene().
-        /// </summary>
+        
         public void RequestLoadAfterSceneLoad()
         {
             _shouldLoadAfterSceneLoad = true;
@@ -258,7 +244,6 @@ namespace MiningGame.SaveSystem
                 var stats = player.GetComponent<Stats>();
                 if (stats != null)
                 {
-                    // Użyj publicznych metod które wywołają eventy i zaktualizują UI
                     stats.SetHealthFromSave(data.playerHealth);
                     stats.SetMoneyFromSave(data.playerMoney);
                     stats.SetRubbleFromSave(data.playerRubble);
@@ -302,18 +287,15 @@ namespace MiningGame.SaveSystem
                         mineral.isDiscovered = data.discoveredMineralNames.Contains(mineral.mineralName);
                     }
                 }
-
-                // Zniszczone bloki - wczytaj i usuń z tilemapy
+                
                 if (data.destroyedBlocks != null && data.destroyedBlocks.Count > 0)
                 {
                     var mineGenerator = FindFirstObjectByType<MineGenerator>();
                     if (mineGenerator != null)
                     {
-                        // Znajdź tilemapę kopalni
                         var tilemap = mineGenerator.GetComponentInChildren<Tilemap>();
                         if (tilemap == null)
                         {
-                            // Spróbuj znaleźć po nazwie
                             var tilemapObj = GameObject.Find("MineTilemap");
                             if (tilemapObj != null) tilemap = tilemapObj.GetComponent<Tilemap>();
                         }
@@ -346,11 +328,32 @@ namespace MiningGame.SaveSystem
                 File.Delete(SaveFilePath);
                 Debug.Log("SaveManager: Old save deleted.");
             }
-
-            // Wyczyść WorldChangeTracker (zniszczone bloki, budynki)
+            
             if (WorldChangeTracker.Instance != null)
             {
                 WorldChangeTracker.Instance.Clear();
+            }
+            
+            var player = FindPlayer();
+            float startHealth = 100f;
+            float startMaxHealth = 100f;
+            float startMoney = 10000f;
+            float startRubble = 0f;
+            float startMaxRubble = 10f;
+            Vector3 startPosition = Vector3.zero;
+            
+            if (player != null)
+            {
+                var stats = player.GetComponent<Stats>();
+                if (stats != null)
+                {
+                    startHealth = stats.maxHealth;
+                    startMaxHealth = stats.maxHealth;
+                    startMoney = stats.CurrentMoney;
+                    startRubble = stats.CurrentRubble;
+                    startMaxRubble = stats.MaxRubble;
+                }
+                startPosition = player.transform.position;
             }
 
             GameSaveData data = new GameSaveData
@@ -358,14 +361,14 @@ namespace MiningGame.SaveSystem
                 saveVersion = "1.0",
                 saveDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
                 totalPlayTime = 0f,
-                playerHealth = 100f,
-                playerMaxHealth = 100f,
-                playerMoney = 10000f,
-                playerRubble = 0f,
-                playerMaxRubble = 10f,
-                playerPosX = 0f,
-                playerPosY = 0f,
-                playerPosZ = 0f,
+                playerHealth = startHealth,
+                playerMaxHealth = startMaxHealth,
+                playerMoney = startMoney,
+                playerRubble = startRubble,
+                playerMaxRubble = startMaxRubble,
+                playerPosX = startPosition.x,
+                playerPosY = startPosition.y,
+                playerPosZ = startPosition.z,
                 chosenSlot = 0,
                 worldSeed = UnityEngine.Random.Range(-1000000, 1000000)
             };
@@ -373,7 +376,7 @@ namespace MiningGame.SaveSystem
             string json = JsonUtility.ToJson(data, true);
             File.WriteAllText(SaveFilePath, json);
 
-            Debug.Log("SaveManager: New game save created.");
+            Debug.Log($"SaveManager: New game save created with starting values - Health: {startHealth}, Money: {startMoney}, Position: {startPosition}");
         }
 
         public bool SaveExists()

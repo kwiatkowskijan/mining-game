@@ -11,11 +11,9 @@ namespace MiningGame.SaveSystem
     public class WorldChangeTracker : MonoBehaviour
     {
         public static WorldChangeTracker Instance { get; private set; }
-
-        // Lista zniszczonych bloków (pozycje tile'ów które zostały usunięte)
+        
         private HashSet<Vector3Int> _destroyedTiles = new HashSet<Vector3Int>();
         
-        // Lista postawionych budynków
         private List<PlacedBuildingData> _placedBuildings = new List<PlacedBuildingData>();
 
         private void Awake()
@@ -31,19 +29,13 @@ namespace MiningGame.SaveSystem
             
             Debug.Log($"WorldChangeTracker: Initialized. Instance set to: {gameObject.name}");
         }
-
-        /// <summary>
-        /// Wywołaj gdy gracz zniszczy blok
-        /// </summary>
+        
         public void RegisterDestroyedTile(Vector3Int tilePos)
         {
             _destroyedTiles.Add(tilePos);
             Debug.Log($"WorldChangeTracker: Tile destroyed at {tilePos}. Total destroyed: {_destroyedTiles.Count}");
         }
-
-        /// <summary>
-        /// Wywołaj gdy gracz postawi budynek
-        /// </summary>
+        
         public void RegisterPlacedBuilding(string buildingType, Vector3 worldPos)
         {
             _placedBuildings.Add(new PlacedBuildingData
@@ -55,10 +47,7 @@ namespace MiningGame.SaveSystem
             });
             Debug.Log($"WorldChangeTracker: Building '{buildingType}' placed at {worldPos}. Total buildings: {_placedBuildings.Count}");
         }
-
-        /// <summary>
-        /// Pobierz wszystkie zniszczone tile'e do zapisu
-        /// </summary>
+        
         public List<DestroyedBlockData> GetDestroyedTiles()
         {
             var list = new List<DestroyedBlockData>();
@@ -73,18 +62,12 @@ namespace MiningGame.SaveSystem
             }
             return list;
         }
-
-        /// <summary>
-        /// Pobierz wszystkie postawione budynki do zapisu
-        /// </summary>
+        
         public List<PlacedBuildingData> GetPlacedBuildings()
         {
             return new List<PlacedBuildingData>(_placedBuildings);
         }
-
-        /// <summary>
-        /// Wczytaj zniszczone tile'e z save'a
-        /// </summary>
+        
         public void LoadDestroyedTiles(List<DestroyedBlockData> data, Tilemap tilemap)
         {
             _destroyedTiles.Clear();
@@ -100,10 +83,7 @@ namespace MiningGame.SaveSystem
 
             Debug.Log($"WorldChangeTracker: Loaded {_destroyedTiles.Count} destroyed tiles.");
         }
-
-        /// <summary>
-        /// Wyczyść wszystko (nowa gra)
-        /// </summary>
+        
         public void Clear()
         {
             _destroyedTiles.Clear();

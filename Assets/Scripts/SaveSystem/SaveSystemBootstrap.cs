@@ -2,10 +2,6 @@
 
 namespace MiningGame.SaveSystem
 {
-    /// <summary>
-    /// Automatycznie tworzy SaveManager i WorldChangeTracker jeśli nie istnieją.
-    /// Dodaj ten skrypt do DOWOLNEGO obiektu w scenie gry (np. do gracza lub GameManager).
-    /// </summary>
     public class SaveSystemBootstrap : MonoBehaviour
     {
         [Header("Auto Setup")]
@@ -14,8 +10,6 @@ namespace MiningGame.SaveSystem
 
         private void Awake()
         {
-            // SaveManager i WorldChangeTracker używają DontDestroyOnLoad
-            // Więc jeśli Instance już istnieje (przeniesione z innej sceny), NIE TWÓRZ NOWEGO
             
             if (autoCreateSaveManager && SaveManager.Instance == null)
             {

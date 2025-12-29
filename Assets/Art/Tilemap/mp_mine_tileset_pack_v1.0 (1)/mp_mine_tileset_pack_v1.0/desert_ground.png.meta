@@ -1,0 +1,715 @@
+fileFormatVersion: 2
+guid: 73c4770dd6d220f4fb329ca1c58055c6
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 8598657713499093402
+    second: desert_ground_0
+  - first:
+      213: 8212474921982387885
+    second: desert_ground_1
+  - first:
+      213: -970997017656141606
+    second: desert_ground_2
+  - first:
+      213: 3659965739693192268
+    second: desert_ground_3
+  - first:
+      213: 2771454901482358032
+    second: desert_ground_4
+  - first:
+      213: -8897708488843267699
+    second: desert_ground_5
+  - first:
+      213: -8743898670227310076
+    second: desert_ground_6
+  - first:
+      213: 1004166370785245587
+    second: desert_ground_7
+  - first:
+      213: 3986741812778208577
+    second: desert_ground_8
+  - first:
+      213: 7114196035901054140
+    second: desert_ground_9
+  - first:
+      213: -1394565228818588782
+    second: desert_ground_10
+  - first:
+      213: -4912572679413615995
+    second: desert_ground_11
+  - first:
+      213: 7891305334256812243
+    second: desert_ground_12
+  - first:
+      213: 5149333986981085048
+    second: desert_ground_13
+  - first:
+      213: 2932469155549754359
+    second: desert_ground_14
+  - first:
+      213: 1636501748292807092
+    second: desert_ground_15
+  - first:
+      213: 3091860772955856279
+    second: desert_ground_16
+  - first:
+      213: 2339772081683369117
+    second: desert_ground_17
+  - first:
+      213: 1179308586131603682
+    second: desert_ground_18
+  - first:
+      213: 8080665185808593533
+    second: desert_ground_19
+  - first:
+      213: -3999849349719066242
+    second: desert_ground_20
+  - first:
+      213: -5794930052242114820
+    second: desert_ground_21
+  - first:
+      213: -2819900637353129853
+    second: desert_ground_22
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: desert_ground_0
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 319
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a99394ef1a1945770800000000000000
+      internalID: 8598657713499093402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: desert_ground_1
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 319
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da660931e6298f170800000000000000
+      internalID: 8212474921982387885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: desert_ground_2
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 319
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad854a46b535682f0800000000000000
+      internalID: -970997017656141606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: desert_ground_3
+      rect:
+        serializedVersion: 2
+        x: 303
+        y: 384
+        width: 82
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c44338ce27fcac230800000000000000
+      internalID: 3659965739693192268
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: desert_ground_4
+      rect:
+        serializedVersion: 2
+        x: 303
+        y: 367
+        width: 82
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0150fd19c8f267620800000000000000
+      internalID: 2771454901482358032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: desert_ground_5
+      rect:
+        serializedVersion: 2
+        x: 399
+        y: 335
+        width: 18
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d81f48f754df48480800000000000000
+      internalID: -8897708488843267699
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: desert_ground_6
+      rect:
+        serializedVersion: 2
+        x: 431
+        y: 319
+        width: 17
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 40a37119c7e67a680800000000000000
+      internalID: -8743898670227310076
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: desert_ground_7
+      rect:
+        serializedVersion: 2
+        x: 447
+        y: 319
+        width: 18
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3993c027ef38fed00800000000000000
+      internalID: 1004166370785245587
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: desert_ground_8
+      rect:
+        serializedVersion: 2
+        x: 464
+        y: 319
+        width: 17
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 14d87d95e80c35730800000000000000
+      internalID: 3986741812778208577
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: desert_ground_9
+      rect:
+        serializedVersion: 2
+        x: 303
+        y: 351
+        width: 82
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cbcdf5e1a93bab260800000000000000
+      internalID: 7114196035901054140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: desert_ground_10
+      rect:
+        serializedVersion: 2
+        x: 303
+        y: 319
+        width: 15
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29b1828205285ace0800000000000000
+      internalID: -1394565228818588782
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: desert_ground_11
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 319
+        width: 50
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 582334e0d2903dbb0800000000000000
+      internalID: -4912572679413615995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: desert_ground_12
+      rect:
+        serializedVersion: 2
+        x: 370
+        y: 319
+        width: 15
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d0c58e346c838d60800000000000000
+      internalID: 7891305334256812243
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: desert_ground_13
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 127
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 87f7ad39afb167740800000000000000
+      internalID: 5149333986981085048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: desert_ground_14
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 127
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f3355bf82932b820800000000000000
+      internalID: 2932469155549754359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: desert_ground_15
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 127
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b96c456ba506b610800000000000000
+      internalID: 1636501748292807092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: desert_ground_16
+      rect:
+        serializedVersion: 2
+        x: 303
+        y: 191
+        width: 82
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 79d9ffaddfe78ea20800000000000000
+      internalID: 3091860772955856279
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: desert_ground_17
+      rect:
+        serializedVersion: 2
+        x: 399
+        y: 127
+        width: 34
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d9c0d18cf4a887020800000000000000
+      internalID: 2339772081683369117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: desert_ground_18
+      rect:
+        serializedVersion: 2
+        x: 303
+        y: 159
+        width: 82
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2e041fc29eebd5010800000000000000
+      internalID: 1179308586131603682
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: desert_ground_19
+      rect:
+        serializedVersion: 2
+        x: 303
+        y: 127
+        width: 15
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d72bcfc5c2a442070800000000000000
+      internalID: 8080665185808593533
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: desert_ground_20
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 127
+        width: 50
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e79fae2653ead78c0800000000000000
+      internalID: -3999849349719066242
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: desert_ground_21
+      rect:
+        serializedVersion: 2
+        x: 370
+        y: 127
+        width: 15
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf67fd102d5449fa0800000000000000
+      internalID: -5794930052242114820
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: desert_ground_22
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 496
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3884ba09f43bdd8d0800000000000000
+      internalID: -2819900637353129853
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      desert_ground_0: 8598657713499093402
+      desert_ground_1: 8212474921982387885
+      desert_ground_10: -1394565228818588782
+      desert_ground_11: -4912572679413615995
+      desert_ground_12: 7891305334256812243
+      desert_ground_13: 5149333986981085048
+      desert_ground_14: 2932469155549754359
+      desert_ground_15: 1636501748292807092
+      desert_ground_16: 3091860772955856279
+      desert_ground_17: 2339772081683369117
+      desert_ground_18: 1179308586131603682
+      desert_ground_19: 8080665185808593533
+      desert_ground_2: -970997017656141606
+      desert_ground_20: -3999849349719066242
+      desert_ground_21: -5794930052242114820
+      desert_ground_22: -2819900637353129853
+      desert_ground_3: 3659965739693192268
+      desert_ground_4: 2771454901482358032
+      desert_ground_5: -8897708488843267699
+      desert_ground_6: -8743898670227310076
+      desert_ground_7: 1004166370785245587
+      desert_ground_8: 3986741812778208577
+      desert_ground_9: 7114196035901054140
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -10,7 +10,6 @@ namespace MiningGame.SaveSystem
     {
         private void Awake()
         {
-            // Sprawdź czy SaveManager już istnieje (może być z poprzedniej sesji)
             if (SaveManager.Instance == null)
             {
                 GameObject saveManagerObj = new GameObject("SaveManager");
@@ -21,8 +20,7 @@ namespace MiningGame.SaveSystem
             {
                 Debug.Log("SaveSystemInitializer: SaveManager already exists, skipping creation.");
             }
-
-            // Sprawdź czy WorldChangeTracker już istnieje
+            
             if (WorldChangeTracker.Instance == null)
             {
                 GameObject trackerObj = new GameObject("WorldChangeTracker");
