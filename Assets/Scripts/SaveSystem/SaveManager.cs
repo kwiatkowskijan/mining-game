@@ -23,6 +23,9 @@ namespace MiningGame.SaveSystem
         private float _sessionStartTime;
         private float _previousPlayTime;
         private bool _shouldLoadAfterSceneLoad = false;
+        
+        // Flaga publiczna - inne skrypty mogą sprawdzić czy trwa ładowanie
+        public static bool IsLoadingSave { get; private set; } = false;
 
         private string SaveFilePath => Path.Combine(Application.persistentDataPath, saveFileName);
 
@@ -184,19 +187,46 @@ namespace MiningGame.SaveSystem
                 }
             }
             
-            if (WorldChangeTracker.Instance != null)
+            Debug.Log("SaveManager: Saving spawned objects...");
+            var allObjects = FindObjectsByType<GameObject>(FindObjectsSortMode.None);
+            
+            foreach (var obj in allObjects)
             {
-                data.destroyedBlocks = WorldChangeTracker.Instance.GetDestroyedTiles();
-                data.placedBuildings = WorldChangeTracker.Instance.GetPlacedBuildings();
-                Debug.Log($"SaveManager: Saving {data.destroyedBlocks.Count} destroyed blocks, {data.placedBuildings.Count} buildings");
+                if (obj == null) continue;
+                
+                string objName = obj.name.ToLower();
+                if (objName.Contains("torch"))
+                {
+                    data.spawnedObjects.Add(new SpawnedObjectData
+                    {
+                        objectType = "Torch",
+                        objectName = obj.name,
+                        posX = obj.transform.position.x,
+                        posY = obj.transform.position.y,
+                        posZ = obj.transform.position.z
+                    });
+                }
+                else if (objName.Contains("cart"))
+                {
+                    data.spawnedObjects.Add(new SpawnedObjectData
+                    {
+                        objectType = "Cart",
+                        objectName = obj.name,
+                        posX = obj.transform.position.x,
+                        posY = obj.transform.position.y,
+                        posZ = obj.transform.position.z
+                    });
+                }
             }
+            
+            Debug.Log($"SaveManager: Saved {data.spawnedObjects.Count} spawned objects");
             
             try
             {
                 string json = JsonUtility.ToJson(data, true);
                 File.WriteAllText(SaveFilePath, json);
                 
-                Debug.Log($"SaveManager: SAVED! Position: ({data.playerPosX:F2}, {data.playerPosY:F2}), Money: {data.playerMoney}, Health: {data.playerHealth}");
+                Debug.Log($"SaveManager: SAVED! Position: ({data.playerPosX:F2}, {data.playerPosY:F2}), Money: {data.playerMoney}");
                 Debug.Log($"SaveManager: File saved to: {SaveFilePath}");
             }
             catch (Exception e)
@@ -208,6 +238,7 @@ namespace MiningGame.SaveSystem
         public void RequestLoadAfterSceneLoad()
         {
             _shouldLoadAfterSceneLoad = true;
+            IsLoadingSave = true;
             Debug.Log("SaveManager: Will auto-load save after next scene loads.");
         }
 
@@ -270,16 +301,20 @@ namespace MiningGame.SaveSystem
                     Debug.LogError("SaveManager: Stats component not found on player!");
                 }
 
-                // Equipment
                 var equipment = player.GetComponentInChildren<Equipment>();
                 if (equipment == null) equipment = FindFirstObjectByType<Equipment>();
                 if (equipment != null)
                 {
                     equipment.chosenSlot = data.chosenSlot;
-                    equipment.SlotSwitch(data.chosenSlot);
+                    try
+                    {
+                        equipment.SlotSwitch(data.chosenSlot);
+                    }
+                    catch
+                    {
+                    }
                 }
 
-                // Discovered Minerals
                 if (MineralsManager.Instance != null && MineralsManager.Instance.minerals != null)
                 {
                     foreach (var mineral in MineralsManager.Instance.minerals)
@@ -288,34 +323,80 @@ namespace MiningGame.SaveSystem
                     }
                 }
                 
-                if (data.destroyedBlocks != null && data.destroyedBlocks.Count > 0)
+                if (data.spawnedObjects != null && data.spawnedObjects.Count > 0)
                 {
-                    var mineGenerator = FindFirstObjectByType<MineGenerator>();
-                    if (mineGenerator != null)
+                    Debug.Log($"SaveManager: Loading {data.spawnedObjects.Count} spawned objects...");
+                    
+                    var allObjects = FindObjectsByType<GameObject>(FindObjectsSortMode.None);
+                    foreach (var obj in allObjects)
                     {
-                        var tilemap = mineGenerator.GetComponentInChildren<Tilemap>();
-                        if (tilemap == null)
+                        if (obj == null) continue;
+                        string objName = obj.name.ToLower();
+                        if (objName.Contains("torch") || objName.Contains("cart"))
                         {
-                            var tilemapObj = GameObject.Find("MineTilemap");
-                            if (tilemapObj != null) tilemap = tilemapObj.GetComponent<Tilemap>();
-                        }
-                        
-                        if (tilemap != null && WorldChangeTracker.Instance != null)
-                        {
-                            WorldChangeTracker.Instance.LoadDestroyedTiles(data.destroyedBlocks, tilemap);
+                            Destroy(obj);
                         }
                     }
-                    Debug.Log($"SaveManager: Loaded {data.destroyedBlocks.Count} destroyed blocks");
+                    
+                    var buildMode = FindFirstObjectByType<BuildMode>();
+                    if (buildMode != null)
+                    {
+                        var buildModeType = typeof(BuildMode);
+                        var torchPrefabField = buildModeType.GetField("torchPrefab", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+                        var cartPrefabField = buildModeType.GetField("cartPrefab", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+                        
+                        GameObject torchPrefab = torchPrefabField?.GetValue(buildMode) as GameObject;
+                        GameObject cartPrefab = cartPrefabField?.GetValue(buildMode) as GameObject;
+                        
+                        var buildTilemapField = buildModeType.GetField("buildTilemap", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+                        var torchTileField = buildModeType.GetField("torchTile", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+                        
+                        Tilemap buildTilemap = buildTilemapField?.GetValue(buildMode) as Tilemap;
+                        TileBase torchTile = torchTileField?.GetValue(buildMode) as TileBase;
+                        
+                        foreach (var objData in data.spawnedObjects)
+                        {
+                            Vector3 pos = new Vector3(objData.posX, objData.posY, objData.posZ);
+                            
+                            if (objData.objectType == "Torch" && torchPrefab != null)
+                            {
+                                GameObject torch = Instantiate(torchPrefab, pos, Quaternion.identity);
+                                torch.name = "Torch";
+                                torch.SetActive(true);
+                                
+                                if (buildTilemap != null && torchTile != null)
+                                {
+                                    Vector3Int cellPos = buildTilemap.WorldToCell(pos);
+                                    buildTilemap.SetTile(cellPos, torchTile);
+                                    Debug.Log($"SaveManager: Placed Torch tile at cell {cellPos}");
+                                }
+                                
+                                Debug.Log($"SaveManager: Spawned Torch at {pos}");
+                            }
+                            else if (objData.objectType == "Cart" && cartPrefab != null)
+                            {
+                                GameObject cart = Instantiate(cartPrefab, pos, Quaternion.identity);
+                                cart.name = "Cart";
+                                cart.SetActive(true);
+                                Debug.Log($"SaveManager: Spawned Cart at {pos}");
+                            }
+                        }
+                        
+                        Debug.Log($"SaveManager: Restored {data.spawnedObjects.Count} spawned objects");
+                    }
                 }
 
                 _previousPlayTime = data.totalPlayTime;
                 _sessionStartTime = Time.time;
+                
+                IsLoadingSave = false;
 
-                Debug.Log($"SaveManager: LOADED! Health: {data.playerHealth}, Money: {data.playerMoney}");
+                Debug.Log($"SaveManager: LOADED! Money: {data.playerMoney}");
             }
             catch (Exception e)
             {
                 Debug.LogError($"SaveManager: LOAD FAILED - {e.Message}\n{e.StackTrace}");
+                IsLoadingSave = false;
             }
         }
 
@@ -323,60 +404,13 @@ namespace MiningGame.SaveSystem
         {
             Debug.Log("SaveManager: === NEW GAME ===");
 
+            IsLoadingSave = false;
+
             if (SaveExists())
             {
                 File.Delete(SaveFilePath);
-                Debug.Log("SaveManager: Old save deleted.");
+                Debug.Log("SaveManager: Old save deleted - fresh start!");
             }
-            
-            if (WorldChangeTracker.Instance != null)
-            {
-                WorldChangeTracker.Instance.Clear();
-            }
-            
-            var player = FindPlayer();
-            float startHealth = 100f;
-            float startMaxHealth = 100f;
-            float startMoney = 10000f;
-            float startRubble = 0f;
-            float startMaxRubble = 10f;
-            Vector3 startPosition = Vector3.zero;
-            
-            if (player != null)
-            {
-                var stats = player.GetComponent<Stats>();
-                if (stats != null)
-                {
-                    startHealth = stats.maxHealth;
-                    startMaxHealth = stats.maxHealth;
-                    startMoney = stats.CurrentMoney;
-                    startRubble = stats.CurrentRubble;
-                    startMaxRubble = stats.MaxRubble;
-                }
-                startPosition = player.transform.position;
-            }
-
-            GameSaveData data = new GameSaveData
-            {
-                saveVersion = "1.0",
-                saveDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
-                totalPlayTime = 0f,
-                playerHealth = startHealth,
-                playerMaxHealth = startMaxHealth,
-                playerMoney = startMoney,
-                playerRubble = startRubble,
-                playerMaxRubble = startMaxRubble,
-                playerPosX = startPosition.x,
-                playerPosY = startPosition.y,
-                playerPosZ = startPosition.z,
-                chosenSlot = 0,
-                worldSeed = UnityEngine.Random.Range(-1000000, 1000000)
-            };
-
-            string json = JsonUtility.ToJson(data, true);
-            File.WriteAllText(SaveFilePath, json);
-
-            Debug.Log($"SaveManager: New game save created with starting values - Health: {startHealth}, Money: {startMoney}, Position: {startPosition}");
         }
 
         public bool SaveExists()

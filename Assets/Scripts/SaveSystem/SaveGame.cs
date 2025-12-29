@@ -44,6 +44,9 @@ namespace MiningGame.SaveSystem
         public List<ChunkData> generatedChunks = new List<ChunkData>();
         public List<DestroyedBlockData> destroyedBlocks = new List<DestroyedBlockData>();
         public List<PlacedBuildingData> placedBuildings = new List<PlacedBuildingData>();
+        
+        // === SPAWNED OBJECTS (Torch, Cart w hierarchii) ===
+        public List<SpawnedObjectData> spawnedObjects = new List<SpawnedObjectData>();
 
         // === SHOP (opcjonalnie) ===
         public List<string> currentShopItems = new List<string>();
@@ -83,6 +86,19 @@ namespace MiningGame.SaveSystem
     public class PlacedBuildingData
     {
         public string buildingType; // "Ladder", "Torch", "Rope", "Cart", "Rails"
+        public float posX;
+        public float posY;
+        public float posZ;
+    }
+    
+    /// <summary>
+    /// Spawowany GameObject w hierarchii (Torch, Cart)
+    /// </summary>
+    [Serializable]
+    public class SpawnedObjectData
+    {
+        public string objectType;  // "Torch", "Cart"
+        public string objectName;  // nazwa z hierarchii
         public float posX;
         public float posY;
         public float posZ;
