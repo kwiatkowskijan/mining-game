@@ -143,6 +143,10 @@ namespace MiningGame.WorldGeneration
                     {
                         mineTilemap.SetTile(tilePosition, bedrock.tiles[0]);
                     }
+                    else if (tilePosition.x == mapWidth)
+                    {
+                        mineTilemap.SetTile(tilePosition, bedrock.tiles[0]);
+                    }
                     else
                     {
                         if (mineNoise > 0.8f)
