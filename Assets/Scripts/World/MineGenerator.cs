@@ -16,7 +16,6 @@ namespace MiningGame.WorldGeneration
         [SerializeField] private List<Biome> biomes;
         [Header("Blocks")]
         [SerializeField] private List<Mineral> minerals;
-        [SerializeField] private List<CommonBlock> commonBlocks;
         [SerializeField] private Mineral defaultMineral;
         [SerializeField] private Bedrock bedrock;
         [SerializeField] private Tile caveBackgroundTile;
@@ -170,30 +169,15 @@ namespace MiningGame.WorldGeneration
 
         private CommonBlock ChooseCommonBlock(int x, int y, Biome biome)
         {
-            if (biome)
+            foreach (var block in biome.commonBlocks)
             {
-                foreach (var block in biome.commonBlocks)
+                float roll = DeterministicRandom(x + 5000, y + 6000, seed);
+                if (roll < (1f / biome.commonBlocks.Count))
                 {
-                    float roll = DeterministicRandom(x + 5000, y + 6000, seed);
-                    if (roll < (1f / biome.commonBlocks.Count))
-                    {
-                        return block;
-                    }
+                    return block;
                 }
-                return biome.commonBlocks[0];
             }
-            else
-            {
-                foreach (var block in commonBlocks)
-                {
-                    float roll = DeterministicRandom(x + 5000, y + 6000, seed);
-                    if (roll < (1f / commonBlocks.Count))
-                    {
-                        return block;
-                    }
-                }
-                return commonBlocks[0];
-            }
+            return biome.commonBlocks[0];
         }
 
         private Mineral ChooseMineralFromNoise(float noiseValue, int y)
