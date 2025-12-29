@@ -30,8 +30,6 @@ namespace MiningGame.WorldGeneration
         [Range(-1000000, 1000000)][SerializeField] private int seed = 0;
         [Range(0f, 1f)][SerializeField] private float mineNoiseScale = 0.13f;
         [Range(0f, 1f)][SerializeField] private float mineralNoiseScale = 0.05f;
-        [Header("Structures")]
-        [SerializeField] private List<Structure> structures;
         private Vector3Int _startPosition = new Vector3Int(0, 0, 0);
         private Transform _player;
         private Dictionary<Vector2Int, bool> _generatedChunks = new Dictionary<Vector2Int, bool>();
@@ -51,8 +49,6 @@ namespace MiningGame.WorldGeneration
         private void InitValues()
         {
             _startPosition = new Vector3Int(startX, 0, 0);
-            if (seed == 0)
-                seed = Random.Range(-1000000, 1000000);
             _player = GameObject.FindGameObjectWithTag("Player").transform;
             biomes.Sort((a, b) => a.startY.CompareTo(b.startY));
         }
@@ -170,7 +166,6 @@ namespace MiningGame.WorldGeneration
                     }
                 }
             }
-            TryPlaceStructure(chunkX, chunkY);
         }
 
         private CommonBlock ChooseCommonBlock(int x, int y, Biome biome)
@@ -222,40 +217,6 @@ namespace MiningGame.WorldGeneration
             return null;
         }
 
-        private void TryPlaceStructure(int chunkX, int chunkY)
-        {
-            foreach (var structure in structures)
-            {
-                float roll = DeterministicRandom(chunkX, chunkY, seed);
-
-                if (roll < structure.spawnChance)
-                {
-                    int startX = chunkX * chunkSize + Mathf.FloorToInt(DeterministicRandom(chunkX + 1000, chunkY + 2000, seed) * (chunkSize - structure.width));
-                    int startY = chunkY * chunkSize + Mathf.FloorToInt(DeterministicRandom(chunkX + 3000, chunkY + 4000, seed) * (chunkSize - structure.height));
-                    Vector3Int worldPos = new Vector3Int(
-                        _startPosition.x + startX,
-                        _startPosition.y + startY,
-                        0
-                    );
-                    PlaceStructure(structure, worldPos);
-                }
-            }
-        }
-
-        private void PlaceStructure(Structure structure, Vector3Int position)
-        {
-            for (int x = 0; x < structure.width; x++)
-            {
-                for (int y = 0; y < structure.height; y++)
-                {
-                    TileBase tile = structure.GetTile(x, y);
-                    if (tile != null)
-                    {
-                        mineTilemap.SetTile(new Vector3Int(position.x + x, position.y + y, 0), tile);
-                    }
-                }
-            }
-        }
         private float DeterministicRandom(int x, int y, int seed)
         {
             int hash = x;
