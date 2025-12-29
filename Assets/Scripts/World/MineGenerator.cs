@@ -78,14 +78,16 @@ namespace MiningGame.WorldGeneration
                     }
                 }
             }
-            foreach (var dirt in commonBlocks)
+            foreach (var biome in biomes)
             {
-                if (dirt.tiles != null)
+                if (biome == null || biome.commonBlocks == null) continue;
+                foreach (var block in biome.commonBlocks)
                 {
-                    foreach (var tile in dirt.tiles)
+                    if (block.tiles == null) continue;
+                    foreach (var tile in block.tiles)
                     {
                         if (!TileToBlockMap.ContainsKey(tile))
-                            TileToBlockMap.Add(tile, dirt);
+                            TileToBlockMap.Add(tile, block);
                     }
                 }
             }
