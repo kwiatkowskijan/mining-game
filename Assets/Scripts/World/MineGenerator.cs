@@ -12,9 +12,10 @@ namespace MiningGame.WorldGeneration
         [Header("Tilemaps")]
         [SerializeField] private Tilemap mineTilemap;
         [SerializeField] private Tilemap backgroundTilemap;
+        [Header("Biomes")]
+        [SerializeField] private List<Biome> biomes;
         [Header("Blocks")]
         [SerializeField] private List<Mineral> minerals;
-        [SerializeField] private List<CommonBlock> commonBlocks;
         [SerializeField] private Mineral defaultMineral;
         [SerializeField] private Bedrock bedrock;
         [SerializeField] private Tile caveBackgroundTile;
@@ -28,9 +29,6 @@ namespace MiningGame.WorldGeneration
         [Range(-1000000, 1000000)][SerializeField] private int seed = 0;
         [Range(0f, 1f)][SerializeField] private float mineNoiseScale = 0.13f;
         [Range(0f, 1f)][SerializeField] private float mineralNoiseScale = 0.05f;
-        [Header("Structures")]
-        [SerializeField] private List<Structure> structures;
-
         private Vector3Int _startPosition = new Vector3Int(0, 0, 0);
         private Transform _player;
         private Dictionary<Vector2Int, bool> _generatedChunks = new Dictionary<Vector2Int, bool>();
@@ -50,9 +48,8 @@ namespace MiningGame.WorldGeneration
         private void InitValues()
         {
             _startPosition = new Vector3Int(startX, 0, 0);
-            if (seed == 0)
-                seed = Random.Range(-1000000, 1000000);
             _player = GameObject.FindGameObjectWithTag("Player").transform;
+            biomes.Sort((a, b) => a.startY.CompareTo(b.startY));
         }
 
         private void MapTileToBlock()
@@ -76,30 +73,17 @@ namespace MiningGame.WorldGeneration
                     }
                 }
             }
-            foreach (var dirt in commonBlocks)
+            foreach (var biome in biomes)
             {
-                if (dirt.tiles != null)
+                if (biome == null || biome.commonBlocks == null) continue;
+                foreach (var block in biome.commonBlocks)
                 {
-                    foreach (var tile in dirt.tiles)
+                    if (block.tiles == null) continue;
+                    foreach (var tile in block.tiles)
                     {
                         if (!TileToBlockMap.ContainsKey(tile))
-                            TileToBlockMap.Add(tile, dirt);
+                            TileToBlockMap.Add(tile, block);
                     }
-                }
-            }
-        }
-
-        // Generate the entire mine at once (lef for testing - not used in final implementation)
-        private void GenerateMine(int width, int height)
-        {
-            int chunksX = Mathf.CeilToInt((float)width / chunkSize);
-            int chunksY = Mathf.CeilToInt((float)height / chunkSize);
-
-            for (int x = 0; x < chunksX; x++)
-            {
-                for (int y = 0; y < chunksY; y++)
-                {
-                    GenerateChunk(x, y);
                 }
             }
         }
@@ -139,17 +123,22 @@ namespace MiningGame.WorldGeneration
 
         private void GenerateChunk(int chunkX, int chunkY)
         {
-            int startX = chunkX * chunkSize; // 0
-            int startY = chunkY * chunkSize;  // -32
+            int startX = chunkX * chunkSize;
+            int startY = chunkY * chunkSize;
 
             for (int x = startX; x < startX + chunkSize; x++)
             {
                 for (int y = startY; y < startY + chunkSize; y++)
                 {
                     Vector3Int tilePosition = new Vector3Int(_startPosition.x + x, _startPosition.y + y, 0);
+                    Biome biome = GetBiomeForY(tilePosition.y);
                     float mineNoise = Mathf.PerlinNoise((x + seed) * mineNoiseScale, (y + seed) * mineNoiseScale);
 
                     if (tilePosition.y == -(mapHeight / 2) + 1 || tilePosition.y == mapHeight / 2)
+                    {
+                        mineTilemap.SetTile(tilePosition, bedrock.tiles[0]);
+                    }
+                    else if (tilePosition.x == mapWidth)
                     {
                         mineTilemap.SetTile(tilePosition, bedrock.tiles[0]);
                     }
@@ -167,7 +156,7 @@ namespace MiningGame.WorldGeneration
                         }
                         else
                         {
-                            CommonBlock commonBlock = ChooseCommonBlock(x, y);
+                            CommonBlock commonBlock = ChooseCommonBlock(x, y, biome);
                             int tileIndex = Mathf.FloorToInt(DeterministicRandom(x + 7000, y + 8000, seed) * commonBlock.tiles.Count);
                             tileIndex = Mathf.Clamp(tileIndex, 0, commonBlock.tiles.Count - 1);
                             mineTilemap.SetTile(tilePosition, commonBlock.tiles[tileIndex]);
@@ -176,23 +165,20 @@ namespace MiningGame.WorldGeneration
                     }
                 }
             }
-            TryPlaceStructure(chunkX, chunkY);
         }
 
-        private CommonBlock ChooseCommonBlock(int x, int y)
+        private CommonBlock ChooseCommonBlock(int x, int y, Biome biome)
         {
-            foreach (var block in commonBlocks)
+            foreach (var block in biome.commonBlocks)
             {
                 float roll = DeterministicRandom(x + 5000, y + 6000, seed);
-                if (roll < (1f / commonBlocks.Count))
+                if (roll < (1f / biome.commonBlocks.Count))
                 {
                     return block;
                 }
             }
-
-            return commonBlocks[0];
+            return biome.commonBlocks[0];
         }
-
 
         private Mineral ChooseMineralFromNoise(float noiseValue, int y)
         {
@@ -205,42 +191,14 @@ namespace MiningGame.WorldGeneration
             return validMinerals[index];
         }
 
-        private void TryPlaceStructure(int chunkX, int chunkY)
+        private Biome GetBiomeForY(int y)
         {
-            foreach (var structure in structures)
+            for (int i = biomes.Count - 1; i >= 0; i--)
             {
-                float roll = DeterministicRandom(chunkX, chunkY, seed);
-
-                if (roll < structure.spawnChance)
-                {
-                    int startX = chunkX * chunkSize + Mathf.FloorToInt(DeterministicRandom(chunkX + 1000, chunkY + 2000, seed) * (chunkSize - structure.width));
-                    int startY = chunkY * chunkSize + Mathf.FloorToInt(DeterministicRandom(chunkX + 3000, chunkY + 4000, seed) * (chunkSize - structure.height));
-
-                    Vector3Int worldPos = new Vector3Int(
-                        _startPosition.x + startX,
-                        _startPosition.y + startY,
-                        0
-                    );
-
-                    PlaceStructure(structure, worldPos);
-                }
+                if (y >= biomes[i].startY)
+                    return biomes[i];
             }
-        }
-
-
-        private void PlaceStructure(Structure structure, Vector3Int position)
-        {
-            for (int x = 0; x < structure.width; x++)
-            {
-                for (int y = 0; y < structure.height; y++)
-                {
-                    TileBase tile = structure.GetTile(x, y);
-                    if (tile != null)
-                    {
-                        mineTilemap.SetTile(new Vector3Int(position.x + x, position.y + y, 0), tile);
-                    }
-                }
-            }
+            return null;
         }
 
         private float DeterministicRandom(int x, int y, int seed)
@@ -248,12 +206,9 @@ namespace MiningGame.WorldGeneration
             int hash = x;
             hash = unchecked(hash * 31 + y);
             hash = unchecked(hash * 31 + seed);
-
             System.Random rand = new System.Random(hash);
             return (float)rand.NextDouble();
         }
-
-
 
         // Gizmos to visualize generated chunks in the editor
         private void OnDrawGizmos()
@@ -276,7 +231,6 @@ namespace MiningGame.WorldGeneration
                     new Vector3(chunkSize, chunkSize, 0.1f)
                 );
             }
-
         }
     }
 }

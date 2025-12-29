@@ -3688,9 +3688,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mineTilemap: {fileID: 424294780}
   backgroundTilemap: {fileID: 1380810205}
+  biomes:
+  - {fileID: 11400000, guid: bbfba96df817039419172cbfcf13e9b4, type: 2}
+  - {fileID: 11400000, guid: 23850a95b7d915042bea79e2c75900a8, type: 2}
+  - {fileID: 11400000, guid: 8d841703da13cc141bf598009850b814, type: 2}
+  - {fileID: 11400000, guid: 69a58e032ec3e2b4cb553a15665ca68a, type: 2}
+  - {fileID: 11400000, guid: 95ac26039f3c52b448286412f94b4f5c, type: 2}
   minerals:
   - {fileID: 11400000, guid: 5b766a11255400447a8957f21519ddc2, type: 2}
-  - {fileID: 11400000, guid: 3740173062bcf91458aefa0e730a6ceb, type: 2}
   - {fileID: 11400000, guid: fd904f9d7318e7a47a05927cb5301180, type: 2}
   - {fileID: 11400000, guid: e9a0e25925860d746bdf93bdb8bb2c1c, type: 2}
   - {fileID: 11400000, guid: 1216ece092a78eb41aa4889db84e990a, type: 2}
@@ -3710,7 +3715,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: da28a63411ddc8449a6d6e5ff1c5509c, type: 2}
   commonBlocks:
   - {fileID: 11400000, guid: f4f2f48293dbc354ea4dbe4f5f6b4b5d, type: 2}
-  defaultMineral: {fileID: 11400000, guid: 26cbe6b92d5c66645898bdaa09058c1e, type: 2}
+  defaultMineral: {fileID: 11400000, guid: 3740173062bcf91458aefa0e730a6ceb, type: 2}
   bedrock: {fileID: 11400000, guid: d57d2f2375917e34ba231929d61dd985, type: 2}
   caveBackgroundTile: {fileID: 11400000, guid: 83fdf55bc73cc674c99982631ded74a2, type: 2}
   startX: 20
@@ -3975,6 +3980,86 @@ PrefabInstance:
       propertyPath: minimapCamera
       value: 
       objectReference: {fileID: 1472777341}
+    - target: {fileID: 2190764870723320295, guid: 880fd0b73071ca146a4bced78b437d72, type: 3}
+      propertyPath: mineralsDatabase.Array.size
+      value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: 2190764870723320295, guid: 880fd0b73071ca146a4bced78b437d72, type: 3}
+      propertyPath: 'mineralsDatabase.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 5b766a11255400447a8957f21519ddc2, type: 2}
+    - target: {fileID: 2190764870723320295, guid: 880fd0b73071ca146a4bced78b437d72, type: 3}
+      propertyPath: 'mineralsDatabase.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 3740173062bcf91458aefa0e730a6ceb, type: 2}
+    - target: {fileID: 2190764870723320295, guid: 880fd0b73071ca146a4bced78b437d72, type: 3}
+      propertyPath: 'mineralsDatabase.Array.data[2]'
+      value: 
+      objectReference: {fileID: 11400000, guid: fd904f9d7318e7a47a05927cb5301180, type: 2}
+    - target: {fileID: 2190764870723320295, guid: 880fd0b73071ca146a4bced78b437d72, type: 3}
+      propertyPath: 'mineralsDatabase.Array.data[3]'
+      value: 
+      objectReference: {fileID: 11400000, guid: e9a0e25925860d746bdf93bdb8bb2c1c, type: 2}
+    - target: {fileID: 2190764870723320295, guid: 880fd0b73071ca146a4bced78b437d72, type: 3}
+      propertyPath: 'mineralsDatabase.Array.data[4]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 1216ece092a78eb41aa4889db84e990a, type: 2}
+    - target: {fileID: 2190764870723320295, guid: 880fd0b73071ca146a4bced78b437d72, type: 3}
+      propertyPath: 'mineralsDatabase.Array.data[5]'
+      value: 
+      objectReference: {fileID: 11400000, guid: ac9d29c92eafbf44f99832c34064241f, type: 2}
+    - target: {fileID: 2190764870723320295, guid: 880fd0b73071ca146a4bced78b437d72, type: 3}
+      propertyPath: 'mineralsDatabase.Array.data[6]'
+      value: 
+      objectReference: {fileID: 11400000, guid: a28b3f2e909ea6c49b8b528c199e9474, type: 2}
+    - target: {fileID: 2190764870723320295, guid: 880fd0b73071ca146a4bced78b437d72, type: 3}
+      propertyPath: 'mineralsDatabase.Array.data[7]'
+      value: 
+      objectReference: {fileID: 11400000, guid: a0c96ebe04b959e4596a6cf524c8642e, type: 2}
+    - target: {fileID: 2190764870723320295, guid: 880fd0b73071ca146a4bced78b437d72, type: 3}
+      propertyPath: 'mineralsDatabase.Array.data[8]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 03c06c4c60d8e224189388dce9506a09, type: 2}
+    - target: {fileID: 2190764870723320295, guid: 880fd0b73071ca146a4bced78b437d72, type: 3}
+      propertyPath: 'mineralsDatabase.Array.data[9]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 26c3b5303bb20794da9e5d467a2257e7, type: 2}
+    - target: {fileID: 2190764870723320295, guid: 880fd0b73071ca146a4bced78b437d72, type: 3}
+      propertyPath: 'mineralsDatabase.Array.data[10]'
+      value: 
+      objectReference: {fileID: 11400000, guid: e9596a0b9a6bf214eb1cdf06d0d31f0e, type: 2}
+    - target: {fileID: 2190764870723320295, guid: 880fd0b73071ca146a4bced78b437d72, type: 3}
+      propertyPath: 'mineralsDatabase.Array.data[11]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 498684ce0f3a5c34e8ef57e4934efc26, type: 2}
+    - target: {fileID: 2190764870723320295, guid: 880fd0b73071ca146a4bced78b437d72, type: 3}
+      propertyPath: 'mineralsDatabase.Array.data[12]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 37683fae43c7f1b4aa7e6bdb215b7d6c, type: 2}
+    - target: {fileID: 2190764870723320295, guid: 880fd0b73071ca146a4bced78b437d72, type: 3}
+      propertyPath: 'mineralsDatabase.Array.data[13]'
+      value: 
+      objectReference: {fileID: 11400000, guid: dd34bad2dc17b2e4eb78afc594879a90, type: 2}
+    - target: {fileID: 2190764870723320295, guid: 880fd0b73071ca146a4bced78b437d72, type: 3}
+      propertyPath: 'mineralsDatabase.Array.data[14]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 4ab4d5daf20a41d4aabe4611237e82d4, type: 2}
+    - target: {fileID: 2190764870723320295, guid: 880fd0b73071ca146a4bced78b437d72, type: 3}
+      propertyPath: 'mineralsDatabase.Array.data[15]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 79f0bc102c422bf418059f88cabfe92b, type: 2}
+    - target: {fileID: 2190764870723320295, guid: 880fd0b73071ca146a4bced78b437d72, type: 3}
+      propertyPath: 'mineralsDatabase.Array.data[16]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 8350ab7f088e0924ba47ea173dc6b4b4, type: 2}
+    - target: {fileID: 2190764870723320295, guid: 880fd0b73071ca146a4bced78b437d72, type: 3}
+      propertyPath: 'mineralsDatabase.Array.data[17]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 8b87591ba12d67b43b3126aeeb40009c, type: 2}
+    - target: {fileID: 2190764870723320295, guid: 880fd0b73071ca146a4bced78b437d72, type: 3}
+      propertyPath: 'mineralsDatabase.Array.data[18]'
+      value: 
+      objectReference: {fileID: 11400000, guid: da28a63411ddc8449a6d6e5ff1c5509c, type: 2}
     - target: {fileID: 3332636488598193827, guid: 880fd0b73071ca146a4bced78b437d72, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1392.7181
