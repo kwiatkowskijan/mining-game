@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
+using UnityEngine.UI;
 using System;
 using System.IO;
 using System.Collections;
@@ -149,22 +150,19 @@ namespace MiningGame.SaveSystem
                 data.playerRubble = stats.CurrentRubble;
                 data.playerMaxRubble = stats.MaxRubble;
                 
-                var field = typeof(Stats).GetField("mineralAmounts", 
-                    System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
-                if (field != null)
+                // Zapisz minerały
+                var mineralAmounts = stats.GetMineralAmounts();
+                if (mineralAmounts != null)
                 {
-                    var mineralAmounts = field.GetValue(stats) as Dictionary<Mineral, int>;
-                    if (mineralAmounts != null)
+                    foreach (var kvp in mineralAmounts)
                     {
-                        foreach (var kvp in mineralAmounts)
+                        data.collectedMinerals.Add(new MineralSaveData
                         {
-                            data.collectedMinerals.Add(new MineralSaveData
-                            {
-                                mineralName = kvp.Key.mineralName,
-                                amount = kvp.Value
-                            });
-                        }
+                            mineralName = kvp.Key.blockName,
+                            amount = kvp.Value
+                        });
                     }
+                    Debug.Log($"SaveManager: Saved {data.collectedMinerals.Count} mineral types");
                 }
             }
 
@@ -173,7 +171,37 @@ namespace MiningGame.SaveSystem
             if (equipment == null) equipment = FindFirstObjectByType<Equipment>();
             if (equipment != null)
             {
+                equipment.SaveSlotSprites();
                 data.chosenSlot = equipment.chosenSlot;
+                
+                // Zapisz sprite'y z każdego slotu oraz ich aktywność
+                var toolsImages = equipment.GetToolsImages();
+                for (int i = 0; i < equipment.slotSprites.Length && i < 4; i++)
+                {
+                    if (equipment.slotSprites[i] != null)
+                    {
+                        data.slotSpriteNames.Add(equipment.slotSprites[i].name);
+                        
+                        // Zapisz również do listy EquipmentSlotData
+                        data.equipmentSlots.Add(new EquipmentSlotData
+                        {
+                            slotIndex = i,
+                            itemSpriteName = equipment.slotSprites[i].name,
+                            isActive = toolsImages[i].activeSelf
+                        });
+                    }
+                    else
+                    {
+                        data.slotSpriteNames.Add("");
+                        data.equipmentSlots.Add(new EquipmentSlotData
+                        {
+                            slotIndex = i,
+                            itemSpriteName = "",
+                            isActive = false
+                        });
+                    }
+                }
+                Debug.Log($"SaveManager: Saved Equipment - chosenSlot: {data.chosenSlot}, sprites: {data.slotSpriteNames.Count}");
             }
             
             if (MineralsManager.Instance != null && MineralsManager.Instance.minerals != null)
@@ -182,8 +210,43 @@ namespace MiningGame.SaveSystem
                 {
                     if (mineral.isDiscovered)
                     {
-                        data.discoveredMineralNames.Add(mineral.mineralName);
+                        data.discoveredMineralNames.Add(mineral.blockName);
                     }
+                }
+            }
+
+            // Kopalnia - zapisz seed i stan tilemapa
+            var mineGenerator = FindFirstObjectByType<MineGenerator>();
+            if (mineGenerator != null)
+            {
+                data.worldSeed = mineGenerator.GetSeed();
+                Debug.Log($"SaveManager: Saved world seed: {data.worldSeed}");
+
+                // Zapisz stan wszystkich tilemapów
+                var mineTilemap = mineGenerator.GetMineTilemap();
+                if (mineTilemap != null)
+                {
+                    BoundsInt bounds = mineTilemap.cellBounds;
+                    for (int x = bounds.xMin; x < bounds.xMax; x++)
+                    {
+                        for (int y = bounds.yMin; y < bounds.yMax; y++)
+                        {
+                            Vector3Int pos = new Vector3Int(x, y, 0);
+                            TileBase tile = mineTilemap.GetTile(pos);
+                            
+                            if (tile != null)
+                            {
+                                data.tilemapStates.Add(new TilemapStateData
+                                {
+                                    posX = x,
+                                    posY = y,
+                                    posZ = 0,
+                                    tileName = tile.name
+                                });
+                            }
+                        }
+                    }
+                    Debug.Log($"SaveManager: Saved {data.tilemapStates.Count} tilemap tiles");
                 }
             }
             
@@ -285,7 +348,7 @@ namespace MiningGame.SaveSystem
                         var mineralAmounts = new Dictionary<Mineral, int>();
                         foreach (var saved in data.collectedMinerals)
                         {
-                            var mineral = MineralsManager.Instance.minerals.Find(m => m.mineralName == saved.mineralName);
+                            var mineral = MineralsManager.Instance.minerals.Find(m => m.blockName == saved.mineralName);
                             if (mineral != null)
                             {
                                 mineralAmounts[mineral] = saved.amount;
@@ -306,12 +369,65 @@ namespace MiningGame.SaveSystem
                 if (equipment != null)
                 {
                     equipment.chosenSlot = data.chosenSlot;
+                    
+                    // Przywróć sprite'y slotów z zapisanych danych
+                    if (data.equipmentSlots != null && data.equipmentSlots.Count > 0)
+                    {
+                        try
+                        {
+                            var toolsImages = equipment.GetToolsImages();
+                            
+                            // Dla każdego slotu, ustaw sprite i aktywność
+                            foreach (var slotData in data.equipmentSlots)
+                            {
+                                if (slotData.slotIndex >= 0 && slotData.slotIndex < 4)
+                                {
+                                    var img = toolsImages[slotData.slotIndex].GetComponent<Image>();
+                                    if (img != null)
+                                    {
+                                        if (!string.IsNullOrEmpty(slotData.itemSpriteName))
+                                        {
+                                            // Szukaj sprite'a we wszystkich dostępnych sprite'ach
+                                            Sprite[] allSprites = Resources.FindObjectsOfTypeAll<Sprite>();
+                                            Sprite foundSprite = System.Array.Find(allSprites, s => s.name == slotData.itemSpriteName);
+                                            
+                                            if (foundSprite != null)
+                                            {
+                                                equipment.slotSprites[slotData.slotIndex] = foundSprite;
+                                                img.sprite = foundSprite;
+                                                toolsImages[slotData.slotIndex].SetActive(slotData.isActive);
+                                                Debug.Log($"SaveManager: Restored sprite '{slotData.itemSpriteName}' to slot {slotData.slotIndex}");
+                                            }
+                                            else
+                                            {
+                                                Debug.LogWarning($"SaveManager: Could not find sprite '{slotData.itemSpriteName}'");
+                                            }
+                                        }
+                                        else
+                                        {
+                                            equipment.slotSprites[slotData.slotIndex] = null;
+                                            img.sprite = null;
+                                            toolsImages[slotData.slotIndex].SetActive(false);
+                                        }
+                                    }
+                                }
+                            }
+                            
+                            Debug.Log($"SaveManager: Loaded Equipment - chosenSlot: {data.chosenSlot}");
+                        }
+                        catch (Exception e)
+                        {
+                            Debug.LogError($"SaveManager: Error loading equipment sprites - {e.Message}");
+                        }
+                    }
+                    
                     try
                     {
                         equipment.SlotSwitch(data.chosenSlot);
                     }
-                    catch
+                    catch (Exception e)
                     {
+                        Debug.LogError($"SaveManager: Error switching slot - {e.Message}");
                     }
                 }
 
@@ -319,7 +435,7 @@ namespace MiningGame.SaveSystem
                 {
                     foreach (var mineral in MineralsManager.Instance.minerals)
                     {
-                        mineral.isDiscovered = data.discoveredMineralNames.Contains(mineral.mineralName);
+                        mineral.isDiscovered = data.discoveredMineralNames.Contains(mineral.blockName);
                     }
                 }
                 
@@ -383,6 +499,55 @@ namespace MiningGame.SaveSystem
                         }
                         
                         Debug.Log($"SaveManager: Restored {data.spawnedObjects.Count} spawned objects");
+                    }
+                }
+
+                // Ładowanie stanu kopalni (tilemapa)
+                var mineGeneratorLoad = FindFirstObjectByType<MineGenerator>();
+                if (mineGeneratorLoad != null && data.tilemapStates != null && data.tilemapStates.Count > 0)
+                {
+                    Debug.Log($"SaveManager: Loading {data.tilemapStates.Count} tilemap states...");
+                    
+                    mineGeneratorLoad.SetSeed(data.worldSeed);
+                    var mineTilemap = mineGeneratorLoad.GetMineTilemap();
+                    
+                    if (mineTilemap != null)
+                    {
+                        // Wyczyść tilemapę i wstaw zapisane tile'i
+                        mineTilemap.ClearAllTiles();
+                        
+                        // Słownik do przechowywania załadowanych tile'ów
+                        Dictionary<string, TileBase> tileCache = new Dictionary<string, TileBase>();
+                        
+                        foreach (var tileState in data.tilemapStates)
+                        {
+                            Vector3Int cellPos = new Vector3Int(tileState.posX, tileState.posY, tileState.posZ);
+                            
+                            if (!string.IsNullOrEmpty(tileState.tileName))
+                            {
+                                // Spróbuj załadować tile z cache'a lub z MineGenerator
+                                if (!tileCache.TryGetValue(tileState.tileName, out TileBase tile))
+                                {
+                                    // Szukaj tile'a w TileToBlockMap
+                                    foreach (var kvp in MineGenerator.TileToBlockMap)
+                                    {
+                                        if (kvp.Key.name == tileState.tileName)
+                                        {
+                                            tile = kvp.Key;
+                                            tileCache[tileState.tileName] = tile;
+                                            break;
+                                        }
+                                    }
+                                }
+                                
+                                if (tile != null)
+                                {
+                                    mineTilemap.SetTile(cellPos, tile);
+                                }
+                            }
+                        }
+                        
+                        Debug.Log($"SaveManager: Restored tilemap with {data.tilemapStates.Count} tiles");
                     }
                 }
 

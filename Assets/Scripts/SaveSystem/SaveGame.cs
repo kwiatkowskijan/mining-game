@@ -38,11 +38,13 @@ namespace MiningGame.SaveSystem
         // === EQUIPMENT ===
         public int chosenSlot;
         public List<EquipmentSlotData> equipmentSlots = new List<EquipmentSlotData>();
+        public List<string> slotSpriteNames = new List<string>();
 
         // === WORLD GENERATION ===
         public int worldSeed;
         public List<ChunkData> generatedChunks = new List<ChunkData>();
         public List<DestroyedBlockData> destroyedBlocks = new List<DestroyedBlockData>();
+        public List<TilemapStateData> tilemapStates = new List<TilemapStateData>();
         public List<PlacedBuildingData> placedBuildings = new List<PlacedBuildingData>();
         
         // === SPAWNED OBJECTS (Torch, Cart w hierarchii) ===
@@ -91,6 +93,15 @@ namespace MiningGame.SaveSystem
         public float posZ;
     }
     
+    [Serializable]
+    public class TilemapStateData
+    {
+        public int posX;
+        public int posY;
+        public int posZ;
+        public string tileName; // nazwa tile'a (jeśli istnieje)
+    }
+
     /// <summary>
     /// Spawowany GameObject w hierarchii (Torch, Cart)
     /// </summary>

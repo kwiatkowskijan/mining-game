@@ -30,6 +30,9 @@ namespace MiningGame.Player
 
         [Header("Minerals")]
         private Dictionary<Mineral, int> mineralAmounts = new();
+        
+        // Getter do odczytu mineralAmounts (dla save systemu)
+        public Dictionary<Mineral, int> GetMineralAmounts() => mineralAmounts;
 
         [Header("Money")]
         [SerializeField] private float currentMoney;
