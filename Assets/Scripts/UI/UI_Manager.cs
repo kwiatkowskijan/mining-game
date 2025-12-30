@@ -22,7 +22,7 @@ namespace MiningGame.UI
         [Header("UI Canvas Elements")]
         [SerializeField] private Image healthBar;
         [SerializeField] private TextMeshProUGUI rubbleNumber;
-        [SerializeField] private TextMeshProUGUI mineralNumber; 
+        [SerializeField] private TextMeshProUGUI mineralNumber;
         [SerializeField] private GameObject debugPanel;
         [Header("Minimap")]
         [SerializeField] private Camera minimapCamera;
@@ -98,7 +98,7 @@ namespace MiningGame.UI
                 if (mineral.isDiscovered)
                 {
                     entry.iconImage.sprite = mineral.icon;
-                    entry.nameText.text = mineral.mineralName;
+                    entry.nameText.text = mineral.blockName;
                 }
                 else
                 {

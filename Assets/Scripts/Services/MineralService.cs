@@ -30,7 +30,7 @@ namespace MiningGame.Services
 
 
             mineral.isDiscovered = true;
-            Debug.Log("Mineral discovered: " + mineral.mineralName);
+            Debug.Log("Mineral discovered: " + mineral.blockName);
             OnMineralDiscovered?.Invoke(mineral);
         }
     }

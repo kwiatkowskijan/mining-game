@@ -24,7 +24,7 @@ namespace MiningGame.Managers
 
         public void DiscoverMineral(Mineral mineral)
         {
-            Debug.Log("Mineral discovered: " + mineral.mineralName);
+            Debug.Log("Mineral discovered: " + mineral.blockName);
             mineral.isDiscovered = true;
             OnMineralDiscovered?.Invoke(mineral);
         }
