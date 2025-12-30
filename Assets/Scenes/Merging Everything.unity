@@ -1451,7 +1451,7 @@ MonoBehaviour:
     rid: 1749345436662235207
   m_ShadowCastingSource: 2
   m_ShadowMesh:
-    m_Mesh: {fileID: 1657082182}
+    m_Mesh: {fileID: 1658178930}
     m_LocalBounds:
       m_Center: {x: 0, y: 0, z: 0}
       m_Extent: {x: 0, y: 0, z: 0}
@@ -4681,6 +4681,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1840271319705736523, guid: 9d9c9a2ee19e745498519946acfe4739, type: 3}
       insertIndex: -1
       addedObject: {fileID: 958783162}
+    - targetCorrespondingSourceObject: {fileID: 1840271319705736523, guid: 9d9c9a2ee19e745498519946acfe4739, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 958783167}
   m_SourcePrefab: {fileID: 100100000, guid: 9d9c9a2ee19e745498519946acfe4739, type: 3}
 --- !u!4 &958783159 stripped
 Transform:
@@ -4788,6 +4791,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5afd309dce760f640a109144c6ec4909, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &958783167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 958783160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d320a6d73d634affaa8ba217cc368103, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MiningGame.SaveSystem.SaveSystemBootstrap
+  autoCreateSaveManager: 1
+  autoCreateWorldTracker: 1
 --- !u!1001 &984849478
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12738,6 +12755,53 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3557790853746389978, guid: 90611d8c756f674479dc1445e2c153ef, type: 3}
   m_PrefabInstance: {fileID: 565819399}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1469796144
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1469796146}
+  - component: {fileID: 1469796145}
+  m_Layer: 0
+  m_Name: SaveManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1469796145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1469796144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8573194690554312b94159f1b7190dcd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MiningGame.SaveSystem.SaveManager
+  saveFileName: savegame.json
+  autoSaveIntervalMinutes: 5
+  enableAutoSave: 1
+--- !u!4 &1469796146
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1469796144}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 971.64825, y: 454.20233, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1475569052
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29659,7 +29723,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4573213150188770456, guid: cb301525d46d9fe418d87ad67a220a60, type: 3}
   m_PrefabInstance: {fileID: 2586959375476954079}
   m_PrefabAsset: {fileID: 0}
---- !u!43 &1657082182
+--- !u!43 &1658178930
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -31279,3 +31343,4 @@ SceneRoots:
   - {fileID: 8958839916897015917}
   - {fileID: 1833118954}
   - {fileID: 1362318245}
+  - {fileID: 1469796146}

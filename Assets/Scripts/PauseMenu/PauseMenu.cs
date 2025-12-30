@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using MiningGame.SaveSystem;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -48,6 +49,15 @@ public class PauseMenu : MonoBehaviour
         Debug.Log("Options clicked (placeholder, nothing happens).");
     }
 
+    /// <summary>
+    /// Zapisz grę - podepnij pod przycisk "Save"
+    /// </summary>
+    public void OnSaveClicked()
+    {
+        SaveGame();
+        Debug.Log("PauseMenu: Game saved!");
+    }
+
     public void SaveAndExit()
     {
         SaveGame();
@@ -60,6 +70,27 @@ public class PauseMenu : MonoBehaviour
 
     private void SaveGame()
     {
-        Debug.Log("Game Saved (placeholder)");
+        Debug.Log($"PauseMenu: Attempting to save. SaveManager.Instance = {SaveManager.Instance}");
+        
+        if (SaveManager.Instance != null)
+        {
+            SaveManager.Instance.SaveGame();
+        }
+        else
+        {
+            Debug.LogError("PauseMenu: SaveManager.Instance is NULL! Make sure SaveManager exists in the scene.");
+            
+            // Spróbuj znaleźć SaveManager w scenie
+            var sm = FindFirstObjectByType<SaveManager>();
+            if (sm != null)
+            {
+                Debug.Log("PauseMenu: Found SaveManager via FindFirstObjectByType, saving...");
+                sm.SaveGame();
+            }
+            else
+            {
+                Debug.LogError("PauseMenu: No SaveManager found in scene at all!");
+            }
+        }
     }
 }
