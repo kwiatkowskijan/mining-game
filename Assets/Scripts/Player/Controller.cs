@@ -26,6 +26,7 @@ namespace MiningGame.Player
         [Header("Runtime variables")]
         private bool _isJumping;
         private bool _isFacingRight = true;
+        private bool _wasGrounded = true;
         private float _jumpCooldownTimer = 0f;
         private bool _isClimbing;
 
@@ -50,10 +51,7 @@ namespace MiningGame.Player
 
         private void Awake()
         {
-            // Services
-            _audioService = ServiceLocator.Get<IAudioService>(); 
-
-            // Components
+            _audioService = ServiceLocator.Get<IAudioService>();
             _rb = GetComponent<Rigidbody2D>();
             _sr = GetComponentInChildren<SpriteRenderer>();
             _animator = GetComponentInChildren<Animator>();
@@ -71,11 +69,25 @@ namespace MiningGame.Player
             if (_jumpCooldownTimer > 0f)
                 _jumpCooldownTimer -= Time.deltaTime;
 
-            if (_jumpCooldownTimer <= 0f)
-                _isJumping = !IsGrounded();
+            bool grounded = IsGrounded();
 
-            if (!_isJumping && IsGrounded())
+            if (_jumpCooldownTimer <= 0f)
+            {
+                if (_wasGrounded && !grounded)
+                {
+                    _isJumping = true;
+                    _jumpDirectionX = (_rb != null && speed != 0f) ? _rb.linearVelocity.x / speed : _moveAmount.x;
+                }
+                else
+                {
+                    _isJumping = !grounded;
+                }
+            }
+
+            if (!_isJumping && grounded)
                 _jumpDirectionX = 0f;
+
+            _wasGrounded = grounded;
 
             if (IsTouchingLadder() && Mathf.Abs(_moveAmount.y) > 0.1f)
             {
@@ -94,13 +106,6 @@ namespace MiningGame.Player
                 FlipSprite();
 
             HandleAnimations();
-
-            Debug.DrawLine(transform.position, transform.position + Vector3.down * 1.2f, Color.red);
-            Debug.DrawRay(new Vector2(transform.position.x, transform.position.y - 0.4f), Vector2.left * 0.7f, Color.red);
-            Debug.DrawRay(new Vector2(transform.position.x, transform.position.y - 0.4f), Vector2.right * 0.7f, Color.red);
-
-            // Debug.Log("Touching ladder: " + IsTouchingLadder()); //test wspinania
-
         }
 
         private void FixedUpdate()
@@ -169,7 +174,9 @@ namespace MiningGame.Player
 
         private bool IsGrounded()
         {
-            return Physics2D.Raycast(transform.position, Vector2.down, 1.2f, LayerMask.GetMask("Ground"));
+            return Physics2D.Raycast(transform.position, Vector2.down, 1.2f, LayerMask.GetMask("Ground")) ||
+                   Physics2D.Raycast(new Vector2(transform.position.x - 0.5f, transform.position.y), Vector2.down, 1.2f, LayerMask.GetMask("Ground")) ||
+                   Physics2D.Raycast(new Vector2(transform.position.x + 0.5f, transform.position.y), Vector2.down, 1.2f, LayerMask.GetMask("Ground"));
         }
 
         private bool IsNearWall()
@@ -207,7 +214,6 @@ namespace MiningGame.Player
             return col != null;
         }
 
-
         private void FlipSprite()
         {
             _isFacingRight = !_isFacingRight;
@@ -236,8 +242,6 @@ namespace MiningGame.Player
                 _animator.SetBool("isFalling", false);
             }
         }
-
-        //Gdy trzeba graczowi chwilowo wy��czy� poruszanie (cutscenka, otwarcie menu, by nie bieg� ca�y czas w jedn� stron� np.)
         private float speedDefault;
         private float jumpDefault;
         public void saveDefaults()
@@ -257,11 +261,5 @@ namespace MiningGame.Player
             speed = speedDefault;
             jumpForce = jumpDefault;
         }
-        private void OnDrawGizmos() //testowanie
-        {
-            Gizmos.color = Color.blue;
-            Gizmos.DrawWireSphere(transform.position + Vector3.up * 0.5f, 0.4f);
-        }
-
     }
 }
