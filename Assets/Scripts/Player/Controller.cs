@@ -61,11 +61,23 @@ namespace MiningGame.Player
 
         private void Update()
         {
+            ReadInput();
+            UpdateJumpCooldownAndState();
+            HandleLadderState();
+            HandleFlip();
+            HandleAnimations();
+        }
+
+        private void ReadInput()
+        {
             _moveAmount = _moveAction.ReadValue<Vector2>();
 
             if (_jumpAction.WasPressedThisFrame() && IsGrounded())
                 Jump();
+        }
 
+        private void UpdateJumpCooldownAndState()
+        {
             if (_jumpCooldownTimer > 0f)
                 _jumpCooldownTimer -= Time.deltaTime;
 
@@ -88,7 +100,10 @@ namespace MiningGame.Player
                 _jumpDirectionX = 0f;
 
             _wasGrounded = grounded;
+        }
 
+        private void HandleLadderState()
+        {
             if (IsTouchingLadder() && Mathf.Abs(_moveAmount.y) > 0.1f)
             {
                 _isClimbing = true;
@@ -99,13 +114,14 @@ namespace MiningGame.Player
                 _isClimbing = false;
                 _rb.gravityScale = 1f;
             }
+        }
 
+        private void HandleFlip()
+        {
             if (_moveAmount.x > 0f && !_isFacingRight)
                 FlipSprite();
             else if (_moveAmount.x < 0f && _isFacingRight)
                 FlipSprite();
-
-            HandleAnimations();
         }
 
         private void FixedUpdate()
