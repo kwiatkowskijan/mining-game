@@ -9,5 +9,6 @@ namespace MiningGame.WorldGeneration
         public int maxDepth = -100;
         public Sprite icon;
         public bool isDiscovered = false;
+        public float sellPrice = 10f;
     }
 }

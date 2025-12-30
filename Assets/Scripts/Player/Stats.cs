@@ -31,18 +31,8 @@ namespace MiningGame.Player
         [Header("Minerals")]
         private Dictionary<Mineral, int> mineralAmounts = new();
         
-        // Getter do odczytu mineralAmounts (dla save systemu)
         public Dictionary<Mineral, int> GetMineralAmounts()
         {
-            Debug.Log($"[STATS DEBUG] GetMineralAmounts called. Dictionary has {mineralAmounts.Count} entries");
-            if (mineralAmounts.Count > 0)
-            {
-                Debug.Log("[STATS DEBUG] Minerals in Stats:");
-                foreach (var kvp in mineralAmounts)
-                {
-                    Debug.Log($"  - {kvp.Key.blockName}: {kvp.Value}");
-                }
-            }
             return mineralAmounts;
         }
 
@@ -115,23 +105,11 @@ namespace MiningGame.Player
             {
                 ui.UpdateMineralNumber(mineral, mineralAmounts[mineral]);
             }
-            
-            Debug.Log($"[INVENTORY] Added {amount}x {mineral.blockName} | Total Minerals: {GetTotalMineralsCount()} | Money: ${currentMoney:F2}");
         }
 
         public int GetMineralAmount(Mineral mineral)
         {
             return mineralAmounts.TryGetValue(mineral, out int amt) ? amt : 0;
-        }
-
-        private int GetTotalMineralsCount()
-        {
-            int total = 0;
-            foreach (var kvp in mineralAmounts)
-            {
-                total += kvp.Value;
-            }
-            return total;
         }
 
         public void RemoveMineral(Mineral mineral, int amount)
@@ -144,25 +122,18 @@ namespace MiningGame.Player
             {
                 ui.UpdateMineralNumber(mineral, mineralAmounts[mineral]);
             }
-            
-            // Wyświetl stan ekwipunku i portfela w konsoli
-            Debug.Log($"[INVENTORY] Removed {amount}x {mineral.blockName} | Total Minerals: {GetTotalMineralsCount()} | Money: ${currentMoney:F2}");
         }
 
         public void ClearMineral(Mineral mineral)
         {
             if (mineralAmounts.ContainsKey(mineral))
             {
-                int removedAmount = mineralAmounts[mineral];
                 mineralAmounts[mineral] = 0;
                 
                 if (ui != null)
                 {
                     ui.UpdateMineralNumber(mineral, 0);
                 }
-                
-                // Wyświetl stan ekwipunku i portfela w konsoli
-                Debug.Log($"[INVENTORY] Cleared {removedAmount}x {mineral.blockName} | Total Minerals: {GetTotalMineralsCount()} | Money: ${currentMoney:F2}");
             }
         }
 
@@ -170,9 +141,6 @@ namespace MiningGame.Player
         {
             currentMoney += amount;
             OnMoneyChanged?.Invoke(currentMoney);
-            
-            // Wyświetl stan portfela w konsoli
-            Debug.Log($"[WALLET] Added ${amount:F2} | Total Money: ${currentMoney:F2}");
         }
 
         public void RemoveMoney(float amount)
