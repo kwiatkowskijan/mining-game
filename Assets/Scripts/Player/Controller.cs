@@ -17,10 +17,12 @@ namespace MiningGame.Player
         [SerializeField] private float speed;
         [SerializeField] private float jumpForce;
         [SerializeField, Range(0, 0.5f)] private float airControl;
-        [SerializeField] private float climbSpeed;
         [SerializeField, Tooltip("The maximum angle of the slope the player can walk on."), Range(0, 90)] private float maxSlopeAngle;
         [SerializeField] private float jumpCooldown;
-        [SerializeField] private LayerMask climbableLayer; //drabina
+        [Header("Climb Settings")]
+        [SerializeField] private float ladderClimbSpeed;
+        [SerializeField] private float wallClimbSpeed;
+        [SerializeField] private LayerMask climbableLayer;
         [Header("Audio")]
         [SerializeField] private AudioClip jumpAudio;
         [Header("Runtime variables")]
@@ -128,7 +130,7 @@ namespace MiningGame.Player
         {
             if (_isClimbing)
             {
-                Vector2 climbVelocity = new Vector2(_moveAmount.x * speed, _moveAmount.y * climbSpeed);
+                Vector2 climbVelocity = new Vector2(_moveAmount.x * speed, _moveAmount.y * ladderClimbSpeed);
                 _rb.linearVelocity = climbVelocity;
             }
             else
@@ -185,7 +187,7 @@ namespace MiningGame.Player
 
         private void Climb()
         {
-            _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, _moveAmount.y * climbSpeed);
+            _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, _moveAmount.y * wallClimbSpeed);
         }
 
         private bool IsGrounded()
