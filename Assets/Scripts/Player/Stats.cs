@@ -30,6 +30,11 @@ namespace MiningGame.Player
 
         [Header("Minerals")]
         private Dictionary<Mineral, int> mineralAmounts = new();
+        
+        public Dictionary<Mineral, int> GetMineralAmounts()
+        {
+            return mineralAmounts;
+        }
 
         [Header("Money")]
         [SerializeField] private float currentMoney;
@@ -95,12 +100,41 @@ namespace MiningGame.Player
                 mineralAmounts[mineral] = 0;
 
             mineralAmounts[mineral] += amount;
-            ui.UpdateMineralNumber(mineral, mineralAmounts[mineral]);
+            
+            if (ui != null)
+            {
+                ui.UpdateMineralNumber(mineral, mineralAmounts[mineral]);
+            }
         }
 
         public int GetMineralAmount(Mineral mineral)
         {
             return mineralAmounts.TryGetValue(mineral, out int amt) ? amt : 0;
+        }
+
+        public void RemoveMineral(Mineral mineral, int amount)
+        {
+            if (!mineralAmounts.ContainsKey(mineral)) return;
+
+            mineralAmounts[mineral] = Mathf.Max(0, mineralAmounts[mineral] - amount);
+            
+            if (ui != null)
+            {
+                ui.UpdateMineralNumber(mineral, mineralAmounts[mineral]);
+            }
+        }
+
+        public void ClearMineral(Mineral mineral)
+        {
+            if (mineralAmounts.ContainsKey(mineral))
+            {
+                mineralAmounts[mineral] = 0;
+                
+                if (ui != null)
+                {
+                    ui.UpdateMineralNumber(mineral, 0);
+                }
+            }
         }
 
         public void AddMoney(float amount)

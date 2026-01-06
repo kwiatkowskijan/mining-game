@@ -9,9 +9,6 @@ namespace MiningGame
         [SerializeField] private GameObject shopUI;
         [SerializeField] private GameObject tooltipE;
 
-        [Header("Managers")]
-        [SerializeField] private ShopManager shopManager;
-
         [Header("Shop UI")]
         [SerializeField] private ShopUIController shopUIController;
 
@@ -32,11 +29,8 @@ namespace MiningGame
             else
                 Debug.LogWarning("ShopTrigger: tooltipE not assigned on " + gameObject.name);
 
-            if (shopManager == null)
-                Debug.LogWarning("ShopTrigger: shopManager not assigned on " + gameObject.name + ". Assign the ShopManager so items can be generated on open.");
-
             if (shopUIController == null)
-                Debug.LogWarning("ShopTrigger: shopUIcontroller not assigned on " + gameObject.name + ". Assign to display items when opening shop.");
+                Debug.LogWarning("ShopTrigger: shopUIController not assigned on " + gameObject.name + ". Assign to display minerals when opening shop.");
             
             var col2d = GetComponent<Collider2D>();
             var col3d = GetComponent<Collider>();
@@ -106,24 +100,19 @@ namespace MiningGame
 
         private void OpenShop()
         {
-            ShopItemType[] items = new ShopItemType[0];
-            if (shopManager != null)
-            {
-                shopManager.GenerateShopItems();
-                items = shopManager.GetGeneratedItems();
-                Debug.Log("ShopTrigger: Generated items: " + string.Join(", ", items));
-            }
-
             _shopOpen = true;
 
             if (shopUI != null) shopUI.SetActive(true);
 
             if (shopUIController != null)
             {
-                shopUIController.ShowItems(items);
+                // Nowy system - pokazuje minerały gracza
+                shopUIController.ShowPlayerMinerals();
             }
 
             if (tooltipE != null) tooltipE.SetActive(false);
+            
+            Debug.Log("ShopTrigger: Shop opened - showing player minerals");
         }
 
         private void CloseShop()
