@@ -232,18 +232,5 @@ namespace MiningGame.WorldGeneration
                 );
             }
         }
-
-        // === METODY DO SAVE/LOAD ===
-        public int GetSeed() => seed;
-        
-        public void SetSeed(int newSeed)
-        {
-            seed = newSeed;
-        }
-
-        public Dictionary<Vector2Int, bool> GetGeneratedChunks() => _generatedChunks;
-
-        public Tilemap GetMineTilemap() => mineTilemap;
-        public Tilemap GetBackgroundTilemap() => backgroundTilemap;
     }
 }

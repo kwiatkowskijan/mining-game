@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
-using MiningGame.SaveSystem;
 
 namespace MiningGame.Player
 {
@@ -181,7 +180,7 @@ namespace MiningGame.Player
                 return;
             }
 
-            //w jaki sposï¿½b powinna zostaï¿½ stworzona struktura?
+            //w jaki sposób powinna zostaæ stworzona struktura?
             switch(buildData.type){
                 case 1:
                     buildData.tilemap.SetTile(cellPos, buildData.tile);
@@ -190,9 +189,6 @@ namespace MiningGame.Player
                     TilemapCollider2D collider = buildData.tilemap.GetComponent<TilemapCollider2D>();
                     if (collider != null)
                         collider.ProcessTilemapChanges();
-                    
-                    // Zarejestruj postawiony budynek
-                    RegisterPlacedBuilding(buildData.name, buildData.tilemap.CellToWorld(cellPos));
                     break;
 
                 case 2:
@@ -200,9 +196,6 @@ namespace MiningGame.Player
 
                     GameObject obj = GameObject.Instantiate(buildData.prefab, worldPos, Quaternion.identity);
                     obj.name = buildData.name;
-                    
-                    // Zarejestruj postawiony budynek
-                    RegisterPlacedBuilding(buildData.name, worldPos);
                     break;
 
                 case 3:
@@ -219,9 +212,6 @@ namespace MiningGame.Player
                         GameObject obj3 = Instantiate(buildData.prefab, worldPos, Quaternion.identity);
                         obj3.name = buildData.name;
                     }
-                    
-                    // Zarejestruj postawiony budynek
-                    RegisterPlacedBuilding(buildData.name, buildData.tilemap.CellToWorld(cellPos));
                     break;
             }
 
@@ -230,19 +220,6 @@ namespace MiningGame.Player
 
             stats.RemoveMoney(cost);
 
-        }
-
-        private void RegisterPlacedBuilding(string buildingName, Vector3 position)
-        {
-            if (SaveSystem.WorldChangeTracker.Instance != null)
-            {
-                SaveSystem.WorldChangeTracker.Instance.RegisterPlacedBuilding(buildingName, position);
-                Debug.Log($"BuildMode: Registered building '{buildingName}' at {position}");
-            }
-            else
-            {
-                Debug.LogWarning($"BuildMode: Cannot register building '{buildingName}' - WorldChangeTracker.Instance is NULL! Make sure SaveSystemBootstrap is in the scene.");
-            }
         }
 
         public void SetBuildIndex(int index)

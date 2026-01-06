@@ -84,17 +84,6 @@ namespace MiningGame.Tools
                                 if (holdTimer >= blockMiningTime)
                                 {
                                     tilemap.SetTile(tileToDig.Value, null); // niszczenie tile'a
-                                    
-                                    // Zarejestruj zniszczony blok do save systemu
-                                    if (SaveSystem.WorldChangeTracker.Instance != null)
-                                    {
-                                        SaveSystem.WorldChangeTracker.Instance.RegisterDestroyedTile(tileToDig.Value);
-                                    }
-                                    else
-                                    {
-                                        Debug.LogWarning("Digging: WorldChangeTracker.Instance is NULL! Block will not be saved.");
-                                    }
-                                    
                                     Vector3 worldPos = tilemap.GetCellCenterWorld(tileToDig.Value);
                                     if (toSpawn != null)
                                         Instantiate(toSpawn, worldPos, Quaternion.identity);

@@ -67,11 +67,7 @@ namespace MiningGame.UI
                 ToggleDebugPanel();
             }
 
-            // Sprawdź czy obiekty nie są null przed użyciem
-            if (minimapCamera != null && minimapService != null)
-            {
-                minimapCamera.orthographicSize = minimapService.CurrentZoom;
-            }
+            minimapCamera.orthographicSize = minimapService.CurrentZoom;
         }
 
         private void UpdateHealthBar(float health)

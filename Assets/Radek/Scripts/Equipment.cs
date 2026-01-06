@@ -26,21 +26,9 @@ namespace MiningGame
 
         public bool slotsChange=true;
         
-        // Lista sprite'ów w każdym slotcie dla save/load
-        public Sprite[] slotSprites = new Sprite[4];
-        
         void Start()
         {
             chosenSlot = 0;
-            // Inicjalizacja - zbierz bieżące sprite'y z toolsImages
-            for (int i = 0; i < toolsImages.Length && i < 4; i++)
-            {
-                var img = toolsImages[i].GetComponent<Image>();
-                if (img != null)
-                {
-                    slotSprites[i] = img.sprite;
-                }
-            }
         }
 
         void Update()
@@ -114,40 +102,5 @@ namespace MiningGame
         {
             activeToolScript.EnableToolScripts();
         }
-
-        // === METODY DO SAVE/LOAD ===
-        public void SaveSlotSprites()
-        {
-            for (int i = 0; i < toolsImages.Length && i < 4; i++)
-            {
-                var img = toolsImages[i].GetComponent<Image>();
-                if (img != null)
-                {
-                    slotSprites[i] = img.sprite;
-                }
-            }
-            Debug.Log($"Equipment: Saved slot sprites - Count: {slotSprites.Length}");
-        }
-
-        public void LoadSlotSprites()
-        {
-            for (int i = 0; i < toolsImages.Length && i < 4; i++)
-            {
-                var img = toolsImages[i].GetComponent<Image>();
-                if (img != null && slotSprites[i] != null)
-                {
-                    img.sprite = slotSprites[i];
-                    toolsImages[i].SetActive(true);
-                    Debug.Log($"Equipment: Loaded sprite to slot {i}: {slotSprites[i].name}");
-                }
-                else if (img != null && slotSprites[i] == null)
-                {
-                    img.sprite = null;
-                    toolsImages[i].SetActive(false);
-                }
-            }
-        }
-        
-        public GameObject[] GetToolsImages() => toolsImages;
     }
 }
