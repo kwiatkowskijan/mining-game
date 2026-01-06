@@ -1,34 +1,24 @@
 using UnityEngine;
-using UnityEngine.SceneManagement; 
+using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    [SerializeField] private string gameSceneName = "Map Generation";
-
-    
     public void OnPlayClicked()
     {
-        SceneManager.LoadScene("Map Generation");
+        SceneManager.LoadScene("MergeEverything");
     }
 
-    
     public void OnOptionsClicked()
     {
-        
         Debug.Log("Opcje jeszcze nie sa zrobione");
-
-        
     }
 
-    
     public void OnExitClicked()
     {
         Debug.Log("Wyjscie z gry");
-
-        Application.Quit(); 
-
+        Application.Quit();
 #if UNITY_EDITOR
-        // ¿eby w edytorze tez 'wychodzilo' z gry:
+        // Å»eby w edytorze tez 'wychodzilo' z gry:
         UnityEditor.EditorApplication.isPlaying = false;
 #endif
     }

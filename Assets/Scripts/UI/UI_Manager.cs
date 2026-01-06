@@ -1,11 +1,8 @@
 using MiningGame.Core;
 using MiningGame.Core.Interfaces;
-using MiningGame.Managers;
 using MiningGame.Player;
 using MiningGame.WorldGeneration;
-using System.Data;
 using TMPro;
-using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UI;
 
