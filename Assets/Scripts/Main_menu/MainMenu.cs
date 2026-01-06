@@ -5,7 +5,7 @@ public class MainMenu : MonoBehaviour
 {
     public void OnPlayClicked()
     {
-        SceneManager.LoadScene("MergeEverything");
+        SceneManager.LoadScene(1);
     }
 
     public void OnOptionsClicked()
