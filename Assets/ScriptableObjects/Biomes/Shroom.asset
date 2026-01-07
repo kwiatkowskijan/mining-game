@@ -15,4 +15,4 @@ MonoBehaviour:
   biomeName: Shroom
   startY: 300
   commonBlocks:
-  - {fileID: 11400000, guid: f4f2f48293dbc354ea4dbe4f5f6b4b5d, type: 2}
+  - {fileID: 11400000, guid: d6d514d2c409ba6439a8606d89b7b0a1, type: 2}

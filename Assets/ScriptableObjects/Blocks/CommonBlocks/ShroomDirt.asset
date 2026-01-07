@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfe90c9ddca187f40aabc7c145bfb1db, type: 3}
+  m_Name: ShroomDirt
+  m_EditorClassIdentifier: Assembly-CSharp::MiningGame.WorldGeneration.CommonBlock
+  blockName: ShroomDirt
+  tiles:
+  - {fileID: 11400000, guid: 4b2d4952a10a01743bc0a7de24d4de4b, type: 2}
+  - {fileID: 11400000, guid: cd03fa48a0d4fb34a8b6b314d3000f9a, type: 2}
+  - {fileID: 11400000, guid: 039a986feb3d33a4cacf93f075b572aa, type: 2}
+  - {fileID: 11400000, guid: 8d745af71f3b7d74fab2078ae72cf6a0, type: 2}
+  - {fileID: 11400000, guid: a4c1434b10dc33f4a87c260ba9d38588, type: 2}
+  isDescrutable: 1
+  miningMultiplier: 1
+  toSpawn: {fileID: 0}
