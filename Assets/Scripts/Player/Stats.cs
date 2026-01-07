@@ -148,5 +148,10 @@ namespace MiningGame.Player
             currentMoney -= amount;
             OnMoneyChanged?.Invoke(currentMoney);
         }
+
+        public void UpdateMoneyUI()
+        {
+            ui.UpdateMoneyNumber(currentMoney);
+        }
     }
 }

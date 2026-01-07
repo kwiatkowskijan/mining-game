@@ -20,6 +20,7 @@ namespace MiningGame.UI
         [SerializeField] private Image healthBar;
         [SerializeField] private TextMeshProUGUI rubbleNumber;
         [SerializeField] private TextMeshProUGUI mineralNumber;
+        [SerializeField] private TextMeshProUGUI moneyNumber;
         [SerializeField] private GameObject debugPanel;
         [Header("Minimap")]
         [SerializeField] private Camera minimapCamera;
@@ -48,8 +49,11 @@ namespace MiningGame.UI
             if (statsComponent == null)
                 statsComponent = FindFirstObjectByType<Stats>();
 
-            UpdateHealthBar(statsComponent.CurrentHealth);
             statsComponent.OnHealthChanged += UpdateHealthBar;
+            UpdateHealthBar(statsComponent.CurrentHealth);
+
+            statsComponent.OnMoneyChanged += UpdateMoneyNumber;
+            UpdateMoneyNumber(statsComponent.CurrentMoney);
 
             UpdateMineralsUI();
 
@@ -125,6 +129,9 @@ namespace MiningGame.UI
         {
             if (mineralsService != null)
                 mineralsService.OnMineralDiscovered -= HandleMineralDiscovered;
+
+            if (statsComponent != null)
+                statsComponent.OnMoneyChanged -= UpdateMoneyNumber;
         }
 
         public void updateRubble(float playerRubble, float maxRubble)
@@ -136,6 +143,11 @@ namespace MiningGame.UI
         public void UpdateMineralNumber(Mineral mineral, int amount)
         {
             mineralNumber.text = amount.ToString();
+        }
+
+        public void UpdateMoneyNumber(float amount)
+        {
+            moneyNumber.text = "$" + amount.ToString("N0");
         }
     }
 }

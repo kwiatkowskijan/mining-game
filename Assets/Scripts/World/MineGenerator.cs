@@ -47,6 +47,7 @@ namespace MiningGame.WorldGeneration
 
         private void InitValues()
         {
+            seed = seed == 0 ? Random.Range(-1000000, 1000000) : seed;
             _startPosition = new Vector3Int(startX, 0, 0);
             _player = GameObject.FindGameObjectWithTag("Player").transform;
             biomes.Sort((a, b) => a.startY.CompareTo(b.startY));

@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfe90c9ddca187f40aabc7c145bfb1db, type: 3}
+  m_Name: WoodDirt
+  m_EditorClassIdentifier: Assembly-CSharp::MiningGame.WorldGeneration.CommonBlock
+  blockName: WoodDirt
+  tiles:
+  - {fileID: 11400000, guid: c59c848598e259b4d9fc9762910abac1, type: 2}
+  - {fileID: 11400000, guid: 2cedb77c9ea6554409c53e0567d389cd, type: 2}
+  - {fileID: 11400000, guid: a818a2e067c0f154dbcb720494e9c40b, type: 2}
+  - {fileID: 11400000, guid: 62a4a0ceba8160f41b7f668859ce0021, type: 2}
+  - {fileID: 11400000, guid: 0fab8993045074246a57dbd99bc8114e, type: 2}
+  - {fileID: 11400000, guid: eeff817c6173ed640ac7ec86cc06bab1, type: 2}
+  isDescrutable: 1
+  miningMultiplier: 1
+  toSpawn: {fileID: 3461270386126559627, guid: a459c29f58a86f5499eac77ada5d0154, type: 3}

@@ -184,9 +184,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionTooltip: {fileID: 6519355760942823141}
-  movement: {fileID: 0}
   EQMenu: {fileID: 0}
-  inMenu: 0
+  inEQMenu: 0
 --- !u!1 &6519355760942823141
 GameObject:
   m_ObjectHideFlags: 0
@@ -266,7 +265,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2224474878120320963, guid: caafca0edfeb5ce438c1e088a1fded12, type: 3}
+  m_Sprite: {fileID: -595190218102541375, guid: 61fe8d3370426b946813f80e1a5a65f9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
