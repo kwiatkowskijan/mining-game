@@ -444,6 +444,184 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!43 &31373736
+Mesh:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  serializedVersion: 12
+  m_SubMeshes:
+  - serializedVersion: 2
+    firstByte: 0
+    indexCount: 0
+    topology: 0
+    baseVertex: 0
+    firstVertex: 0
+    vertexCount: 0
+    localAABB:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0, y: 0, z: 0}
+  m_Shapes:
+    vertices: []
+    shapes: []
+    channels: []
+    fullWeights: []
+  m_BindPose: []
+  m_BoneNameHashes: 
+  m_RootBoneNameHash: 0
+  m_BonesAABB: []
+  m_VariableBoneCountWeights:
+    m_Data: 
+  m_MeshCompression: 0
+  m_IsReadable: 1
+  m_KeepVertices: 1
+  m_KeepIndices: 1
+  m_IndexFormat: 0
+  m_IndexBuffer: 
+  m_VertexData:
+    serializedVersion: 3
+    m_VertexCount: 0
+    m_Channels:
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 3
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    m_DataSize: 0
+    _typelessdata: 
+  m_CompressedMesh:
+    m_Vertices:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_UV:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Normals:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Tangents:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Weights:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_NormalSigns:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_TangentSigns:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_FloatColors:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_BoneIndices:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Triangles:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_UVInfo: 0
+  m_LocalAABB:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
+  m_MeshUsageFlags: 0
+  m_CookingOptions: 30
+  m_BakedConvexCollisionMesh: 
+  m_BakedTriangleCollisionMesh: 
+  'm_MeshMetrics[0]': 1
+  'm_MeshMetrics[1]': 1
+  m_MeshOptimizationFlags: 1
+  m_StreamData:
+    serializedVersion: 2
+    offset: 0
+    size: 0
+    path: 
+  m_MeshLodInfo:
+    serializedVersion: 2
+    m_LodSelectionCurve:
+      serializedVersion: 1
+      m_LodSlope: 0
+      m_LodBias: 0
+    m_NumLevels: 1
+    m_SubMeshes:
+    - serializedVersion: 2
+      m_Levels:
+      - serializedVersion: 1
+        m_IndexStart: 0
+        m_IndexCount: 0
 --- !u!1 &48604402
 GameObject:
   m_ObjectHideFlags: 0
@@ -1524,7 +1702,7 @@ MonoBehaviour:
     rid: 1749345436662235207
   m_ShadowCastingSource: 2
   m_ShadowMesh:
-    m_Mesh: {fileID: 489443529}
+    m_Mesh: {fileID: 31373736}
     m_LocalBounds:
       m_Center: {x: 0, y: 0, z: 0}
       m_Extent: {x: 0, y: 0, z: 0}
@@ -2818,184 +2996,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!43 &489443529
-Mesh:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  serializedVersion: 12
-  m_SubMeshes:
-  - serializedVersion: 2
-    firstByte: 0
-    indexCount: 0
-    topology: 0
-    baseVertex: 0
-    firstVertex: 0
-    vertexCount: 0
-    localAABB:
-      m_Center: {x: 0, y: 0, z: 0}
-      m_Extent: {x: 0, y: 0, z: 0}
-  m_Shapes:
-    vertices: []
-    shapes: []
-    channels: []
-    fullWeights: []
-  m_BindPose: []
-  m_BoneNameHashes: 
-  m_RootBoneNameHash: 0
-  m_BonesAABB: []
-  m_VariableBoneCountWeights:
-    m_Data: 
-  m_MeshCompression: 0
-  m_IsReadable: 1
-  m_KeepVertices: 1
-  m_KeepIndices: 1
-  m_IndexFormat: 0
-  m_IndexBuffer: 
-  m_VertexData:
-    serializedVersion: 3
-    m_VertexCount: 0
-    m_Channels:
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 3
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    m_DataSize: 0
-    _typelessdata: 
-  m_CompressedMesh:
-    m_Vertices:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_UV:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Normals:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Tangents:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Weights:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_NormalSigns:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_TangentSigns:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_FloatColors:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_BoneIndices:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Triangles:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_UVInfo: 0
-  m_LocalAABB:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 0, y: 0, z: 0}
-  m_MeshUsageFlags: 0
-  m_CookingOptions: 30
-  m_BakedConvexCollisionMesh: 
-  m_BakedTriangleCollisionMesh: 
-  'm_MeshMetrics[0]': 1
-  'm_MeshMetrics[1]': 1
-  m_MeshOptimizationFlags: 1
-  m_StreamData:
-    serializedVersion: 2
-    offset: 0
-    size: 0
-    path: 
-  m_MeshLodInfo:
-    serializedVersion: 2
-    m_LodSelectionCurve:
-      serializedVersion: 1
-      m_LodSlope: 0
-      m_LodBias: 0
-    m_NumLevels: 1
-    m_SubMeshes:
-    - serializedVersion: 2
-      m_Levels:
-      - serializedVersion: 1
-        m_IndexStart: 0
-        m_IndexCount: 0
 --- !u!1 &504074565
 GameObject:
   m_ObjectHideFlags: 0
@@ -43749,10 +43749,25 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 69a58e032ec3e2b4cb553a15665ca68a, type: 2}
   - {fileID: 11400000, guid: 95ac26039f3c52b448286412f94b4f5c, type: 2}
   minerals:
-  - {fileID: 11400000, guid: 3740173062bcf91458aefa0e730a6ceb, type: 2}
+  - {fileID: 11400000, guid: 5b766a11255400447a8957f21519ddc2, type: 2}
+  - {fileID: 11400000, guid: fd904f9d7318e7a47a05927cb5301180, type: 2}
   - {fileID: 11400000, guid: e9a0e25925860d746bdf93bdb8bb2c1c, type: 2}
+  - {fileID: 11400000, guid: 1216ece092a78eb41aa4889db84e990a, type: 2}
+  - {fileID: 11400000, guid: ac9d29c92eafbf44f99832c34064241f, type: 2}
+  - {fileID: 11400000, guid: a28b3f2e909ea6c49b8b528c199e9474, type: 2}
+  - {fileID: 11400000, guid: a0c96ebe04b959e4596a6cf524c8642e, type: 2}
+  - {fileID: 11400000, guid: 03c06c4c60d8e224189388dce9506a09, type: 2}
+  - {fileID: 11400000, guid: 26c3b5303bb20794da9e5d467a2257e7, type: 2}
+  - {fileID: 11400000, guid: e9596a0b9a6bf214eb1cdf06d0d31f0e, type: 2}
+  - {fileID: 11400000, guid: 498684ce0f3a5c34e8ef57e4934efc26, type: 2}
   - {fileID: 11400000, guid: 37683fae43c7f1b4aa7e6bdb215b7d6c, type: 2}
-  defaultMineral: {fileID: 11400000, guid: 26cbe6b92d5c66645898bdaa09058c1e, type: 2}
+  - {fileID: 11400000, guid: dd34bad2dc17b2e4eb78afc594879a90, type: 2}
+  - {fileID: 11400000, guid: 4ab4d5daf20a41d4aabe4611237e82d4, type: 2}
+  - {fileID: 11400000, guid: 79f0bc102c422bf418059f88cabfe92b, type: 2}
+  - {fileID: 11400000, guid: 8350ab7f088e0924ba47ea173dc6b4b4, type: 2}
+  - {fileID: 11400000, guid: 8b87591ba12d67b43b3126aeeb40009c, type: 2}
+  - {fileID: 11400000, guid: da28a63411ddc8449a6d6e5ff1c5509c, type: 2}
+  defaultMineral: {fileID: 11400000, guid: 3740173062bcf91458aefa0e730a6ceb, type: 2}
   bedrock: {fileID: 11400000, guid: d57d2f2375917e34ba231929d61dd985, type: 2}
   caveBackgroundTile: {fileID: 11400000, guid: b495f41cd450d7f4b97abc255a12791f, type: 2}
   startX: 56
@@ -44452,6 +44467,86 @@ PrefabInstance:
       propertyPath: musicSource
       value: 
       objectReference: {fileID: 14880836}
+    - target: {fileID: 2190764870723320295, guid: 880fd0b73071ca146a4bced78b437d72, type: 3}
+      propertyPath: mineralsDatabase.Array.size
+      value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: 2190764870723320295, guid: 880fd0b73071ca146a4bced78b437d72, type: 3}
+      propertyPath: 'mineralsDatabase.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 5b766a11255400447a8957f21519ddc2, type: 2}
+    - target: {fileID: 2190764870723320295, guid: 880fd0b73071ca146a4bced78b437d72, type: 3}
+      propertyPath: 'mineralsDatabase.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 3740173062bcf91458aefa0e730a6ceb, type: 2}
+    - target: {fileID: 2190764870723320295, guid: 880fd0b73071ca146a4bced78b437d72, type: 3}
+      propertyPath: 'mineralsDatabase.Array.data[2]'
+      value: 
+      objectReference: {fileID: 11400000, guid: fd904f9d7318e7a47a05927cb5301180, type: 2}
+    - target: {fileID: 2190764870723320295, guid: 880fd0b73071ca146a4bced78b437d72, type: 3}
+      propertyPath: 'mineralsDatabase.Array.data[3]'
+      value: 
+      objectReference: {fileID: 11400000, guid: e9a0e25925860d746bdf93bdb8bb2c1c, type: 2}
+    - target: {fileID: 2190764870723320295, guid: 880fd0b73071ca146a4bced78b437d72, type: 3}
+      propertyPath: 'mineralsDatabase.Array.data[4]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 1216ece092a78eb41aa4889db84e990a, type: 2}
+    - target: {fileID: 2190764870723320295, guid: 880fd0b73071ca146a4bced78b437d72, type: 3}
+      propertyPath: 'mineralsDatabase.Array.data[5]'
+      value: 
+      objectReference: {fileID: 11400000, guid: ac9d29c92eafbf44f99832c34064241f, type: 2}
+    - target: {fileID: 2190764870723320295, guid: 880fd0b73071ca146a4bced78b437d72, type: 3}
+      propertyPath: 'mineralsDatabase.Array.data[6]'
+      value: 
+      objectReference: {fileID: 11400000, guid: a28b3f2e909ea6c49b8b528c199e9474, type: 2}
+    - target: {fileID: 2190764870723320295, guid: 880fd0b73071ca146a4bced78b437d72, type: 3}
+      propertyPath: 'mineralsDatabase.Array.data[7]'
+      value: 
+      objectReference: {fileID: 11400000, guid: a0c96ebe04b959e4596a6cf524c8642e, type: 2}
+    - target: {fileID: 2190764870723320295, guid: 880fd0b73071ca146a4bced78b437d72, type: 3}
+      propertyPath: 'mineralsDatabase.Array.data[8]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 03c06c4c60d8e224189388dce9506a09, type: 2}
+    - target: {fileID: 2190764870723320295, guid: 880fd0b73071ca146a4bced78b437d72, type: 3}
+      propertyPath: 'mineralsDatabase.Array.data[9]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 26c3b5303bb20794da9e5d467a2257e7, type: 2}
+    - target: {fileID: 2190764870723320295, guid: 880fd0b73071ca146a4bced78b437d72, type: 3}
+      propertyPath: 'mineralsDatabase.Array.data[10]'
+      value: 
+      objectReference: {fileID: 11400000, guid: e9596a0b9a6bf214eb1cdf06d0d31f0e, type: 2}
+    - target: {fileID: 2190764870723320295, guid: 880fd0b73071ca146a4bced78b437d72, type: 3}
+      propertyPath: 'mineralsDatabase.Array.data[11]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 498684ce0f3a5c34e8ef57e4934efc26, type: 2}
+    - target: {fileID: 2190764870723320295, guid: 880fd0b73071ca146a4bced78b437d72, type: 3}
+      propertyPath: 'mineralsDatabase.Array.data[12]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 37683fae43c7f1b4aa7e6bdb215b7d6c, type: 2}
+    - target: {fileID: 2190764870723320295, guid: 880fd0b73071ca146a4bced78b437d72, type: 3}
+      propertyPath: 'mineralsDatabase.Array.data[13]'
+      value: 
+      objectReference: {fileID: 11400000, guid: dd34bad2dc17b2e4eb78afc594879a90, type: 2}
+    - target: {fileID: 2190764870723320295, guid: 880fd0b73071ca146a4bced78b437d72, type: 3}
+      propertyPath: 'mineralsDatabase.Array.data[14]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 4ab4d5daf20a41d4aabe4611237e82d4, type: 2}
+    - target: {fileID: 2190764870723320295, guid: 880fd0b73071ca146a4bced78b437d72, type: 3}
+      propertyPath: 'mineralsDatabase.Array.data[15]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 79f0bc102c422bf418059f88cabfe92b, type: 2}
+    - target: {fileID: 2190764870723320295, guid: 880fd0b73071ca146a4bced78b437d72, type: 3}
+      propertyPath: 'mineralsDatabase.Array.data[16]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 8350ab7f088e0924ba47ea173dc6b4b4, type: 2}
+    - target: {fileID: 2190764870723320295, guid: 880fd0b73071ca146a4bced78b437d72, type: 3}
+      propertyPath: 'mineralsDatabase.Array.data[17]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 8b87591ba12d67b43b3126aeeb40009c, type: 2}
+    - target: {fileID: 2190764870723320295, guid: 880fd0b73071ca146a4bced78b437d72, type: 3}
+      propertyPath: 'mineralsDatabase.Array.data[18]'
+      value: 
+      objectReference: {fileID: 11400000, guid: da28a63411ddc8449a6d6e5ff1c5509c, type: 2}
     - target: {fileID: 3332636488598193827, guid: 880fd0b73071ca146a4bced78b437d72, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1392.7181
