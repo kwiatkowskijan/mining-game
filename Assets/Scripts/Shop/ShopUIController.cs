@@ -50,7 +50,7 @@ namespace MiningGame.Shop
             {
                 if (mineralsListText != null)
                 {
-                    mineralsListText.text = "Brak minerałów do sprzedaży";
+                    mineralsListText.text = "No minerals in your inventory";
                 }
                 UpdateTotalValue(0f);
                 gameObject.SetActive(true);
