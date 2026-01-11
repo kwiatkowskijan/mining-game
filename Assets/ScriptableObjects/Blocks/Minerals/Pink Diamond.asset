@@ -12,15 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08c8ffa272d389447bcf4db8401be3cb, type: 3}
   m_Name: Pink Diamond
   m_EditorClassIdentifier: Assembly-CSharp::MiningGame.WorldGeneration.Mineral
-  id: 0
+  blockName: Pink Diamond
   tiles:
   - {fileID: 11400000, guid: ca2788f6b7a39a542aef1d00794db941, type: 2}
   isDescrutable: 1
-  mineralName: Pink Diamond
-  commonness: 5
+  miningMultiplier: 1
+  toSpawn: {fileID: 7910860408734959751, guid: b6017404db014794e943d86ecd1eba43, type: 3}
   minDepth: -350
   maxDepth: -500
-  miningMultiplier: 1
-  toSpawn: {fileID: 0}
   icon: {fileID: 4893562281096436010, guid: b59701d18cb7f3f42b8ed661ef15805a, type: 3}
   isDiscovered: 0
+  sellPrice: 10

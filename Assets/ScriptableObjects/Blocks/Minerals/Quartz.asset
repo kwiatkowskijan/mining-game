@@ -12,15 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08c8ffa272d389447bcf4db8401be3cb, type: 3}
   m_Name: Quartz
   m_EditorClassIdentifier: Assembly-CSharp::MiningGame.WorldGeneration.Mineral
-  id: 0
+  blockName: Quartz
   tiles:
   - {fileID: 11400000, guid: 66ddf2cab1113e4418a675f6af71de54, type: 2}
   isDescrutable: 1
-  mineralName: Quartz
-  commonness: 65
+  miningMultiplier: 1
+  toSpawn: {fileID: 7910860408734959751, guid: 23d0c7a1c0c89854b8276dee2d0e7a12, type: 3}
   minDepth: 200
   maxDepth: -100
-  miningMultiplier: 1
-  toSpawn: {fileID: 0}
   icon: {fileID: 4865639987182239474, guid: 2178b5d5940e9464a9f012a53b615987, type: 3}
   isDiscovered: 0
+  sellPrice: 10

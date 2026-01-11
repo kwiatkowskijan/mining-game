@@ -12,15 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08c8ffa272d389447bcf4db8401be3cb, type: 3}
   m_Name: Obsidian
   m_EditorClassIdentifier: Assembly-CSharp::MiningGame.WorldGeneration.Mineral
-  id: 0
+  blockName: Obsidian
   tiles:
   - {fileID: 11400000, guid: 2c1747a88318d334fa2eadc6a6f004a7, type: 2}
   isDescrutable: 1
-  mineralName: Obsidian
-  commonness: 40
+  miningMultiplier: 1
+  toSpawn: {fileID: 7910860408734959751, guid: e2529fd45dd2f98449fc6ab7108e7ba8, type: 3}
   minDepth: 0
   maxDepth: -400
-  miningMultiplier: 1
-  toSpawn: {fileID: 0}
   icon: {fileID: 8504214004179876900, guid: 21ce18fe7c98e914bacffaaedadfc83e, type: 3}
   isDiscovered: 0
+  sellPrice: 10

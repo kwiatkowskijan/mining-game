@@ -12,15 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08c8ffa272d389447bcf4db8401be3cb, type: 3}
   m_Name: Lapis
   m_EditorClassIdentifier: Assembly-CSharp::MiningGame.WorldGeneration.Mineral
-  id: 0
+  blockName: Lapis
   tiles:
   - {fileID: 11400000, guid: 59ead9effebea204eb1fbc03cd1c3aaa, type: 2}
   isDescrutable: 1
-  mineralName: Lapis
-  commonness: 45
+  miningMultiplier: 1
+  toSpawn: {fileID: 7910860408734959751, guid: 7dd69e245b7d9784d805295b6f8c667e, type: 3}
   minDepth: 100
   maxDepth: -200
-  miningMultiplier: 1
-  toSpawn: {fileID: 0}
   icon: {fileID: 8271901803441240683, guid: b1401c1cf9329df45a81dbea65051f89, type: 3}
   isDiscovered: 0
+  sellPrice: 10
