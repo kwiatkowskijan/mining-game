@@ -71,7 +71,7 @@ public class TileSnapSelector : MonoBehaviour
     {
         Vector3 direction = (toWorld - fromWorld).normalized;
         float distance = Vector3.Distance(fromWorld, toWorld);
-        int steps = Mathf.CeilToInt(distance * 10); // dok�adno�� raycasta
+        int steps = Mathf.CeilToInt(distance * 10); // dokladnosc raycasta
 
         for (int i = 1; i < steps; i++)
         {
@@ -82,7 +82,7 @@ public class TileSnapSelector : MonoBehaviour
                 continue;
 
             if (tilemap.HasTile(sampleCell))
-                return true; // co� zas�ania
+                return true; // cos zaslania
         }
 
         return false;
