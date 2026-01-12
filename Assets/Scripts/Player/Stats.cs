@@ -61,11 +61,6 @@ namespace MiningGame.Player
         {
             currentHealth = Mathf.Clamp(currentHealth - amount, 0, maxHealth);
             OnHealthChanged?.Invoke(currentHealth);
-
-            if (currentHealth <= 0) 
-            {
-                Die();
-            }
         }
 
         private void Die()
