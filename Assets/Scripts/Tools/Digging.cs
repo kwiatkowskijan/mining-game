@@ -1,8 +1,6 @@
 using MiningGame.Player;
 using MiningGame.WorldGeneration;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem.Interactions;
 using UnityEngine.Tilemaps;
 
 namespace MiningGame.Tools
