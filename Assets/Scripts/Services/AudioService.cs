@@ -18,11 +18,16 @@ namespace MiningGame.Services
         {
             _sfxSource.PlayOneShot(audioClip);
         }
-        
+
         public void PlayMusic(AudioClip audioClip)
         {
             _musicSource.clip = audioClip;
             _musicSource.Play();
+        }
+
+        public void StopMusic()
+        {
+            _musicSource.Stop();
         }
     }
 }

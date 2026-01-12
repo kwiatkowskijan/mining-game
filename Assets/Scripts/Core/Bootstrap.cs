@@ -3,6 +3,7 @@ using MiningGame.Core.Interfaces;
 using MiningGame.WorldGeneration;
 using MiningGame.Services;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace MiningGame.Core
 {
@@ -25,6 +26,8 @@ namespace MiningGame.Core
             ServiceLocator.Register<IMinimapService>(new MinimapService());
 
             Debug.Log("[Bootstrap] All services registered!");
+
+            SceneManager.LoadScene("Main menu", LoadSceneMode.Single);
         }
     }
 }

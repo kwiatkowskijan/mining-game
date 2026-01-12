@@ -33,5 +33,13 @@ namespace MiningGame.Services
             Debug.Log("Mineral discovered: " + mineral.blockName);
             OnMineralDiscovered?.Invoke(mineral);
         }
+
+        public void UndisoverAllMinerals()
+        {
+            foreach (var mineral in _minerals)
+            {
+                mineral.isDiscovered = false;
+            }
+        }
     }
 }

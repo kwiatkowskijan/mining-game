@@ -9,6 +9,6 @@ namespace MiningGame.Core.Interfaces
         IReadOnlyList<Mineral> Minerals { get; }
         event Action<Mineral> OnMineralDiscovered;
         void DiscoverMineral(Mineral mineral);
-
+        void UndisoverAllMinerals();
     }
 }

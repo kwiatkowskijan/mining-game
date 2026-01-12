@@ -1,12 +1,20 @@
+using MiningGame.Core.Interfaces;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using MiningGame.Core;
 
 public class PauseMenu : MonoBehaviour
 {
     public static bool IsPaused = false;
+    private IAudioService _audioService;
 
     [Header("UI Panels")]
-    public GameObject pauseMenuPanel; 
+    public GameObject pauseMenuPanel;
+
+    private void Awake()
+    {
+        _audioService = ServiceLocator.Get<IAudioService>();
+    }
 
     private void Start()
     {
@@ -42,7 +50,7 @@ public class PauseMenu : MonoBehaviour
         IsPaused = false;
     }
 
-    
+
     public void OptionsPlaceholder()
     {
         Debug.Log("Options clicked (placeholder, nothing happens).");
@@ -55,7 +63,9 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f;
         IsPaused = false;
 
-        SceneManager.LoadScene("Main Menu"); 
+        _audioService.StopMusic();
+
+        SceneManager.LoadScene("Main Menu");
     }
 
     private void SaveGame()

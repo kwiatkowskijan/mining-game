@@ -1,11 +1,20 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using MiningGame.Core.Interfaces;
+using MiningGame.Core;
 
 public class MainMenu : MonoBehaviour
 {
+    private IMineralsService _mineralsService;
+
+    private void Awake()
+    {
+        _mineralsService = ServiceLocator.Get<IMineralsService>();
+    }
     public void OnPlayClicked()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
+        _mineralsService.UndisoverAllMinerals();
     }
 
     public void OnOptionsClicked()

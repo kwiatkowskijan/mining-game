@@ -6,12 +6,18 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Bootstrap.unity
+    guid: 2c9cc2e95f724d24592ae51019891ede
+  - enabled: 1
     path: Assets/Scenes/Main menu.unity
     guid: 5c395fb789b6afd4aae187a30568a632
   - enabled: 1
+    path: Assets/Scenes/Merging Everything.unity
+    guid: 6e2123575cd6d1c4a826b1dfeabbbbbe
+  - enabled: 0
     path: Assets/Scenes/Map Generation.unity
     guid: 12c3913659ba7ce4d86c8097ee282b83
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MainScene.unity
     guid: 708c182b7cba7064f8312479a7bafb4e
   m_configObjects:

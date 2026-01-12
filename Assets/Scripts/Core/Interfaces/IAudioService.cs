@@ -7,5 +7,6 @@ namespace MiningGame.Core.Interfaces
     {
         void PlaySfx(AudioClip audioClip);
         void PlayMusic(AudioClip audioClip);
+        void StopMusic();
     }
 }
