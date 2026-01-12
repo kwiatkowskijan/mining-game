@@ -48,7 +48,7 @@ namespace MiningGame.Player
         {
             currentHealth = maxHealth;
             currentRubble = 0;
-            currentMoney = 10000;
+            currentMoney = 100;
 
             var minerals = ServiceLocator.Get<IMineralsService>().Minerals;
             foreach (var mineral in minerals)
